@@ -28,6 +28,11 @@ Vector2 Player::GetPosition() const
     return position;
 }
 
+Rectangle Player::GetPositionRec() const
+{
+    return {position.x, position.y, (float)playerTexture.width / numberFrames - 1, (float)playerTexture.height};
+}
+
 void Player::Animate()
 {
     framesCounter++;

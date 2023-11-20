@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "Player.h"
+#include "Item.h"
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -17,6 +18,8 @@ int main(void)
 
     Player player(LoadTexture("resources/textures/characters/frog_idle.png"), 11, {350.0f, 280.0f}, RAYWHITE);
 
+    Item apple(LoadTexture("resources/textures/items/apple.png"), 17, {550.0f, 280.0f}, RAYWHITE);
+
     SetTargetFPS(60);
 
     // Main game loop
@@ -24,12 +27,6 @@ int main(void)
     {
 
         player.Animate();
-
-        if (IsKeyDown(KEY_RIGHT))
-            player.Move({5, 0});
-
-        if (IsKeyDown(KEY_LEFT))
-            player.Move({-5, 0});
 
         // Draw
         //----------------------------------------------------------------------------------
@@ -39,7 +36,21 @@ int main(void)
         DrawTexture(background1, 0, 0, WHITE); // Background
         DrawTexture(border, 0, 0, WHITE);      // Border
 
+        apple.Draw();
         player.Draw();
+
+        if (IsKeyDown(KEY_RIGHT))
+            player.Move({5, 0});
+
+        if (IsKeyDown(KEY_LEFT))
+        {
+            player.Move({-5, 0});
+        }
+
+        if (CheckCollisionRecs(player.GetPositionRec(), apple.GetPositionRec()))
+        {
+            apple.Collect();
+        }
 
         EndDrawing();
         //----------------------------------------------------------------------------------

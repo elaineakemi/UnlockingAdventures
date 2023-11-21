@@ -16,7 +16,7 @@ int main(void)
     Texture2D border = LoadTexture("resources/textures/background/border.png");
     Texture2D background1 = LoadTexture("resources/textures/background/background1.png");
 
-    Player player(LoadTexture("resources/textures/characters/frog_idle.png"), 11, {350.0f, 280.0f}, RAYWHITE);
+    Player player(LoadTexture("resources/textures/characters/frog_idle.png"), 11, {15.0f, 280.0f}, RAYWHITE);
 
     Item apple(LoadTexture("resources/textures/items/apple.png"), 17, {550.0f, 280.0f}, RAYWHITE);
 
@@ -26,8 +26,6 @@ int main(void)
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
 
-        player.Animate();
-
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
@@ -36,13 +34,13 @@ int main(void)
         DrawTexture(background1, 0, 0, WHITE); // Background
         DrawTexture(border, 0, 0, WHITE);      // Border
 
-        apple.Draw();
-        player.Draw();
+        apple.Render();
+        player.Render();
 
-        if (IsKeyDown(KEY_RIGHT))
+        if (IsKeyDown(KEY_RIGHT) && player.GetPosition().x < screenWidth - 50)
             player.Move({5, 0});
 
-        if (IsKeyDown(KEY_LEFT))
+        if (IsKeyDown(KEY_LEFT) && player.GetPosition().x > 20)
         {
             player.Move({-5, 0});
         }

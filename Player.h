@@ -2,33 +2,13 @@
 #define PLAYER_H
 
 #include "raylib.h"
+#include "Character.h"
 
-class Player
+class Player : public Character
 {
-private:
-    Texture2D playerTexture;
-    int numberFrames; // Number of frames in the texture
-    Vector2 position;
-    Color color;
-
-    // Used to change player frames within texture
-    Rectangle frameRec;
-    int currentFrame;
-    int framesCounter;
-    int framesSpeed;
 
 public:
     Player(Texture2D playertx, int numFrames, Vector2 pos, Color c);
-
-    void Draw();
-
-    void Move(Vector2 offset);
-
-    Vector2 GetPosition() const;
-
-    Rectangle GetPositionRec() const;
-
-    void Animate();
 };
 
 #endif

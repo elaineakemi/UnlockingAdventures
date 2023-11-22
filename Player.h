@@ -6,6 +6,9 @@
 
 class Player : public Character
 {
+    const float GRAVITY = 0.3f;
+    const float STEP = 3;
+
 private:
     bool isPlayerOnGround;
     float jumpValue;

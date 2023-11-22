@@ -1,31 +1,28 @@
 #include "math.h"
 #include "Player.h"
 
-const float GRAVITY = 0.3f;
-const float STEP = 3;
-
 Player::Player(Texture2D txtr, int numFrames, Vector2 pos, Color c)
     : Character(txtr, numFrames, pos, c),
       isPlayerOnGround(true),
       jumpValue(0.0f),
-      groundValue(200.0f)
+      groundValue(0.0f)
 {
 }
 
 void Player::Update()
 {
 
-    if (IsKeyDown(KEY_RIGHT))
+    if (IsKeyDown(KEY_RIGHT) && position.x < GetScreenWidth() - 50)
     {
         position.x += STEP;
     }
 
-    if (IsKeyDown(KEY_LEFT))
+    if (IsKeyDown(KEY_LEFT) && position.x > 20)
     {
         position.x -= STEP;
     }
 
-      if (IsKeyDown(KEY_DOWN))
+    if (IsKeyDown(KEY_DOWN) && position.y < GetScreenHeight() - 50)
     {
         position.y += STEP;
     }

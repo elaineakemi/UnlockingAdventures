@@ -38,7 +38,7 @@ void Enemy::Drop()
 
 void Enemy::Move()
 {
-    if (!getIsAlive())
+    if (!GetIsAlive())
         return;
     float dt = GetFrameTime() * GetFPS();
     position.x -= dt / 2;

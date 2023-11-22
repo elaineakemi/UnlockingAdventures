@@ -2,10 +2,7 @@
 #include "Player.h"
 
 Player::Player(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar)
-    : Character(txtr, numFrames, pos, c, disappearChar),
-      isPlayerOnGround(true),
-      jumpValue(0.0f),
-      groundValue(0.0f)
+    : Character(txtr, numFrames, pos, c, disappearChar)
 {
 }
 
@@ -27,14 +24,22 @@ void Player::Update()
         position.y += STEP;
     }
 
-    if ((IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE)) && isPlayerOnGround)
+    if ((IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE)) && (isPlayerOnGround || isPlayerOnPlatform))
     {
-        isPlayerOnGround = false;
+        if (isPlayerOnGround)
+        {
+            isPlayerOnGround = false;
+            groundValue = position.y;
+        }
+
+        if (isPlayerOnPlatform)
+        {
+            isPlayerOnPlatform = false;
+        }
         jumpValue = -4.0f;
-        groundValue = position.y;
     }
 
-    if (isPlayerOnGround == false)
+    if (isPlayerOnGround == false && isPlayerOnPlatform == false)
     {
         Jump();
     }
@@ -45,7 +50,7 @@ void Player::Jump()
     // Move 1 pixel at a time for collision detection
     for (int i = 0; i < abs((int)jumpValue); i++)
     {
-        if (isPlayerOnGround == false)
+        if (isPlayerOnGround == false || isPlayerOnPlatform == false)
         {
             position.y += jumpValue;
         }

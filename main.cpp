@@ -28,8 +28,8 @@ int main(void)
 
     Item apple(LoadTexture("resources/textures/items/apple.png"), 17, {300.0f, 280.0f}, RAYWHITE, disappearChar);
 
-    Platform platform(LoadTexture("resources/textures/items/platform.png"), 1, {550.0f, 280.0f}, RAYWHITE);
-    Platform trampoline(LoadTexture("resources/textures/items/trampoline.png"), 8, {350.0f, 400.0f}, RAYWHITE);
+    Platform platform(LoadTexture("resources/textures/items/platform.png"), 1, {15.0f, 330.0f}, RAYWHITE);
+    Platform trampoline(LoadTexture("resources/textures/items/trampoline.png"), 8, {300.0f, 400.0f}, RAYWHITE);
 
     SetTargetFPS(60);
 
@@ -57,9 +57,28 @@ int main(void)
         spikeHead.Drop();
         pig.Move();
 
+        if (CheckCollisionRecs(player.GetPositionRec(), platform.GetPositionRec()))
+        {
+            if (!player.GetIsPlayerOnPlatform())
+            {
+                if (player.GetPositionRec().y < platform.GetPositionRec().y)
+                {
+                    player.SetIsPlayerOnPlatform(true);
+                    player.position.y = platform.GetPositionRec().y - platform.texture.height - 20;
+                }
+            }
+        }
+        else
+        {
+            if (player.GetIsPlayerOnPlatform())
+            {
+                player.SetIsPlayerOnPlatform(false);
+            }
+        }
+
         if (CheckCollisionRecs(player.GetPositionRec(), apple.GetPositionRec()))
         {
-            apple.setIsAlive(false);
+            apple.SetIsAlive(false);
         }
 
         if (CheckCollisionRecs(player.GetPositionRec(), trampoline.GetPositionRec()))
@@ -67,15 +86,15 @@ int main(void)
             player.JumpTrampoline(trampoline.GetPosition().y);
         }
 
-        if (pig.getIsAlive() && CheckCollisionRecs(player.GetPositionRec(), pig.GetPositionRec()))
+        if (pig.GetIsAlive() && CheckCollisionRecs(player.GetPositionRec(), pig.GetPositionRec()))
         {
-            if (player.GetPosition().y < pig.GetPosition().y)
+            if (player.GetPositionRec().y < pig.GetPositionRec().y)
             {
-                pig.setIsAlive(false);
+                pig.SetIsAlive(false);
             }
             else
             {
-                player.setIsAlive(false);
+                player.SetIsAlive(false);
             }
         }
 

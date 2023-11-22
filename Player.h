@@ -10,9 +10,10 @@ class Player : public Character
     const float STEP = 2;
 
 private:
-    bool isPlayerOnGround;
-    float jumpValue;
-    float groundValue;
+    bool isPlayerOnGround{true};
+    bool isPlayerOnPlatform{false};
+    float jumpValue{0.0f};
+    float groundValue{0.0f};
 
 public:
     Player(Texture2D playertx, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
@@ -22,6 +23,9 @@ public:
     void JumpTrampoline(float groundf);
 
     bool GetIsPlayerOnGround() { return isPlayerOnGround; }
+    void SetIsPlayerOnGround(bool isOnGround) { isPlayerOnGround = isOnGround; }
+    bool GetIsPlayerOnPlatform() { return isPlayerOnPlatform; }
+    void SetIsPlayerOnPlatform(bool isOnPlatform) { isPlayerOnPlatform = isOnPlatform; }
 };
 
 #endif

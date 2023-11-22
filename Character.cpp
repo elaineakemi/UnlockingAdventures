@@ -15,7 +15,7 @@ void Character::Render()
     if (renderDied == 0)
         return;
 
-    if (getIsAlive())
+    if (GetIsAlive())
     {
         DrawTextureRec(texture, frameRec, position, color);
     }
@@ -45,11 +45,6 @@ void Character::Move(Vector2 offset)
 {
     position.x += offset.x;
     position.y += offset.y;
-}
-
-Vector2 Character::GetPosition() const
-{
-    return position;
 }
 
 Rectangle Character::GetPositionRec() const

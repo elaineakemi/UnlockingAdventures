@@ -24,14 +24,12 @@ public:
 
     Character(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
 
-    bool getIsAlive() { return isAlive; }
-    void setIsAlive(bool isCharAlive) { isAlive = isCharAlive; }
+    bool GetIsAlive() { return isAlive; }
+    void SetIsAlive(bool isCharAlive) { isAlive = isCharAlive; }
 
     void Render();
 
     void Move(Vector2 offset);
-
-    Vector2 GetPosition() const;
 
     Rectangle GetPositionRec() const;
 };

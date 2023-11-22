@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Item.h"
 #include "Enemy.h"
+#include "Platform.h"
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -24,6 +25,8 @@ int main(void)
 
     Item apple(LoadTexture("resources/textures/items/apple.png"), 17, {300.0f, 280.0f}, RAYWHITE);
 
+    Platform platform(LoadTexture("resources/textures/items/platform.png"), 1, {550.0f, 280.0f}, RAYWHITE);
+
     SetTargetFPS(60);
 
     // Main game loop
@@ -42,14 +45,9 @@ int main(void)
         player.Render();
         turtle.Render();
         pig.Render();
+        platform.Render();
 
-        if (IsKeyDown(KEY_RIGHT) && player.GetPosition().x < screenWidth - 50)
-            player.Move({5, 0});
-
-        if (IsKeyDown(KEY_LEFT) && player.GetPosition().x > 20)
-        {
-            player.Move({-5, 0});
-        }
+        player.Update();
 
         if (CheckCollisionRecs(player.GetPositionRec(), apple.GetPositionRec()))
         {

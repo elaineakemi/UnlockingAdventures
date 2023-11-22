@@ -16,6 +16,7 @@ void Character::Render()
 {
     DrawTextureRec(texture, frameRec, position, color);
 
+    // Change between frames in the texture to "animate"
     framesCounter++;
     if (framesCounter >= (60 / framesSpeed))
     {

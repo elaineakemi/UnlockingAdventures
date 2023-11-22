@@ -1,8 +1,8 @@
 #include "math.h"
 #include "Player.h"
 
-Player::Player(Texture2D txtr, int numFrames, Vector2 pos, Color c)
-    : Character(txtr, numFrames, pos, c),
+Player::Player(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar)
+    : Character(txtr, numFrames, pos, c, disappearChar),
       isPlayerOnGround(true),
       jumpValue(0.0f),
       groundValue(0.0f)

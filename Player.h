@@ -7,7 +7,7 @@
 class Player : public Character
 {
     const float GRAVITY = 0.3f;
-    const float STEP = 3;
+    const float STEP = 2;
 
 private:
     bool isPlayerOnGround;
@@ -15,11 +15,13 @@ private:
     float groundValue;
 
 public:
-    Player(Texture2D playertx, int numFrames, Vector2 pos, Color c);
+    Player(Texture2D playertx, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
 
     void Update();
     void Jump();
     void JumpTrampoline(float groundf);
+
+    bool GetIsPlayerOnGround() { return isPlayerOnGround; }
 };
 
 #endif

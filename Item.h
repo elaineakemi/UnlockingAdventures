@@ -6,16 +6,9 @@
 
 class Item : public Character
 {
-private:
-    Texture2D collectedTexture; // To change texture when item is collected
-    bool isCollected;
 
 public:
-    Item(Texture2D itemtx, int numFrames, Vector2 pos, Color c);
-
-    void Render();
-
-    void Collect();
+    Item(Texture2D itemtx, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
 };
 
 #endif

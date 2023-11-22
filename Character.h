@@ -5,6 +5,10 @@
 
 class Character
 {
+private:
+    bool isAlive = true;
+    int renderDied = 5; // To render the disappearing texture
+
 public:
     Texture2D texture;
     int numberFrames; // Number of frames in the texture
@@ -15,9 +19,13 @@ public:
     Rectangle frameRec;
     int currentFrame;
     int framesCounter;
-    int framesSpeed;
 
-    Character(Texture2D txtr, int numFrames, Vector2 pos, Color c);
+    Texture2D disappearTexture;
+
+    Character(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
+
+    bool getIsAlive() { return isAlive; }
+    void setIsAlive(bool isCharAlive) { isAlive = isCharAlive; }
 
     void Render();
 

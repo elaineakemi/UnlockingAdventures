@@ -1,8 +1,6 @@
 #include "Character.h"
 
-const int FRAME_SPEED = 8;
-
-Character::Character(Texture2D txtr, int numFrames, Vector2 pos, Color c)
+Character::Character(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar)
     : texture(txtr),
       numberFrames(numFrames),
       position(pos),
@@ -10,15 +8,28 @@ Character::Character(Texture2D txtr, int numFrames, Vector2 pos, Color c)
       frameRec({0.0f, 0.0f, (float)texture.width / numberFrames - 1, (float)texture.height}),
       currentFrame(0),
       framesCounter(0),
-      framesSpeed(FRAME_SPEED) {}
+      disappearTexture(disappearChar) {}
 
 void Character::Render()
 {
-    DrawTextureRec(texture, frameRec, position, color);
+    if (renderDied == 0)
+        return;
+
+    if (getIsAlive())
+    {
+        DrawTextureRec(texture, frameRec, position, color);
+    }
+    else
+    {
+
+        Rectangle rect = {0.0f, 0.0f, (float)disappearTexture.width / 5, (float)disappearTexture.height};
+        DrawTextureRec(disappearTexture, rect, position, color);
+        renderDied--;
+    }
 
     // Change between frames in the texture to "animate"
     framesCounter++;
-    if (framesCounter >= (60 / framesSpeed))
+    if (framesCounter >= (60 / 8))
     {
         framesCounter = 0;
         currentFrame++;

@@ -2,9 +2,9 @@
 #define PLATFORM_H
 
 #include "raylib.h"
-#include "Character.h"
+#include "Scenario.h"
 
-class Platform : public Character
+class Platform : public Scenario
 {
 
 public:

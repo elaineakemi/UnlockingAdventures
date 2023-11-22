@@ -19,6 +19,7 @@ public:
 
     void Update();
     void Jump();
+    void JumpTrampoline(float groundf);
 };
 
 #endif

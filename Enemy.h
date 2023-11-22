@@ -7,10 +7,14 @@
 class Enemy : public Character
 {
 
+private:
+    bool isOnGround;
+
 public:
     Enemy(Texture2D txtr, int numFrames, Vector2 pos, Color c);
 
     void Drop();
+    void Move();
 };
 
 #endif

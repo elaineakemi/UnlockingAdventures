@@ -1,11 +1,10 @@
 #include "Enemy.h"
 
 Enemy::Enemy(Texture2D txtr, int numFrames, Vector2 pos, Color c)
-    : Character(txtr, numFrames, pos, c)
+    : Character(txtr, numFrames, pos, c), isOnGround(false)
 {
 }
 
-bool isOnGround = false;
 void Enemy::Drop()
 {
     float dt = GetFrameTime() * GetFPS();
@@ -24,11 +23,18 @@ void Enemy::Drop()
     {
         if (position.y >= 300)
         {
-            position.y -= dt;
+            position.y -= dt / 2;
         }
         else
         {
             isOnGround = false;
         }
     }
+}
+
+void Enemy::Move()
+{
+    float dt = GetFrameTime() * GetFPS();
+
+    position.x -= dt / 2;
 }

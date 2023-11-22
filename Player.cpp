@@ -61,3 +61,12 @@ void Player::Jump()
     // Update jump with gravity so player falls back
     jumpValue += GRAVITY;
 }
+
+void Player::JumpTrampoline(float groundf)
+{
+    groundValue = groundf;
+    isPlayerOnGround = false;
+    jumpValue = -6.0f;
+
+    Jump();
+}

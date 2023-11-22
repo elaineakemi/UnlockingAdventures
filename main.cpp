@@ -20,13 +20,14 @@ int main(void)
 
     Player player(LoadTexture("resources/textures/characters/frog_idle.png"), 11, {15.0f, 400.0f}, RAYWHITE);
 
-    Enemy pig(LoadTexture("resources/textures/characters/pig_idle.png"), 9, {500.0f, 280.0f}, RAYWHITE);
+    Enemy pig(LoadTexture("resources/textures/characters/pig_walking.png"), 16, {500.0f, 280.0f}, RAYWHITE);
     Enemy turtle(LoadTexture("resources/textures/characters/turtle_idle.png"), 14, {550.0f, 280.0f}, RAYWHITE);
     Enemy spikeHead(LoadTexture("resources/textures/characters/enemy_spike_head.png"), 4, {550.0f, 300.0f}, RAYWHITE);
 
     Item apple(LoadTexture("resources/textures/items/apple.png"), 17, {300.0f, 280.0f}, RAYWHITE);
 
     Platform platform(LoadTexture("resources/textures/items/platform.png"), 1, {550.0f, 280.0f}, RAYWHITE);
+    Platform trampoline(LoadTexture("resources/textures/items/trampoline.png"), 8, {350.0f, 400.0f}, RAYWHITE);
 
     SetTargetFPS(60);
 
@@ -48,13 +49,20 @@ int main(void)
         pig.Render();
         platform.Render();
         spikeHead.Render();
+        trampoline.Render();
 
         player.Update();
         spikeHead.Drop();
+        pig.Move();
 
         if (CheckCollisionRecs(player.GetPositionRec(), apple.GetPositionRec()))
         {
             apple.Collect();
+        }
+
+        if (CheckCollisionRecs(player.GetPositionRec(), trampoline.GetPositionRec()))
+        {
+            player.JumpTrampoline(trampoline.GetPosition().y);
         }
 
         EndDrawing();

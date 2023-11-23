@@ -8,6 +8,7 @@ class Character
 private:
     bool isAlive = true;
     int renderDied = 5; // To render the disappearing texture
+    bool isDisappear{true};
 
 public:
     Texture2D texture;
@@ -26,6 +27,7 @@ public:
 
     bool GetIsAlive() { return isAlive; }
     void SetIsAlive(bool isCharAlive) { isAlive = isCharAlive; }
+    void SetIsDisappear(bool disappear) { isDisappear = disappear; }
 
     void Render();
 

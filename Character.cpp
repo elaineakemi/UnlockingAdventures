@@ -21,10 +21,14 @@ void Character::Render()
     }
     else
     {
-
-        Rectangle rect = {0.0f, 0.0f, (float)disappearTexture.width / 5, (float)disappearTexture.height};
+        int frames = 1;
+        if (isDisappear)
+        {
+            renderDied--;
+            frames = 5; // Default disappear texture frames
+        }
+        Rectangle rect = {0.0f, 0.0f, (float)disappearTexture.width / frames, (float)disappearTexture.height};
         DrawTextureRec(disappearTexture, rect, position, color);
-        renderDied--;
     }
 
     // Change between frames in the texture to "animate"

@@ -71,7 +71,7 @@ void Player::JumpTrampoline(float groundf)
 {
     groundValue = groundf;
     isPlayerOnGround = false;
-    jumpValue = -6.0f;
+    jumpValue = -5.0f;
 
     Jump();
 }

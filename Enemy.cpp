@@ -41,5 +41,13 @@ void Enemy::Move()
     if (!GetIsAlive())
         return;
     float dt = GetFrameTime() * GetFPS();
-    position.x -= dt / 2;
+
+    if (position.x > 20)
+    {
+        position.x -= dt / 2;
+    }
+    else
+    {
+        SetIsAlive(false);
+    }
 }

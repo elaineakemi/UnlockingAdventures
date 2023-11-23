@@ -35,12 +35,17 @@ int main(void)
 
     Item apple2(appleTexture, 17, {200.0f, 280.0f}, RAYWHITE, disappearChar);
 
+    Item lifeBar(LoadTexture("resources/textures/items/life_bar.png"), 1, {20.0f, 20.0f}, RAYWHITE, disappearChar);
+    Item life(LoadTexture("resources/textures/items/life.png"), 8, {28.0f, 30.0f}, RAYWHITE, disappearChar);
+    Item life2(LoadTexture("resources/textures/items/life.png"), 8, {42.0f, 30.0f}, RAYWHITE, disappearChar);
+    Item life3(LoadTexture("resources/textures/items/life.png"), 8, {56.0f, 30.0f}, RAYWHITE, disappearChar);
+
     Item apples[5]{
-        Item(appleTexture, 17, {75.0f, 300.0f}, RAYWHITE, disappearChar),
+        Item(appleTexture, 17, {75.0f, 250.0f}, RAYWHITE, disappearChar),
         Item{appleTexture, 17, {100.0f, 280.0f}, RAYWHITE, disappearChar},
-        Item{appleTexture, 17, {125.0f, 300.0f}, RAYWHITE, disappearChar},
+        Item{appleTexture, 17, {125.0f, 250.0f}, RAYWHITE, disappearChar},
         Item{appleTexture, 17, {150.0f, 280.0f}, RAYWHITE, disappearChar},
-        Item{appleTexture, 17, {175.0f, 300.0f}, RAYWHITE, disappearChar}
+        Item{appleTexture, 17, {175.0f, 250.0f}, RAYWHITE, disappearChar}
 
     };
 
@@ -83,6 +88,10 @@ int main(void)
         platform3.Render();
         platform4.Render();
         door.Render();
+        lifeBar.Render();
+        life.Render();
+        life2.Render();
+        // life3.Render();
 
         for (Item item : apples)
         {
@@ -194,7 +203,8 @@ int main(void)
             }
             else
             {
-                player.SetIsAlive(false);
+                // player.SetIsAlive(false);
+                player.Die();
             }
         }
 

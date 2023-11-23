@@ -14,6 +14,7 @@ private:
     bool isPlayerOnPlatform{false};
     float jumpValue{0.0f};
     float groundValue{0.0f};
+    int lives{3};
 
 public:
     Player(Texture2D playertx, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
@@ -21,6 +22,7 @@ public:
     void Update();
     void Jump();
     void JumpTrampoline(float groundf);
+    void Die();
 
     bool GetIsPlayerOnGround() { return isPlayerOnGround; }
     void SetIsPlayerOnGround(bool isOnGround) { isPlayerOnGround = isOnGround; }

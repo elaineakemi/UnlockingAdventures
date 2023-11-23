@@ -75,3 +75,18 @@ void Player::JumpTrampoline(float groundf)
 
     Jump();
 }
+
+void Player::Die()
+{
+    lives--;
+    if (lives == 0)
+    {
+        SetIsAlive(false);
+    }
+    else
+    {
+        // Move to initial position
+        position.x = 15.0f;
+        position.y = 400.0f;
+    }
+}

@@ -4,6 +4,8 @@
 #include "raylib.h"
 #include "Character.h"
 
+extern int playerLives;
+
 class Player : public Character
 {
     const float GRAVITY = 0.3f;
@@ -15,7 +17,7 @@ private:
 
     float jumpValue{0.0f};
     float groundValue{0.0f};
-    int lives{3};
+
     Vector2 prevPosition;
 
 public:

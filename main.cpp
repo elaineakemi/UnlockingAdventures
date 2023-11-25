@@ -4,6 +4,8 @@
 #include "Enemy.h"
 #include "Platform.h"
 
+#include "Level1.h"
+
 //------------------------------------------------------------------------------------
 // Program main entry point
 //------------------------------------------------------------------------------------
@@ -15,11 +17,10 @@ int main(void)
 
     InitWindow(screenWidth, screenHeight, "Game Name");
 
-    Texture2D border = LoadTexture("resources/textures/background/border.png");
-    Texture2D background1 = LoadTexture("resources/textures/background/background1.png");
+    Level1 lvl1;
+    lvl1.Init();
 
     Texture2D disappearChar = LoadTexture("resources/textures/items/collected.png");
-    Texture2D appleTexture = LoadTexture("resources/textures/items/apple.png");
 
     Player player(LoadTexture("resources/textures/characters/frog_idle.png"), 11, {15.0f, 400.0f}, RAYWHITE, disappearChar);
 
@@ -27,27 +28,10 @@ int main(void)
     Enemy turtle(LoadTexture("resources/textures/characters/turtle_idle.png"), 14, {320.0f, 155.0f}, RAYWHITE, disappearChar);
     Enemy spikeHead(LoadTexture("resources/textures/characters/enemy_spike_head.png"), 4, {550.0f, 300.0f}, RAYWHITE, disappearChar);
 
-    Item apple(appleTexture, 17, {300.0f, 280.0f}, RAYWHITE, disappearChar);
-
-    Item checkpoint(LoadTexture("resources/textures/items/checkpoint.png"), 10, {700.0f, 370.0f}, RAYWHITE, LoadTexture("resources/textures/items/checkpoint_collected.png"));
-    Item checkpoint2(LoadTexture("resources/textures/items/checkpoint.png"), 10, {200.0f, 88.0f}, RAYWHITE, LoadTexture("resources/textures/items/checkpoint_collected.png"));
-    Item checkpoint3(LoadTexture("resources/textures/items/checkpoint.png"), 10, {730.0f, 237.0f}, RAYWHITE, LoadTexture("resources/textures/items/checkpoint_collected.png"));
-
-    Item apple2(appleTexture, 17, {200.0f, 280.0f}, RAYWHITE, disappearChar);
-
     Item lifeBar(LoadTexture("resources/textures/items/life_bar.png"), 1, {20.0f, 20.0f}, RAYWHITE, disappearChar);
     Item life(LoadTexture("resources/textures/items/life.png"), 8, {28.0f, 30.0f}, RAYWHITE, disappearChar);
     Item life2(LoadTexture("resources/textures/items/life.png"), 8, {42.0f, 30.0f}, RAYWHITE, disappearChar);
     Item life3(LoadTexture("resources/textures/items/life.png"), 8, {56.0f, 30.0f}, RAYWHITE, disappearChar);
-
-    Item apples[5]{
-        Item(appleTexture, 17, {75.0f, 250.0f}, RAYWHITE, disappearChar),
-        Item{appleTexture, 17, {100.0f, 280.0f}, RAYWHITE, disappearChar},
-        Item{appleTexture, 17, {125.0f, 250.0f}, RAYWHITE, disappearChar},
-        Item{appleTexture, 17, {150.0f, 280.0f}, RAYWHITE, disappearChar},
-        Item{appleTexture, 17, {175.0f, 250.0f}, RAYWHITE, disappearChar}
-
-    };
 
     Item door(LoadTexture("resources/textures/items/door_closed.png"), 1, {530.0f, 245.0f}, RAYWHITE, LoadTexture("resources/textures/items/door_open.png"));
 
@@ -70,10 +54,8 @@ int main(void)
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
-        DrawTexture(background1, 0, 0, WHITE); // Background
-        DrawTexture(border, 0, 0, WHITE);      // Border
-
-        apple.Render();
+        lvl1.RenderBackground();
+        lvl1.RenderItems();
 
         turtle.Render();
         pig.Render();
@@ -81,9 +63,7 @@ int main(void)
         spikeHead.Render();
         trampoline.Render();
         trampoline2.Render();
-        checkpoint.Render();
-        checkpoint2.Render();
-        checkpoint3.Render();
+
         platform2.Render();
         platform3.Render();
         platform4.Render();
@@ -93,12 +73,6 @@ int main(void)
         life2.Render();
         // life3.Render();
 
-        for (Item item : apples)
-        {
-            item.Render();
-        }
-
-        apple2.Render();
         player.Render();
         player.Update();
         spikeHead.Drop();
@@ -160,16 +134,11 @@ int main(void)
             }
         }
 
-        if (CheckCollisionRecs(player.GetPositionRec(), apple.GetPositionRec()))
-        {
-            apple.SetIsAlive(false);
-        }
-
-        if (CheckCollisionRecs(player.GetPositionRec(), checkpoint.GetPositionRec()))
+        /*if (CheckCollisionRecs(player.GetPositionRec(), checkpoint.GetPositionRec()))
         {
             checkpoint.SetIsAlive(false);
             checkpoint.SetIsDisappear(false);
-        }
+        }*/
 
         if (CheckCollisionRecs(player.GetPositionRec(), trampoline.GetPositionRec()))
         {
@@ -185,14 +154,15 @@ int main(void)
         {
             if (door.GetIsAlive())
             {
+                player.UndoMove();
                 // not allow go left
             }
             else
             {
                 // move to next level
             }
-            door.SetIsAlive(false);
-            door.SetIsDisappear(false);
+            // door.SetIsAlive(false);
+            // door.SetIsDisappear(false);
         }
 
         if (pig.GetIsAlive() && CheckCollisionRecs(player.GetPositionRec(), pig.GetPositionRec()))
@@ -214,9 +184,7 @@ int main(void)
 
     // De-Initialization
     //--------------------------------------------------------------------------------------
-    UnloadTexture(background1);
-    UnloadTexture(border);
-
+    lvl1.Unload();
     CloseWindow();
     //--------------------------------------------------------------------------------------
 

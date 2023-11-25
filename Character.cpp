@@ -10,6 +10,8 @@ Character::Character(Texture2D txtr, int numFrames, Vector2 pos, Color c, Textur
       framesCounter(0),
       disappearTexture(disappearChar) {}
 
+Character::Character() {}
+
 void Character::Render()
 {
     if (renderDied == 0)

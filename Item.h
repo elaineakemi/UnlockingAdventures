@@ -9,6 +9,7 @@ class Item : public Character
 
 public:
     Item(Texture2D itemtx, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
+    Item();
 };
 
 #endif

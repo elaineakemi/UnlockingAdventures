@@ -24,6 +24,7 @@ public:
     Texture2D disappearTexture;
 
     Character(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
+    Character();
 
     bool GetIsAlive() { return isAlive; }
     void SetIsAlive(bool isCharAlive) { isAlive = isCharAlive; }

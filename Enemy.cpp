@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
 Enemy::Enemy(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar, bool kill)
-    : Character(txtr, numFrames, pos, c, disappearChar), isOnGround(false), canBeKilled(kill)
+    : Character(txtr, numFrames, pos, c, disappearChar), isOnGround(true), canBeKilled(kill), initialPosition(pos)
 {
 }
 
@@ -25,7 +25,7 @@ void Enemy::Drop()
     else
     {
         // Enemy goes up with 0.5 delta speed
-        if (position.y >= 300)
+        if (position.y >= initialPosition.y)
         {
             position.y -= dt / 2;
         }

@@ -7,6 +7,9 @@
 #include "Player.h"
 #include "Enemy.h"
 
+extern int score;
+extern int playerLives;
+
 class Level1
 {
 
@@ -46,15 +49,15 @@ private:
 
     Platform platform1{platformTexture, 1, {15.0f, 300.0f}, RAYWHITE};
     Platform platform2{platformTexture, 1, {70.0f, 150.0f}, RAYWHITE};
-    Platform platform3{platformTexture, 1, {330.0f, 180.0f}, RAYWHITE};
+    Platform platform3{platformTexture, 1, {330.0f, 190.0f}, RAYWHITE};
     Platform platform4{platformTexture, 1, {530.0f, 300.0f}, RAYWHITE};
     Platform *platforms[4]{&platform1, &platform2, &platform3, &platform4};
 
     Item door{doorClosedTexture, 1, {530.0f, 245.0f}, RAYWHITE, doorOpenTexture};
 
     Enemy pig{pigTexture, 16, {500.0f, 400.0f}, RAYWHITE, disappearTexture, true};
-    Enemy spikeHead{spikeHeadTexture, 4, {550.0f, 200.0f}, RAYWHITE, disappearTexture, false};
-    Enemy turtle{turtleTexture, 14, {320.0f, 155.0f}, RAYWHITE, disappearTexture, false};
+    Enemy spikeHead{spikeHeadTexture, 4, {550.0f, 305.0f}, RAYWHITE, disappearTexture, false};
+    Enemy turtle{turtleTexture, 14, {305.0f, 165.0f}, RAYWHITE, disappearTexture, false};
     Enemy *enemies[3]{&pig, &spikeHead, &turtle};
 
     // TODO: move to a status component
@@ -63,6 +66,8 @@ private:
     Item life2{heartTexture, 8, {42.0f, 30.0f}, RAYWHITE, disappearTexture};
     Item life3{heartTexture, 8, {56.0f, 30.0f}, RAYWHITE, disappearTexture};
     Item *lives[3]{&life1, &life2, &life3};
+
+    int checkpointsRemaining{3};
 
 public:
     Level1();

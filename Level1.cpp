@@ -17,9 +17,12 @@ void Level1::RenderItems()
     lifeBar.Render();
     door.Render();
 
-    for (auto life : lives)
+    // Draw Score
+    DrawText(TextFormat("Score: %d", score), 650, 20, 20, BLACK);
+
+    for (int i = 0; i < playerLives; i++)
     {
-        life->Render();
+        lives[i]->Render();
     }
 
     for (auto enemy : enemies)
@@ -90,6 +93,10 @@ void Level1::Update(Player &player)
     {
         if (CheckCollisionRecs(player.GetPositionRec(), apple->GetPositionRec()))
         {
+            if (apple->GetIsAlive())
+            {
+                score += 100;
+            }
             apple->SetIsAlive(false);
         }
     }
@@ -101,6 +108,11 @@ void Level1::Update(Player &player)
     {
         if (CheckCollisionRecs(player.GetPositionRec(), checkpoint->GetPositionRec()))
         {
+            if (checkpoint->GetIsAlive())
+            {
+                // Collect checkpoint
+                checkpointsRemaining--;
+            }
             checkpoint->SetIsAlive(false);
             checkpoint->SetIsDisappearAfterCollect(false);
         }
@@ -121,6 +133,11 @@ void Level1::Update(Player &player)
     //----------------------------------------------------------------------------------
     // Door Collision
     //----------------------------------------------------------------------------------
+    if (checkpointsRemaining == 0)
+    {
+        door.SetIsAlive(false);
+        door.SetIsDisappearAfterCollect(false);
+    }
     if (CheckCollisionRecs(player.GetPositionRec(), door.GetPositionRec()))
     {
         if (door.GetIsAlive())

@@ -33,13 +33,6 @@ int main(void)
     Enemy turtle(LoadTexture("resources/textures/characters/turtle_idle.png"), 14, {320.0f, 155.0f}, RAYWHITE, disappearChar);
     Enemy spikeHead(LoadTexture("resources/textures/characters/enemy_spike_head.png"), 4, {550.0f, 300.0f}, RAYWHITE, disappearChar);
 
-    Item lifeBar(LoadTexture("resources/textures/items/life_bar.png"), 1, {20.0f, 20.0f}, RAYWHITE, disappearChar);
-    Item life(LoadTexture("resources/textures/items/life.png"), 8, {28.0f, 30.0f}, RAYWHITE, disappearChar);
-    Item life2(LoadTexture("resources/textures/items/life.png"), 8, {42.0f, 30.0f}, RAYWHITE, disappearChar);
-    Item life3(LoadTexture("resources/textures/items/life.png"), 8, {56.0f, 30.0f}, RAYWHITE, disappearChar);
-
-    Item door(LoadTexture("resources/textures/items/door_closed.png"), 1, {530.0f, 245.0f}, RAYWHITE, LoadTexture("resources/textures/items/door_open.png"));
-
     SetTargetFPS(60);
 
     // Main game loop
@@ -61,12 +54,6 @@ int main(void)
 
         spikeHead.Render();
 
-        door.Render();
-        lifeBar.Render();
-        life.Render();
-        life2.Render();
-        // life3.Render();
-
         player1.Update();
         spikeHead.Drop();
         pig.Move();
@@ -74,20 +61,6 @@ int main(void)
         /*
 
 
-                if (CheckCollisionRecs(player.GetPositionRec(), door.GetPositionRec()))
-                {
-                    if (door.GetIsAlive())
-                    {
-                        player.UndoMove();
-                        // not allow go left
-                    }
-                    else
-                    {
-                        // move to next level
-                    }
-                    // door.SetIsAlive(false);
-                    // door.SetIsDisappear(false);
-                }
 
                 if (pig.GetIsAlive() && CheckCollisionRecs(player.GetPositionRec(), pig.GetPositionRec()))
                 {

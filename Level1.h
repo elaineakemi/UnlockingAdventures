@@ -19,9 +19,11 @@ private:
     Texture2D checkpointCollectedTexture{LoadTexture("resources/textures/items/checkpoint_collected.png")};
     Texture2D trampolineTexture{LoadTexture("resources/textures/items/trampoline.png")};
     Texture2D platformTexture{LoadTexture("resources/textures/items/platform.png")};
+    Texture2D lifebarTexture{LoadTexture("resources/textures/items/life_bar.png")};
+    Texture2D heartTexture{LoadTexture("resources/textures/items/life.png")};
+    Texture2D doorClosedTexture{LoadTexture("resources/textures/items/door_closed.png")};
+    Texture2D doorOpenTexture{LoadTexture("resources/textures/items/door_open.png")};
 
-    // workaround to fix apples animation
-    int applesCount = 5;
     Item apple1{appleTexture, 17, {75.0f, 250.0f}, RAYWHITE, disappearTexture};
     Item apple2{appleTexture, 17, {100.0f, 280.0f}, RAYWHITE, disappearTexture};
     Item apple3{appleTexture, 17, {125.0f, 250.0f}, RAYWHITE, disappearTexture};
@@ -29,7 +31,6 @@ private:
     Item apple5{appleTexture, 17, {175.0f, 250.0f}, RAYWHITE, disappearTexture};
     Item *apples[5]{&apple1, &apple2, &apple3, &apple4, &apple5};
 
-    // workaround to fix checkpoints animation
     Item checkpoint1{checkpointTexture, 10, {700.0f, 370.0f}, RAYWHITE, checkpointCollectedTexture};
     Item checkpoint2{checkpointTexture, 10, {200.0f, 88.0f}, RAYWHITE, checkpointCollectedTexture};
     Item checkpoint3{checkpointTexture, 10, {730.0f, 237.0f}, RAYWHITE, checkpointCollectedTexture};
@@ -44,6 +45,15 @@ private:
     Platform platform3{platformTexture, 1, {330.0f, 180.0f}, RAYWHITE};
     Platform platform4{platformTexture, 1, {530.0f, 300.0f}, RAYWHITE};
     Platform *platforms[4]{&platform1, &platform2, &platform3, &platform4};
+
+    Item door{doorClosedTexture, 1, {530.0f, 245.0f}, RAYWHITE, doorOpenTexture};
+
+    // TODO: move to a status component
+    Item lifeBar{lifebarTexture, 1, {20.0f, 20.0f}, RAYWHITE, disappearTexture};
+    Item life1{heartTexture, 8, {28.0f, 30.0f}, RAYWHITE, disappearTexture};
+    Item life2{heartTexture, 8, {42.0f, 30.0f}, RAYWHITE, disappearTexture};
+    Item life3{heartTexture, 8, {56.0f, 30.0f}, RAYWHITE, disappearTexture};
+    Item *lives[3]{&life1, &life2, &life3};
 
 public:
     Level1();

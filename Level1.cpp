@@ -14,6 +14,14 @@ void Level1::RenderBackground()
 
 void Level1::RenderItems()
 {
+    lifeBar.Render();
+    door.Render();
+
+    for (auto life : lives)
+    {
+        life->Render();
+    }
+
     for (auto apple : apples)
     {
         apple->Render();
@@ -37,6 +45,20 @@ void Level1::RenderItems()
 
 void Level1::Update(Player &player)
 {
+    //----------------------------------------------------------------------------------
+    // Apples Collisions
+    //----------------------------------------------------------------------------------
+    for (auto apple : apples)
+    {
+        if (CheckCollisionRecs(player.GetPositionRec(), apple->GetPositionRec()))
+        {
+            apple->SetIsAlive(false);
+        }
+    }
+
+    //----------------------------------------------------------------------------------
+    // Checkpoint Collisions
+    //----------------------------------------------------------------------------------
     for (auto checkpoint : checkpoints)
     {
         if (CheckCollisionRecs(player.GetPositionRec(), checkpoint->GetPositionRec()))
@@ -46,13 +68,9 @@ void Level1::Update(Player &player)
         }
     }
 
-    for (auto apple : apples)
-    {
-        if (CheckCollisionRecs(player.GetPositionRec(), apple->GetPositionRec()))
-        {
-            apple->SetIsAlive(false);
-        }
-    }
+    //----------------------------------------------------------------------------------
+    // Trampolines Collisions
+    //----------------------------------------------------------------------------------
 
     for (auto trampoline : trampolines)
     {
@@ -62,6 +80,25 @@ void Level1::Update(Player &player)
         }
     }
 
+    //----------------------------------------------------------------------------------
+    // Door Collision
+    //----------------------------------------------------------------------------------
+    if (CheckCollisionRecs(player.GetPositionRec(), door.GetPositionRec()))
+    {
+        if (door.GetIsAlive())
+        {
+            // Not allow go past the door
+            player.UndoMove();
+        }
+        else
+        {
+            // move to next level
+        }
+    }
+
+    //----------------------------------------------------------------------------------
+    // Platform Collisions
+    //----------------------------------------------------------------------------------
     bool isOnPlatform = false;
     for (auto platform : platforms)
     {
@@ -73,10 +110,14 @@ void Level1::Update(Player &player)
                 isOnPlatform = true;
                 player.position.y = platform->GetPositionRec().y - platform->texture.height - 20;
             }
+            // Player can only collide with one platform at the time
+            // No need to check other platforms if already collided
             break;
         }
     }
 
+    // If no collisions happened this turn, reset isPlayerOnPlatform
+    // so player can fall if walk to outside platform
     if (!isOnPlatform)
     {
         if (player.GetIsPlayerOnPlatform())
@@ -96,4 +137,8 @@ void Level1::Unload()
     UnloadTexture(checkpointCollectedTexture);
     UnloadTexture(trampolineTexture);
     UnloadTexture(platformTexture);
+    UnloadTexture(lifebarTexture);
+    UnloadTexture(heartTexture);
+    UnloadTexture(doorOpenTexture);
+    UnloadTexture(doorClosedTexture);
 }

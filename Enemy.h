@@ -9,9 +9,12 @@ class Enemy : public Character
 
 private:
     bool isOnGround;
+    bool canBeKilled{false};
 
 public:
-    Enemy(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
+    Enemy(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar, bool kill);
+
+    bool GetCanBeKilled() { return canBeKilled; }
 
     void Drop();
     void Move();

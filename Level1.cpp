@@ -22,6 +22,11 @@ void Level1::RenderItems()
         life->Render();
     }
 
+    for (auto enemy : enemies)
+    {
+        enemy->Render();
+    }
+
     for (auto apple : apples)
     {
         apple->Render();
@@ -45,6 +50,39 @@ void Level1::RenderItems()
 
 void Level1::Update(Player &player)
 {
+    //----------------------------------------------------------------------------------
+    // Enemies Move
+    //----------------------------------------------------------------------------------
+    pig.Move();
+    spikeHead.Drop();
+
+    //----------------------------------------------------------------------------------
+    // Enemies Collisions
+    //----------------------------------------------------------------------------------
+
+    for (auto enemy : enemies)
+    {
+        if (enemy->GetIsAlive() && CheckCollisionRecs(player.GetPositionRec(), enemy->GetPositionRec()))
+        {
+            // If enemy can be killed check if colision comes from top
+            if (enemy->GetCanBeKilled())
+            {
+                if (player.GetPositionRec().y < enemy->GetPositionRec().y)
+                {
+                    enemy->SetIsAlive(false);
+                }
+                else
+                {
+                    player.Die();
+                }
+            }
+            else
+            {
+                player.Die();
+            }
+        }
+    }
+
     //----------------------------------------------------------------------------------
     // Apples Collisions
     //----------------------------------------------------------------------------------
@@ -141,4 +179,7 @@ void Level1::Unload()
     UnloadTexture(heartTexture);
     UnloadTexture(doorOpenTexture);
     UnloadTexture(doorClosedTexture);
+    UnloadTexture(pigTexture);
+    UnloadTexture(spikeHeadTexture);
+    UnloadTexture(turtleTexture);
 }

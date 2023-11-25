@@ -5,6 +5,7 @@
 #include "Item.h"
 #include "Platform.h"
 #include "Player.h"
+#include "Enemy.h"
 
 class Level1
 {
@@ -23,6 +24,9 @@ private:
     Texture2D heartTexture{LoadTexture("resources/textures/items/life.png")};
     Texture2D doorClosedTexture{LoadTexture("resources/textures/items/door_closed.png")};
     Texture2D doorOpenTexture{LoadTexture("resources/textures/items/door_open.png")};
+    Texture2D pigTexture{LoadTexture("resources/textures/characters/pig_walking.png")};
+    Texture2D spikeHeadTexture{LoadTexture("resources/textures/characters/enemy_spike_head.png")};
+    Texture2D turtleTexture{LoadTexture("resources/textures/characters/turtle_idle.png")};
 
     Item apple1{appleTexture, 17, {75.0f, 250.0f}, RAYWHITE, disappearTexture};
     Item apple2{appleTexture, 17, {100.0f, 280.0f}, RAYWHITE, disappearTexture};
@@ -47,6 +51,11 @@ private:
     Platform *platforms[4]{&platform1, &platform2, &platform3, &platform4};
 
     Item door{doorClosedTexture, 1, {530.0f, 245.0f}, RAYWHITE, doorOpenTexture};
+
+    Enemy pig{pigTexture, 16, {500.0f, 400.0f}, RAYWHITE, disappearTexture, true};
+    Enemy spikeHead{spikeHeadTexture, 4, {550.0f, 200.0f}, RAYWHITE, disappearTexture, false};
+    Enemy turtle{turtleTexture, 14, {320.0f, 155.0f}, RAYWHITE, disappearTexture, false};
+    Enemy *enemies[3]{&pig, &spikeHead, &turtle};
 
     // TODO: move to a status component
     Item lifeBar{lifebarTexture, 1, {20.0f, 20.0f}, RAYWHITE, disappearTexture};

@@ -23,13 +23,23 @@ void Level1::RenderItems()
     {
         checkpoint->Render();
     }
+
+    for (auto trampoline : trampolines)
+    {
+        trampoline->Render();
+    }
+
+    for (auto platform : platforms)
+    {
+        platform->Render();
+    }
 }
 
-void Level1::Update(Rectangle playerRect)
+void Level1::Update(Player &player)
 {
     for (auto checkpoint : checkpoints)
     {
-        if (CheckCollisionRecs(playerRect, checkpoint->GetPositionRec()))
+        if (CheckCollisionRecs(player.GetPositionRec(), checkpoint->GetPositionRec()))
         {
             checkpoint->SetIsAlive(false);
             checkpoint->SetIsDisappearAfterCollect(false);
@@ -38,9 +48,40 @@ void Level1::Update(Rectangle playerRect)
 
     for (auto apple : apples)
     {
-        if (CheckCollisionRecs(playerRect, apple->GetPositionRec()))
+        if (CheckCollisionRecs(player.GetPositionRec(), apple->GetPositionRec()))
         {
             apple->SetIsAlive(false);
+        }
+    }
+
+    for (auto trampoline : trampolines)
+    {
+        if (CheckCollisionRecs(player.GetPositionRec(), trampoline->GetPositionRec()))
+        {
+            player.JumpTrampoline(trampoline->GetPosition().y);
+        }
+    }
+
+    bool isOnPlatform = false;
+    for (auto platform : platforms)
+    {
+        if (CheckCollisionRecs(player.GetPositionRec(), platform->GetPositionRec()))
+        {
+            if (player.GetPositionRec().y < platform->GetPositionRec().y)
+            {
+                player.SetIsPlayerOnPlatform(true);
+                isOnPlatform = true;
+                player.position.y = platform->GetPositionRec().y - platform->texture.height - 20;
+            }
+            break;
+        }
+    }
+
+    if (!isOnPlatform)
+    {
+        if (player.GetIsPlayerOnPlatform())
+        {
+            player.SetIsPlayerOnPlatform(false);
         }
     }
 }
@@ -52,4 +93,7 @@ void Level1::Unload()
     UnloadTexture(disappearTexture);
     UnloadTexture(appleTexture);
     UnloadTexture(checkpointTexture);
+    UnloadTexture(checkpointCollectedTexture);
+    UnloadTexture(trampolineTexture);
+    UnloadTexture(platformTexture);
 }

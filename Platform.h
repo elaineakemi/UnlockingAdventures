@@ -4,6 +4,8 @@
 #include "raylib.h"
 #include "Scenario.h"
 
+// Platform interfere in player position and cannot be collected or disappear (for now)
+
 class Platform : public Scenario
 {
 

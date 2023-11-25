@@ -12,6 +12,8 @@ class Player : public Character
     const float STEP = 2;
 
 private:
+    Sound playerDiedSound{LoadSound("resources/sounds/playerDied.wav")};
+
     bool isPlayerOnGround{true};    // Used to check if player can jump - to not allow double jump
     bool isPlayerOnPlatform{false}; // Used to check if player should fall in next iteration
 

@@ -22,6 +22,7 @@ int main(void)
     const int screenHeight = 450;
 
     InitWindow(screenWidth, screenHeight, "Game Name");
+    InitAudioDevice();
 
     Texture2D disappearChar = LoadTexture("resources/textures/items/collected.png");
     Player player1(LoadTexture("resources/textures/characters/frog_idle.png"), 11, {15.0f, 400.0f}, RAYWHITE, disappearChar);
@@ -34,7 +35,7 @@ int main(void)
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
     {
-
+        //----------------------------------------------------------------------------------
         // Draw
         //----------------------------------------------------------------------------------
         BeginDrawing();
@@ -42,21 +43,26 @@ int main(void)
 
         lvl1.RenderBackground();
         lvl1.RenderItems();
-        lvl1.Update(player1);
-
         player1.Render();
 
+        //----------------------------------------------------------------------------------
+        // Update
+        //----------------------------------------------------------------------------------
+        lvl1.Update(player1);
         player1.Update();
 
-        EndDrawing();
         //----------------------------------------------------------------------------------
+        // End
+        //----------------------------------------------------------------------------------
+        EndDrawing();
     }
 
-    // De-Initialization
-    //--------------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
+    // Unload and Close
+    //----------------------------------------------------------------------------------
     lvl1.Unload();
+    CloseAudioDevice();
     CloseWindow();
-    //--------------------------------------------------------------------------------------
 
     return 0;
 }

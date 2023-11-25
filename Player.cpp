@@ -21,7 +21,7 @@ void Player::Update()
         position.x -= STEP;
     }
 
-     if ((IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE)) && (isPlayerOnGround || isPlayerOnPlatform))
+    if ((IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE)) && (isPlayerOnGround || isPlayerOnPlatform))
     {
         if (isPlayerOnGround)
         {
@@ -75,6 +75,8 @@ void Player::JumpTrampoline(float groundf)
 
 void Player::Die()
 {
+    PlaySound(playerDiedSound);
+
     playerLives--;
     if (playerLives < 0)
     {
@@ -82,6 +84,7 @@ void Player::Die()
     }
     else
     {
+        WaitTime(1);
         // Reset player and move to initial position
         position.x = 15.0f;
         position.y = 400.0f;

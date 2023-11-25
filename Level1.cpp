@@ -4,6 +4,7 @@ Level1::Level1() {}
 
 void Level1::Init()
 {
+    PlayMusicStream(backgroundMusic);
 }
 
 void Level1::RenderBackground()
@@ -66,6 +67,8 @@ void Level1::RenderItems()
 
 void Level1::Update(Player &player)
 {
+    UpdateMusicStream(backgroundMusic);
+
     //----------------------------------------------------------------------------------
     // Enemies Move
     //----------------------------------------------------------------------------------
@@ -109,6 +112,7 @@ void Level1::Update(Player &player)
             if (apple->GetIsAlive())
             {
                 score += 100;
+                PlaySound(appleSound);
             }
             apple->SetIsAlive(false);
         }
@@ -125,6 +129,7 @@ void Level1::Update(Player &player)
             {
                 // Collect checkpoint
                 checkpointsRemaining--;
+                PlaySound(checkpointSound);
             }
             checkpoint->SetIsAlive(false);
             checkpoint->SetIsDisappearAfterCollect(false);
@@ -140,6 +145,7 @@ void Level1::Update(Player &player)
         if (CheckCollisionRecs(player.GetPositionRec(), trampoline->GetPositionRec()))
         {
             player.JumpTrampoline(trampoline->GetPosition().y);
+            PlaySound(trampolineSound);
         }
     }
 
@@ -148,6 +154,10 @@ void Level1::Update(Player &player)
     //----------------------------------------------------------------------------------
     if (checkpointsRemaining == 0)
     {
+        if (door.GetIsAlive())
+        {
+            PlaySound(doorSound);
+        }
         door.SetIsAlive(false);
         door.SetIsDisappearAfterCollect(false);
     }
@@ -214,4 +224,10 @@ void Level1::Unload()
     UnloadTexture(turtleTexture);
     UnloadTexture(checkpointBarTexture);
     UnloadTexture(checkpointBarCollectedTexture);
+
+    UnloadMusicStream(backgroundMusic);
+    UnloadSound(trampolineSound);
+    UnloadSound(appleSound);
+    UnloadSound(checkpointSound);
+    UnloadSound(doorSound);
 }

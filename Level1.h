@@ -14,6 +14,7 @@ private:
     Texture2D disappearTexture{LoadTexture("resources/textures/items/collected.png")};
     Texture2D appleTexture{LoadTexture("resources/textures/items/apple.png")};
     Texture2D checkpointTexture{LoadTexture("resources/textures/items/checkpoint.png")};
+    Texture2D checkpointCollectedTexture{LoadTexture("resources/textures/items/checkpoint_collected.png")};
 
     // workaround to fix apples animation
     int applesCount = 5;
@@ -25,9 +26,9 @@ private:
     Item *apples[5]{&apple1, &apple2, &apple3, &apple4, &apple5};
 
     // workaround to fix checkpoints animation
-    Item checkpoint1{checkpointTexture, 10, {700.0f, 370.0f}, RAYWHITE, disappearTexture};
-    Item checkpoint2{checkpointTexture, 10, {200.0f, 88.0f}, RAYWHITE, disappearTexture};
-    Item checkpoint3{checkpointTexture, 10, {730.0f, 237.0f}, RAYWHITE, disappearTexture};
+    Item checkpoint1{checkpointTexture, 10, {700.0f, 370.0f}, RAYWHITE, checkpointCollectedTexture};
+    Item checkpoint2{checkpointTexture, 10, {200.0f, 88.0f}, RAYWHITE, checkpointCollectedTexture};
+    Item checkpoint3{checkpointTexture, 10, {730.0f, 237.0f}, RAYWHITE, checkpointCollectedTexture};
     Item *checkpoints[3]{&checkpoint1, &checkpoint2, &checkpoint3};
 
 public:
@@ -35,7 +36,7 @@ public:
     void Init();
     void RenderBackground();
     void RenderItems();
-    void Update();
+    void Update(Rectangle playerRect);
     void Unload();
 };
 

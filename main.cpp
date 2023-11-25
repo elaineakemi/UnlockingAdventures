@@ -56,6 +56,7 @@ int main(void)
 
         lvl1.RenderBackground();
         lvl1.RenderItems();
+        lvl1.Update(player.GetPositionRec());
 
         turtle.Render();
         pig.Render();

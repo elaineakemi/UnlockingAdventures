@@ -19,14 +19,30 @@ void Level1::RenderItems()
         apple->Render();
     }
 
-    for (auto item : checkpoints)
+    for (auto checkpoint : checkpoints)
     {
-        item->Render();
+        checkpoint->Render();
     }
 }
 
-void Level1::Update()
+void Level1::Update(Rectangle playerRect)
 {
+    for (auto checkpoint : checkpoints)
+    {
+        if (CheckCollisionRecs(playerRect, checkpoint->GetPositionRec()))
+        {
+            checkpoint->SetIsAlive(false);
+            checkpoint->SetIsDisappearAfterCollect(false);
+        }
+    }
+
+    for (auto apple : apples)
+    {
+        if (CheckCollisionRecs(playerRect, apple->GetPositionRec()))
+        {
+            apple->SetIsAlive(false);
+        }
+    }
 }
 
 void Level1::Unload()

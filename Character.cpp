@@ -24,7 +24,7 @@ void Character::Render()
     else
     {
         int frames = 1;
-        if (isDisappear)
+        if (isDisappearAfterCollect)
         {
             renderDied--;
             frames = 5; // Default disappear texture frames

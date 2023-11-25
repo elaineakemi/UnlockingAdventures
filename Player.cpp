@@ -21,13 +21,7 @@ void Player::Update()
         position.x -= STEP;
     }
 
-    if (IsKeyDown(KEY_DOWN) && position.y < GetScreenHeight() - 50)
-    {
-        prevPosition = position;
-        position.y += STEP;
-    }
-
-    if ((IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE)) && (isPlayerOnGround || isPlayerOnPlatform))
+     if ((IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE)) && (isPlayerOnGround || isPlayerOnPlatform))
     {
         if (isPlayerOnGround)
         {

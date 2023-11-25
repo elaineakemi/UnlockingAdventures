@@ -30,6 +30,8 @@ private:
     Texture2D pigTexture{LoadTexture("resources/textures/characters/pig_walking.png")};
     Texture2D spikeHeadTexture{LoadTexture("resources/textures/characters/enemy_spike_head.png")};
     Texture2D turtleTexture{LoadTexture("resources/textures/characters/turtle_idle.png")};
+    Texture2D checkpointBarTexture{LoadTexture("resources/textures/items/checkpoint_bar.png")};
+    Texture2D checkpointBarCollectedTexture{LoadTexture("resources/textures/items/checkpoint_bar_collected.png")};
 
     Item apple1{appleTexture, 17, {75.0f, 250.0f}, RAYWHITE, disappearTexture};
     Item apple2{appleTexture, 17, {100.0f, 280.0f}, RAYWHITE, disappearTexture};
@@ -67,6 +69,11 @@ private:
     Item life3{heartTexture, 8, {56.0f, 30.0f}, RAYWHITE, disappearTexture};
     Item *lives[3]{&life1, &life2, &life3};
 
+    Item checkpointBar{checkpointBarTexture, 1, {100.0f, 25.0f}, RAYWHITE, disappearTexture};
+    Item checkpointBarCollected1{checkpointBarCollectedTexture, 10, {148.0f, 28.0f}, RAYWHITE, disappearTexture};
+    Item checkpointBarCollected2{checkpointBarCollectedTexture, 10, {116.0f, 28.0f}, RAYWHITE, disappearTexture};
+    Item checkpointBarCollected3{checkpointBarCollectedTexture, 10, {82.0f, 28.0f}, RAYWHITE, disappearTexture};
+    Item *checkpointsBar[3]{&checkpointBarCollected1, &checkpointBarCollected2, &checkpointBarCollected3};
     int checkpointsRemaining{3};
 
 public:

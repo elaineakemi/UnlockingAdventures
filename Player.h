@@ -15,6 +15,7 @@ private:
     float jumpValue{0.0f};
     float groundValue{0.0f};
     int lives{3};
+    Vector2 prevPosition;
 
 public:
     Player(Texture2D playertx, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
@@ -23,6 +24,7 @@ public:
     void Jump();
     void JumpTrampoline(float groundf);
     void Die();
+    void UndoMove();
 
     bool GetIsPlayerOnGround() { return isPlayerOnGround; }
     void SetIsPlayerOnGround(bool isOnGround) { isPlayerOnGround = isOnGround; }

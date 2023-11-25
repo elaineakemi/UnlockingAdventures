@@ -11,16 +11,19 @@ void Player::Update()
 
     if (IsKeyDown(KEY_RIGHT) && position.x < GetScreenWidth() - 50)
     {
+        prevPosition = position;
         position.x += STEP;
     }
 
     if (IsKeyDown(KEY_LEFT) && position.x > 20)
     {
+        prevPosition = position;
         position.x -= STEP;
     }
 
     if (IsKeyDown(KEY_DOWN) && position.y < GetScreenHeight() - 50)
     {
+        prevPosition = position;
         position.y += STEP;
     }
 
@@ -89,4 +92,9 @@ void Player::Die()
         position.x = 15.0f;
         position.y = 400.0f;
     }
+}
+
+void Player::UndoMove()
+{
+    position = prevPosition;
 }

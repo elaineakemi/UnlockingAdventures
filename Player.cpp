@@ -1,9 +1,29 @@
 #include "math.h"
 #include "Player.h"
 
-Player::Player(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar)
-    : Character(txtr, numFrames, pos, c, disappearChar)
+Player::Player(Texture2D txtr, int numFrames, Vector2 pos, Color c)
+    : Character(txtr, numFrames, pos, c, LoadTexture("resources/textures/items/collected.png"))
 {
+}
+Player::Player() {}
+
+void Player::Init(int playerSelected)
+{
+    switch (playerSelected)
+    {
+    case 1:
+        SetTexture(frogTexture);
+        break;
+    case 2:
+        SetTexture(blueGuyTexture);
+        break;
+    case 3:
+        SetTexture(pinkGuyTexture);
+        break;
+    default:
+        SetTexture(frogTexture);
+        break;
+    }
 }
 
 void Player::Update()
@@ -112,4 +132,14 @@ void Player::ResetPosition()
     position.y = 400.0f;
     isPlayerOnGround = true;
     isPlayerOnPlatform = false;
+}
+
+void Player::Unload()
+{
+    UnloadTexture(disappearTexture);
+    UnloadTexture(frogTexture);
+    UnloadTexture(blueGuyTexture);
+    UnloadTexture(pinkGuyTexture);
+
+    UnloadSound(playerDiedSound);
 }

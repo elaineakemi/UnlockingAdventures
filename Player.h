@@ -14,6 +14,9 @@ class Player : public Character
 
 private:
     Sound playerDiedSound{LoadSound("resources/sounds/playerDied.wav")};
+    Texture2D frogTexture{LoadTexture("resources/textures/characters/frog.png")};
+    Texture2D blueGuyTexture{LoadTexture("resources/textures/characters/blue_guy.png")};
+    Texture2D pinkGuyTexture{LoadTexture("resources/textures/characters/pink_guy.png")};
 
     bool isPlayerOnGround{true};    // Used to check if player can jump - to not allow double jump
     bool isPlayerOnPlatform{false}; // Used to check if player should fall in next iteration
@@ -25,14 +28,17 @@ private:
     Vector2 prevPosition;
 
 public:
-    Player(Texture2D playertx, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
+    Player(Texture2D playertx, int numFrames, Vector2 pos, Color c);
+    Player();
 
+    void Init(int playerSelected);
     void Update();
     void Jump();
     void JumpTrampoline(float groundf);
     void Die();
     void UndoMove();
     void ResetPosition();
+    void Unload();
 
     bool GetIsPlayerOnGround() { return isPlayerOnGround; }
     void SetIsPlayerOnGround(bool isOnGround) { isPlayerOnGround = isOnGround; }

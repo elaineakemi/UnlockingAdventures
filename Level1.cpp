@@ -39,6 +39,7 @@ void Level1::RenderItems()
     // Render Elements
     //----------------------------------------------------------------------------------
     door.Render();
+
     for (auto enemy : enemies)
     {
         enemy->Render();

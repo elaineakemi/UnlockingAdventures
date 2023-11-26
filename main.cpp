@@ -1,6 +1,5 @@
 #include "raylib.h"
 #include "Player.h"
-
 #include "Menu.h"
 #include "Level1.h"
 #include "Level2.h"
@@ -8,10 +7,11 @@
 //----------------------------------------------------------------------------------
 // Global Variables
 //----------------------------------------------------------------------------------
+int currentScreen = 0;
 int score = 0;
 int playerLives = 3;
+int playerSelected = 0;
 bool isGameOver = false;
-int currentScreen = 0;
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -25,8 +25,7 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "Game Name");
     InitAudioDevice();
 
-    Texture2D disappearChar = LoadTexture("resources/textures/items/collected.png");
-    Player player1(LoadTexture("resources/textures/characters/frog_idle.png"), 11, {15.0f, 400.0f}, RAYWHITE, disappearChar);
+    Player player1(LoadTexture("resources/textures/characters/frog.png"), 11, {15.0f, 400.0f}, RAYWHITE);
 
     Menu mainMenu;
     Level1 lvl1;
@@ -54,10 +53,11 @@ int main(void)
             lvl1.Init();
             lvl1.RenderBackground();
             lvl1.RenderItems();
+            player1.Init(playerSelected);
             player1.Render();
 
-            lvl1.Update(player1);
             player1.Update();
+            lvl1.Update(player1);
             break;
         case 2:
             lvl2.Init();
@@ -79,10 +79,6 @@ int main(void)
         }
 
         //----------------------------------------------------------------------------------
-        // Update
-        //----------------------------------------------------------------------------------
-
-        //----------------------------------------------------------------------------------
         // End
         //----------------------------------------------------------------------------------
         EndDrawing();
@@ -94,6 +90,7 @@ int main(void)
     mainMenu.Unload();
     lvl1.Unload();
     lvl2.Unload();
+    player1.Unload();
     CloseAudioDevice();
     CloseWindow();
 

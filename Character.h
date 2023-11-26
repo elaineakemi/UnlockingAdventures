@@ -35,6 +35,7 @@ public:
     void Move(Vector2 offset);
 
     Rectangle GetPositionRec() const;
+    void SetTexture(Texture2D txtr) { texture = txtr; }
 };
 
 #endif

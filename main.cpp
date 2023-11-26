@@ -3,11 +3,12 @@
 #include "Menu.h"
 #include "Level1.h"
 #include "Level2.h"
+#include "Level3.h"
 
 //----------------------------------------------------------------------------------
 // Global Variables
 //----------------------------------------------------------------------------------
-int currentScreen = 0;
+int currentScreen = 3;
 int score = 0;
 int playerLives = 3;
 int playerSelected = 0;
@@ -30,6 +31,7 @@ int main(void)
     Menu mainMenu;
     Level1 lvl1;
     Level2 lvl2;
+    Level3 lvl3;
 
     SetTargetFPS(60);
 
@@ -63,10 +65,23 @@ int main(void)
             lvl2.Init();
             lvl2.RenderBackground();
             lvl2.RenderItems();
+            player1.Init(playerSelected);
             player1.Render();
 
-            lvl2.Update(player1);
             player1.Update();
+            lvl2.Update(player1);
+
+            break;
+        case 3:
+            lvl3.Init();
+            lvl3.RenderBackground();
+            lvl3.RenderItems();
+            player1.Init(playerSelected);
+            player1.Render();
+
+            player1.Update();
+            lvl3.Update(player1);
+
             break;
 
         default:
@@ -90,6 +105,7 @@ int main(void)
     mainMenu.Unload();
     lvl1.Unload();
     lvl2.Unload();
+    lvl3.Unload();
     player1.Unload();
     CloseAudioDevice();
     CloseWindow();

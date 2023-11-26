@@ -8,6 +8,8 @@ class Enemy : public Character
 {
 
 private:
+    Sound killSound{LoadSound("resources/sounds/kill_enemy.wav")};
+
     bool isOnGround;
     bool canBeKilled{false};
     Vector2 initialPosition;
@@ -19,6 +21,7 @@ public:
 
     void Drop();
     void Move();
+    void Kill();
 };
 
 #endif

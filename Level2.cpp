@@ -15,30 +15,12 @@ void Level2::RenderBackground()
 
 void Level2::RenderItems()
 {
-    // Draw Text instruction
-    DrawText("Collect the flags to open the door", 300, 20, 14, BLACK);
-
-    // Draw Score
-    DrawText(TextFormat("Score: %d", score), 650, 20, 20, BLACK);
-
-    // Render lifebar hearts
-    lifeBar.Render();
-    for (int i = 0; i < playerLives; i++)
-    {
-        lives[i]->Render();
-    }
-
-    // Render checkpoint bar flags
-    checkpointBar.Render();
-    for (int i = checkpointsRemaining; i < 3; i++)
-    {
-        checkpointsBar[i]->Render();
-    }
-
     //----------------------------------------------------------------------------------
     // Render Elements
     //----------------------------------------------------------------------------------
+    status.Render(checkpointsRemaining);
     door.Render();
+
     for (auto enemy : enemies)
     {
         enemy->Render();
@@ -88,7 +70,7 @@ void Level2::Update(Player &player)
             {
                 if (player.GetPositionRec().y < enemy->GetPositionRec().y)
                 {
-                    enemy->SetIsAlive(false);
+                    enemy->Kill();
                 }
                 else
                 {
@@ -109,12 +91,7 @@ void Level2::Update(Player &player)
     {
         if (CheckCollisionRecs(player.GetPositionRec(), apple->GetPositionRec()))
         {
-            if (apple->GetIsAlive())
-            {
-                score += 100;
-                PlaySound(appleSound);
-            }
-            apple->SetIsAlive(false);
+            apple->Collect();
         }
     }
 
@@ -216,19 +193,14 @@ void Level2::Unload()
     UnloadTexture(checkpointCollectedTexture);
     UnloadTexture(trampolineTexture);
     UnloadTexture(platformTexture);
-    UnloadTexture(lifebarTexture);
-    UnloadTexture(heartTexture);
     UnloadTexture(doorOpenTexture);
     UnloadTexture(doorClosedTexture);
     UnloadTexture(pigTexture);
     UnloadTexture(spikeHeadTexture);
     UnloadTexture(turtleTexture);
-    UnloadTexture(checkpointBarTexture);
-    UnloadTexture(checkpointBarCollectedTexture);
 
     UnloadMusicStream(backgroundMusic);
     UnloadSound(trampolineSound);
-    UnloadSound(appleSound);
     UnloadSound(checkpointSound);
     UnloadSound(doorSound);
 }

@@ -6,6 +6,7 @@
 #include "Platform.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "StatusBar.h"
 
 extern int score;
 extern int playerLives;
@@ -17,7 +18,6 @@ class Level2
 private:
     Music backgroundMusic{LoadMusicStream("resources/sounds/level2.wav")};
     Sound trampolineSound{LoadSound("resources/sounds/trampoline.wav")};
-    Sound appleSound{LoadSound("resources/sounds/apple.wav")};
     Sound checkpointSound{LoadSound("resources/sounds/checkpoint.wav")};
     Sound doorSound{LoadSound("resources/sounds/door_open.wav")};
 
@@ -30,15 +30,11 @@ private:
     Texture2D checkpointCollectedTexture{LoadTexture("resources/textures/items/checkpoint_collected.png")};
     Texture2D trampolineTexture{LoadTexture("resources/textures/items/trampoline.png")};
     Texture2D platformTexture{LoadTexture("resources/textures/items/platform.png")};
-    Texture2D lifebarTexture{LoadTexture("resources/textures/items/life_bar.png")};
-    Texture2D heartTexture{LoadTexture("resources/textures/items/life.png")};
     Texture2D doorClosedTexture{LoadTexture("resources/textures/items/door_closed.png")};
     Texture2D doorOpenTexture{LoadTexture("resources/textures/items/door_open.png")};
     Texture2D pigTexture{LoadTexture("resources/textures/characters/pig_walking.png")};
     Texture2D spikeHeadTexture{LoadTexture("resources/textures/characters/enemy_spike_head.png")};
     Texture2D turtleTexture{LoadTexture("resources/textures/characters/turtle_idle.png")};
-    Texture2D checkpointBarTexture{LoadTexture("resources/textures/items/checkpoint_bar.png")};
-    Texture2D checkpointBarCollectedTexture{LoadTexture("resources/textures/items/checkpoint_bar_collected.png")};
 
     Item apple1{appleTexture, 17, {75.0f, 400.0f}, RAYWHITE, disappearTexture};
     Item apple2{appleTexture, 17, {100.0f, 370.0f}, RAYWHITE, disappearTexture};
@@ -69,18 +65,7 @@ private:
     Enemy turtle1{turtleTexture, 14, {450.0f, 165.0f}, RAYWHITE, disappearTexture, false};
     Enemy *enemies[3]{&pig, &spikeHead, &turtle1};
 
-    // TODO: move to a status component
-    Item lifeBar{lifebarTexture, 1, {20.0f, 20.0f}, RAYWHITE, disappearTexture};
-    Item life1{heartTexture, 8, {28.0f, 30.0f}, RAYWHITE, disappearTexture};
-    Item life2{heartTexture, 8, {42.0f, 30.0f}, RAYWHITE, disappearTexture};
-    Item life3{heartTexture, 8, {56.0f, 30.0f}, RAYWHITE, disappearTexture};
-    Item *lives[3]{&life1, &life2, &life3};
-
-    Item checkpointBar{checkpointBarTexture, 1, {100.0f, 25.0f}, RAYWHITE, disappearTexture};
-    Item checkpointBarCollected1{checkpointBarCollectedTexture, 10, {148.0f, 28.0f}, RAYWHITE, disappearTexture};
-    Item checkpointBarCollected2{checkpointBarCollectedTexture, 10, {116.0f, 28.0f}, RAYWHITE, disappearTexture};
-    Item checkpointBarCollected3{checkpointBarCollectedTexture, 10, {82.0f, 28.0f}, RAYWHITE, disappearTexture};
-    Item *checkpointsBar[3]{&checkpointBarCollected1, &checkpointBarCollected2, &checkpointBarCollected3};
+    StatusBar status;
     int checkpointsRemaining{3};
 
 public:

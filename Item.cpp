@@ -6,3 +6,13 @@ Item::Item(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disapp
 }
 
 Item::Item() {}
+
+void Item::Collect()
+{
+    if (GetIsAlive())
+    {
+        score += 100;
+        PlaySound(appleSound);
+    }
+    SetIsAlive(false);
+}

@@ -51,3 +51,9 @@ void Enemy::Move()
         SetIsAlive(false);
     }
 }
+
+void Enemy::Kill()
+{
+    PlaySound(killSound);
+    SetIsAlive(false);
+}

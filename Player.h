@@ -32,6 +32,7 @@ public:
     void JumpTrampoline(float groundf);
     void Die();
     void UndoMove();
+    void ResetPosition();
 
     bool GetIsPlayerOnGround() { return isPlayerOnGround; }
     void SetIsPlayerOnGround(bool isOnGround) { isPlayerOnGround = isOnGround; }

@@ -9,6 +9,7 @@
 
 extern int score;
 extern int playerLives;
+extern int currentScreen;
 
 class Level1
 {

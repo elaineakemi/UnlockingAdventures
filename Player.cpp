@@ -9,24 +9,25 @@ Player::Player(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D di
 void Player::Update()
 {
     // If player moves invincibilty after die finishes
-    if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE))
+    if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE) ||
+        IsKeyDown(KEY_A) || IsKeyDown(KEY_D) || IsKeyDown(KEY_W))
     {
         isInvincible = false;
     }
 
-    if (IsKeyDown(KEY_RIGHT) && position.x < GetScreenWidth() - 50)
+    if ((IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_A)) && position.x < GetScreenWidth() - 50)
     {
         prevPosition = position;
         position.x += STEP;
     }
 
-    if (IsKeyDown(KEY_LEFT) && position.x > 20)
+    if ((IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_D)) && position.x > 20)
     {
         prevPosition = position;
         position.x -= STEP;
     }
 
-    if ((IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE)) && (isPlayerOnGround || isPlayerOnPlatform))
+    if ((IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE) || IsKeyDown(KEY_W)) && (isPlayerOnGround || isPlayerOnPlatform))
     {
         if (isPlayerOnGround)
         {
@@ -95,10 +96,7 @@ void Player::Die()
         {
             WaitTime(1);
             // Reset player and move to initial position
-            position.x = 15.0f;
-            position.y = 400.0f;
-            isPlayerOnGround = true;
-            isPlayerOnPlatform = false;
+            ResetPosition();
         }
     }
 }
@@ -106,4 +104,12 @@ void Player::Die()
 void Player::UndoMove()
 {
     position = prevPosition;
+}
+
+void Player::ResetPosition()
+{
+    position.x = 15.0f;
+    position.y = 400.0f;
+    isPlayerOnGround = true;
+    isPlayerOnPlatform = false;
 }

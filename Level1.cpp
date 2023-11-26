@@ -170,7 +170,8 @@ void Level1::Update(Player &player)
         }
         else
         {
-            // move to next level
+            player.ResetPosition();
+            currentScreen++;
         }
     }
 

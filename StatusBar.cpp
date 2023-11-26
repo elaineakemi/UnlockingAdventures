@@ -4,11 +4,19 @@ StatusBar::StatusBar() {}
 
 void StatusBar::Render(int checkpointsRemaining)
 {
-    // Draw Text instruction
-    DrawText("Collect the flags to open the door", 300, 20, 14, BLACK);
+    if (checkpointsRemaining > -1)
+    {
+        // Draw Text instruction
+        DrawText("Collect the flags to open the door", 300, 20, 14, BLACK);
 
-    // Draw Score
-    DrawText(TextFormat("Score: %d", score), 650, 20, 20, BLACK);
+        // Draw Score
+        DrawText(TextFormat("Score: %d", score), 650, 20, 20, BLACK);
+    }
+    else
+    {
+        // Draw Text instruction - Boss level
+        DrawText("Use the platforms and jump on top of the boss", 200, 20, 14, BLACK);
+    }
 
     // Render lifebar hearts
     lifeBar.Render();
@@ -18,10 +26,13 @@ void StatusBar::Render(int checkpointsRemaining)
     }
 
     // Render checkpoint bar flags
-    checkpointBar.Render();
-    for (int i = checkpointsRemaining; i < 3; i++)
+    if (checkpointsRemaining > -1) // Boss level does not render checkpoing flags
     {
-        checkpointsBar[i]->Render();
+        checkpointBar.Render();
+        for (int i = checkpointsRemaining; i < 3; i++)
+        {
+            checkpointsBar[i]->Render();
+        }
     }
 }
 

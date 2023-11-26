@@ -13,6 +13,8 @@ private:
     bool isOnGround;
     bool canBeKilled{false};
     Vector2 initialPosition;
+    bool walkToLeft{true};
+    int intervalHit{5};
 
 public:
     Enemy(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar, bool kill);
@@ -21,7 +23,9 @@ public:
 
     void Drop();
     void Move();
+    void MoveBoss(bool isBoss);
     void Kill();
+    bool CheckBossCollision(Rectangle playerPos, int *bossHealth);
 };
 
 #endif

@@ -4,11 +4,12 @@
 #include "Level1.h"
 #include "Level2.h"
 #include "Level3.h"
+#include "LevelBoss.h"
 
 //----------------------------------------------------------------------------------
 // Global Variables
 //----------------------------------------------------------------------------------
-int currentScreen = 3;
+int currentScreen = 4;
 int score = 0;
 int playerLives = 3;
 int playerSelected = 0;
@@ -32,6 +33,7 @@ int main(void)
     Level1 lvl1;
     Level2 lvl2;
     Level3 lvl3;
+    LevelBoss lvlBoss;
 
     SetTargetFPS(60);
 
@@ -70,7 +72,6 @@ int main(void)
 
             player1.Update();
             lvl2.Update(player1);
-
             break;
         case 3:
             lvl3.Init();
@@ -81,7 +82,16 @@ int main(void)
 
             player1.Update();
             lvl3.Update(player1);
+            break;
+        case 4:
+            lvlBoss.Init();
+            lvlBoss.RenderBackground();
+            lvlBoss.RenderItems();
+            player1.Init(playerSelected);
+            player1.Render();
 
+            player1.Update();
+            lvlBoss.Update(player1);
             break;
 
         default:
@@ -90,6 +100,7 @@ int main(void)
 
         if (isGameOver)
         {
+
             DrawText("GAME OVER", 180, 180, 80, RED);
         }
 
@@ -106,6 +117,7 @@ int main(void)
     lvl1.Unload();
     lvl2.Unload();
     lvl3.Unload();
+    lvlBoss.Unload();
     player1.Unload();
     CloseAudioDevice();
     CloseWindow();

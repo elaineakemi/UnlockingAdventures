@@ -5,6 +5,7 @@
 #include "Character.h"
 
 extern int playerLives;
+extern bool isGameOver;
 
 class Player : public Character
 {
@@ -16,6 +17,7 @@ private:
 
     bool isPlayerOnGround{true};    // Used to check if player can jump - to not allow double jump
     bool isPlayerOnPlatform{false}; // Used to check if player should fall in next iteration
+    bool isInvincible{false};
 
     float jumpValue{0.0f};
     float groundValue{0.0f};

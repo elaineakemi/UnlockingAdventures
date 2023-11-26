@@ -8,6 +8,11 @@ Player::Player(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D di
 
 void Player::Update()
 {
+    // If player moves invincibilty after die finishes
+    if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE))
+    {
+        isInvincible = false;
+    }
 
     if (IsKeyDown(KEY_RIGHT) && position.x < GetScreenWidth() - 50)
     {
@@ -53,9 +58,9 @@ void Player::Jump()
         }
 
         // If touch the ground reset position
-        if (position.y > groundValue)
+        if (position.y > 400)
         {
-            position.y = groundValue;
+            position.y = 400;
             isPlayerOnGround = true;
             break;
         }
@@ -75,21 +80,26 @@ void Player::JumpTrampoline(float groundf)
 
 void Player::Die()
 {
-    PlaySound(playerDiedSound);
+    if (!isInvincible)
+    {
+        PlaySound(playerDiedSound);
 
-    playerLives--;
-    if (playerLives < 0)
-    {
-        SetIsAlive(false);
-    }
-    else
-    {
-        WaitTime(1);
-        // Reset player and move to initial position
-        position.x = 15.0f;
-        position.y = 400.0f;
-        isPlayerOnGround = true;
-        isPlayerOnPlatform = false;
+        playerLives--;
+        isInvincible = true;
+        if (playerLives < 0)
+        {
+            SetIsAlive(false);
+            isGameOver = true;
+        }
+        else
+        {
+            WaitTime(1);
+            // Reset player and move to initial position
+            position.x = 15.0f;
+            position.y = 400.0f;
+            isPlayerOnGround = true;
+            isPlayerOnPlatform = false;
+        }
     }
 }
 

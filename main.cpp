@@ -11,6 +11,7 @@
 //----------------------------------------------------------------------------------
 int score = 0;
 int playerLives = 3;
+bool isGameOver = false;
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -44,6 +45,11 @@ int main(void)
         lvl1.RenderBackground();
         lvl1.RenderItems();
         player1.Render();
+
+        if (isGameOver)
+        {
+            DrawText("GAME OVER", 180, 180, 80, RED);
+        }
 
         //----------------------------------------------------------------------------------
         // Update

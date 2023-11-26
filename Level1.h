@@ -21,7 +21,7 @@ private:
     Sound doorSound{LoadSound("resources/sounds/door_open.wav")};
 
     Texture2D backgroundBorder{LoadTexture("resources/textures/background/border.png")};
-    Texture2D background{LoadTexture("resources/textures/background/background1.png")};
+    Texture2D background{LoadTexture("resources/textures/background/level1.png")};
 
     Texture2D disappearTexture{LoadTexture("resources/textures/items/collected.png")};
     Texture2D appleTexture{LoadTexture("resources/textures/items/apple.png")};
@@ -63,10 +63,10 @@ private:
 
     Item door{doorClosedTexture, 1, {530.0f, 245.0f}, RAYWHITE, doorOpenTexture};
 
-    Enemy pig{pigTexture, 16, {500.0f, 400.0f}, RAYWHITE, disappearTexture, true};
+    Enemy pig{pigTexture, 16, {550.0f, 400.0f}, RAYWHITE, disappearTexture, true};
     Enemy spikeHead{spikeHeadTexture, 4, {550.0f, 305.0f}, RAYWHITE, disappearTexture, false};
-    Enemy turtle{turtleTexture, 14, {305.0f, 165.0f}, RAYWHITE, disappearTexture, false};
-    Enemy *enemies[3]{&pig, &spikeHead, &turtle};
+    Enemy turtle1{turtleTexture, 14, {305.0f, 165.0f}, RAYWHITE, disappearTexture, false};
+    Enemy *enemies[3]{&pig, &spikeHead, &turtle1};
 
     // TODO: move to a status component
     Item lifeBar{lifebarTexture, 1, {20.0f, 20.0f}, RAYWHITE, disappearTexture};

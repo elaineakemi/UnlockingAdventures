@@ -52,11 +52,12 @@ void Enemy::Move()
     }
 }
 
-// Boss walks faster and returns when reaches corner
-void Enemy::MoveBoss(bool isBoss)
+// Boss level enemy when reaches corner
+void Enemy::MoveBossLevel(bool isBoss)
 {
     float dt = GetFrameTime() * GetFPS();
 
+    // Boss walks faster than normal enemies
     if (!isBoss)
     {
         dt = dt / 2;
@@ -65,10 +66,12 @@ void Enemy::MoveBoss(bool isBoss)
     if (position.x <= 20)
     {
         walkToLeft = false;
+        SetFlipTexture(true);
     }
     else if (position.x >= GetScreenWidth() - 80)
     {
         walkToLeft = true;
+        SetFlipTexture(false);
     }
 
     if (walkToLeft)

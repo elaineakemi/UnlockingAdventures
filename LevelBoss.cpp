@@ -19,9 +19,11 @@ void LevelBoss::RenderItems()
     //----------------------------------------------------------------------------------
     // Render Elements
     //----------------------------------------------------------------------------------
+    // Render status bar without flags and with instructions for boss level
     status.Render(-1);
 
     pigBoss.Render();
+
     for (auto enemy : enemies)
     {
         enemy->Render();
@@ -40,10 +42,10 @@ void LevelBoss::Update(Player &player)
     //----------------------------------------------------------------------------------
     // Enemies Move
     //----------------------------------------------------------------------------------
-    pigBoss.MoveBoss(true);
-    pig1.MoveBoss(false);
-    pig2.MoveBoss(false);
-    pig3.MoveBoss(false);
+    pigBoss.MoveBossLevel(true);
+    pig1.MoveBossLevel(false);
+    pig2.MoveBossLevel(false);
+    pig3.MoveBossLevel(false);
 
     //----------------------------------------------------------------------------------
     // Enemies Collisions

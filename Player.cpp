@@ -39,12 +39,14 @@ void Player::Update()
     {
         prevPosition = position;
         position.x += STEP;
+        SetFlipTexture(false);
     }
 
     if ((IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_D)) && position.x > 20)
     {
         prevPosition = position;
         position.x -= STEP;
+        SetFlipTexture(true);
     }
 
     if ((IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE) || IsKeyDown(KEY_W)) && (isPlayerOnGround || isPlayerOnPlatform))

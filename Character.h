@@ -9,6 +9,7 @@ private:
     bool isAlive{true};
     int renderDied = 5; // To render the disappearing texture
     bool isDisappearAfterCollect{true};
+    bool isFlipTexture{false}; // To flip texture when walking in opposite direction
 
 public:
     Texture2D texture;
@@ -36,6 +37,7 @@ public:
 
     Rectangle GetPositionRec() const;
     void SetTexture(Texture2D txtr) { texture = txtr; }
+    void SetFlipTexture(bool value) { isFlipTexture = value; }
 };
 
 #endif

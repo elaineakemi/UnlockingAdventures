@@ -23,7 +23,7 @@ public:
 
     void Drop();
     void Move();
-    void MoveBoss(bool isBoss);
+    void MoveBossLevel(bool isBoss);
     void Kill();
     bool CheckBossCollision(Rectangle playerPos, int *bossHealth);
 };

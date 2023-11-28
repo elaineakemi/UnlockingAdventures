@@ -19,6 +19,14 @@ void Character::Render()
 
     if (GetIsAlive())
     {
+        if (isFlipTexture && frameRec.width > 0)
+        {
+            frameRec.width = -frameRec.width;
+        }
+        else if (!isFlipTexture && frameRec.width < 0)
+        {
+            frameRec.width = -frameRec.width;
+        }
         DrawTextureRec(texture, frameRec, position, color);
     }
     else

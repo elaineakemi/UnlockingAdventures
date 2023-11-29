@@ -9,7 +9,7 @@
 //----------------------------------------------------------------------------------
 // Global Variables
 //----------------------------------------------------------------------------------
-int currentScreen = 4;
+int currentScreen = 0;
 int score = 0;
 int playerLives = 3;
 int playerSelected = 0;
@@ -27,15 +27,20 @@ int main(void)
     InitWindow(screenWidth, screenHeight, "Game Name");
     InitAudioDevice();
 
+    Font customFont{LoadFont("resources/fonts/playpenSans.ttf")};
+
     Player player1(LoadTexture("resources/textures/characters/frog.png"), 11, {15.0f, 400.0f}, RAYWHITE);
 
     Menu mainMenu;
+    mainMenu.Init();
     Level1 lvl1;
+    lvl1.Init();
     Level2 lvl2;
     Level3 lvl3;
     LevelBoss lvlBoss;
 
     SetTargetFPS(60);
+    int framesCounter = 0;
 
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
@@ -49,12 +54,11 @@ int main(void)
         switch (currentScreen)
         {
         case 0:
-            mainMenu.Init();
             mainMenu.Render();
             mainMenu.Update();
             break;
         case 1:
-            lvl1.Init();
+            // lvl1.Init();
             lvl1.RenderBackground();
             lvl1.RenderItems();
             player1.Init(playerSelected);
@@ -100,8 +104,28 @@ int main(void)
 
         if (isGameOver)
         {
+            DrawTextEx(customFont, "GAME OVER", (Vector2){170, 150}, 80, 20, RED);
+            framesCounter++;
 
-            DrawText("GAME OVER", 180, 180, 80, RED);
+            // Wait 2 seconds then write text
+            if (framesCounter > 120)
+            {
+                DrawTextEx(customFont, "Press ENTER to go back to menu", (Vector2){160, 300}, 40, 2, BLACK);
+            }
+            if (IsKeyPressed(KEY_ENTER))
+            {
+                // Restart variables
+                score = 0;
+                playerLives = 3;
+                playerSelected = 0;
+                isGameOver = false;
+                currentScreen = 0;
+
+                // Restart levels
+                mainMenu.Init();
+                lvl1.Init();
+                player1.SetIsAlive(true);
+            }
         }
 
         //----------------------------------------------------------------------------------
@@ -121,6 +145,5 @@ int main(void)
     player1.Unload();
     CloseAudioDevice();
     CloseWindow();
-
     return 0;
 }

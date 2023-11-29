@@ -4,7 +4,26 @@ Level1::Level1() {}
 
 void Level1::Init()
 {
+    // Background Music
     PlayMusicStream(backgroundMusic);
+
+    // Initialize items that needs to be restarted if new game is started
+    apple1 = Item(appleTexture, 17, {75.0f, 250.0f}, RAYWHITE, disappearTexture);
+    apple2 = Item(appleTexture, 17, {100.0f, 280.0f}, RAYWHITE, disappearTexture);
+    apple3 = Item(appleTexture, 17, {125.0f, 250.0f}, RAYWHITE, disappearTexture);
+    apple4 = Item(appleTexture, 17, {150.0f, 280.0f}, RAYWHITE, disappearTexture);
+    apple5 = Item(appleTexture, 17, {175.0f, 250.0f}, RAYWHITE, disappearTexture);
+
+    checkpoint1 = Item(checkpointTexture, 10, {700.0f, 370.0f}, RAYWHITE, checkpointCollectedTexture);
+    checkpoint2 = Item(checkpointTexture, 10, {200.0f, 88.0f}, RAYWHITE, checkpointCollectedTexture);
+    checkpoint3 = Item(checkpointTexture, 10, {730.0f, 237.0f}, RAYWHITE, checkpointCollectedTexture);
+
+    pig = Enemy(pigTexture, 16, {550.0f, 400.0f}, RAYWHITE, disappearTexture, true);
+    spikeHead = Enemy(spikeHeadTexture, 4, {550.0f, 305.0f}, RAYWHITE, disappearTexture, false);
+    turtle = Enemy(turtleTexture, 14, {305.0f, 165.0f}, RAYWHITE, disappearTexture, false);
+
+    door = Item(doorClosedTexture, 1, {530.0f, 245.0f}, RAYWHITE, doorOpenTexture);
+    checkpointsRemaining = 3;
 }
 
 void Level1::RenderBackground()

@@ -5,6 +5,7 @@ Menu::Menu() {}
 void Menu::Init()
 {
     PlayMusicStream(backgroundMusic);
+    isSelectPlayer = false;
 }
 
 void Menu::Render()

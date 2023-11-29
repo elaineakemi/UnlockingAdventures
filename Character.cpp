@@ -42,6 +42,7 @@ void Character::Render()
     }
 
     // Change between frames in the texture to "animate"
+    // Reference https://keasigmadelta.com/blog/raylib-2d-challenge-part-2-jumping-and-sound-effects/
     framesCounter++;
     if (framesCounter >= (60 / 8))
     {

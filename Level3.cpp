@@ -4,7 +4,28 @@ Level3::Level3() {}
 
 void Level3::Init()
 {
+    // Background Music
     PlayMusicStream(backgroundMusic);
+
+    // Initialize items that needs to be restarted if new game is started
+    apple1 = Item(appleTexture, 17, {75.0f, 250.0f}, RAYWHITE, disappearTexture);
+    apple2 = Item(appleTexture, 17, {100.0f, 280.0f}, RAYWHITE, disappearTexture);
+    apple3 = Item(appleTexture, 17, {125.0f, 250.0f}, RAYWHITE, disappearTexture);
+    apple4 = Item(appleTexture, 17, {150.0f, 280.0f}, RAYWHITE, disappearTexture);
+    apple5 = Item(appleTexture, 17, {175.0f, 250.0f}, RAYWHITE, disappearTexture);
+
+    checkpoint1 = Item(checkpointTexture, 10, {700.0f, 370.0f}, RAYWHITE, checkpointCollectedTexture);
+    checkpoint2 = Item(checkpointTexture, 10, {350.0f, 310.0f}, RAYWHITE, checkpointCollectedTexture);
+    checkpoint3 = Item(checkpointTexture, 10, {450.0f, 180.0f}, RAYWHITE, checkpointCollectedTexture);
+
+    pig1 = Enemy(pigTexture, 16, {350.0f, 400.0f}, RAYWHITE, disappearTexture, true);
+    pig2 = Enemy(pigTexture, 16, {450.0f, 400.0f}, RAYWHITE, disappearTexture, true);
+    pig3 = Enemy(pigTexture, 16, {550.0f, 400.0f}, RAYWHITE, disappearTexture, true);
+    pig4 = Enemy(pigTexture, 16, {370.0f, 215.0f}, RAYWHITE, disappearTexture, true);
+    spikeHead = Enemy(spikeHeadTexture, 4, {550.0f, 305.0f}, RAYWHITE, disappearTexture, false);
+
+    door = Item(doorClosedTexture, 1, {730.0f, 140.0f}, RAYWHITE, doorOpenTexture);
+    checkpointsRemaining = 3;
 }
 
 void Level3::RenderBackground()
@@ -110,7 +131,7 @@ void Level3::Update(Player &player)
         }
     }
 
-     //----------------------------------------------------------------------------------
+    //----------------------------------------------------------------------------------
     // Door Collision
     //----------------------------------------------------------------------------------
     if (checkpointsRemaining == 0)

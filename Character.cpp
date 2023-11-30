@@ -56,6 +56,14 @@ void Character::Render()
     }
 }
 
+void Character::Restart()
+{
+    renderDied = 5;
+    isAlive = true;
+    position.x = 15.0f;
+    position.y = 400.0f;
+}
+
 void Character::Move(Vector2 offset)
 {
     position.x += offset.x;

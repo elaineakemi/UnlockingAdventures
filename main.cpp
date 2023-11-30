@@ -36,7 +36,9 @@ int main(void)
     Level1 lvl1;
     lvl1.Init();
     Level2 lvl2;
+    lvl2.Init();
     Level3 lvl3;
+    lvl3.Init();
     LevelBoss lvlBoss;
 
     SetTargetFPS(60);
@@ -58,7 +60,6 @@ int main(void)
             mainMenu.Update();
             break;
         case 1:
-            // lvl1.Init();
             lvl1.RenderBackground();
             lvl1.RenderItems();
             player1.Init(playerSelected);
@@ -68,7 +69,6 @@ int main(void)
             lvl1.Update(player1);
             break;
         case 2:
-            lvl2.Init();
             lvl2.RenderBackground();
             lvl2.RenderItems();
             player1.Init(playerSelected);
@@ -78,7 +78,6 @@ int main(void)
             lvl2.Update(player1);
             break;
         case 3:
-            lvl3.Init();
             lvl3.RenderBackground();
             lvl3.RenderItems();
             player1.Init(playerSelected);
@@ -124,7 +123,9 @@ int main(void)
                 // Restart levels
                 mainMenu.Init();
                 lvl1.Init();
-                player1.SetIsAlive(true);
+                lvl2.Init();
+                lvl3.Init();
+                player1.Restart();
             }
         }
 

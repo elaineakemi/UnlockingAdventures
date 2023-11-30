@@ -32,6 +32,7 @@ public:
     void SetIsDisappearAfterCollect(bool disappear) { isDisappearAfterCollect = disappear; }
 
     void Render();
+    void Restart();
 
     void Move(Vector2 offset);
 

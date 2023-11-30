@@ -13,6 +13,7 @@ class Player : public Character
     const float STEP = 2;
 
 private:
+    Sound gameOverSound{LoadSound("resources/sounds/gameover.wav")};
     Sound playerDiedSound{LoadSound("resources/sounds/player_died.wav")};
     Texture2D frogTexture{LoadTexture("resources/textures/characters/frog.png")};
     Texture2D blueGuyTexture{LoadTexture("resources/textures/characters/blue_guy.png")};

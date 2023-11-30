@@ -126,6 +126,7 @@ int main(void)
                 lvl2.Init();
                 lvl3.Init();
                 player1.Restart();
+                player1.ResetPosition();
             }
         }
 

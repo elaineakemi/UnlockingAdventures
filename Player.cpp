@@ -105,17 +105,23 @@ void Player::Die()
 {
     if (!isInvincible)
     {
-        PlaySound(playerDiedSound);
 
         playerLives--;
+        // Gives invincibility after die until player moves to allow recovey time
+        // if enemy is in same position player died
         isInvincible = true;
         if (playerLives < 0)
         {
+            if (!isGameOver) // Avoid play sound again if is already playing
+            {
+                PlaySound(gameOverSound);
+            }
             SetIsAlive(false);
             isGameOver = true;
         }
         else
         {
+            PlaySound(playerDiedSound);
             WaitTime(1);
             // Reset player and move to initial position
             ResetPosition();

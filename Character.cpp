@@ -1,7 +1,5 @@
 #include "Character.h"
 
-Character::Character(Texture2D txtr, int numFrames, Vector2 pos, Texture2D disappearChar) {}
-
 Character::Character(TextureFrames txtr, Vector2 pos, Texture2D disappearChar)
     : textureWithFramesNumber(txtr),
       position(pos),

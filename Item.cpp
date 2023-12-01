@@ -1,10 +1,5 @@
 #include "Item.h"
 
-Item::Item(Texture2D txtr, int numFrames, Vector2 pos, Texture2D disappearChar)
-    : Character(txtr, numFrames, pos, disappearChar)
-{
-}
-
 Item::Item(TextureFrames txtr, Vector2 pos, TextureFrames collecttx)
     : Character(txtr, pos, collecttx)
 {
@@ -50,9 +45,7 @@ void Item::RenderBomb()
                 if (waitFramesExplosion == 120) // Explode
                 {
                     // Update texture and numframes to explosion
-                    // TODO fix bomb
-                    // SetTexture(disappearTexture);
-                    // SetNumFrames(framesExploding);
+                    SetTextureFrames(itemTextures.bombExplosion);
                     PlaySound(bombExplodeSound);
                     isExploding = true;
                 }
@@ -66,7 +59,7 @@ void Item::RenderBomb()
                     waitFramesExplosion = 0;
 
                     // Reset texture and numframes to initial state
-                    SetTextureFrames(initialTextureFrame);
+                    SetTextureFrames(itemTextures.bombOff);
 
                     // Random position
                     position = GetRandomPosition();
@@ -79,13 +72,10 @@ void Item::RenderBomb()
 
 // Used only for bombs
 // This is needed to change texture of the bomb
-void Item::Activate(Texture2D textureActive, int framesActive)
+void Item::ActivateBomb()
 {
-    initialTextureFrame = textureWithFramesNumber;
-
     // Update texture and numframes to active
-    SetTexture(textureActive);
-    SetNumFrames(framesActive);
+    SetTextureFrames(itemTextures.bombOn);
     isActive = true;
     PlaySound(bombDropSound);
 }

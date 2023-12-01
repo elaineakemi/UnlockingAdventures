@@ -27,11 +27,7 @@ private:
     Sound hitBossSound{LoadSound("resources/sounds/hit_boss.wav")};
     Sound bossDiedSound{LoadSound("resources/sounds/boss_died.wav")};
 
-    Texture2D disappearTexture{LoadTexture("resources/textures/items/collected.png")};
     Texture2D platformTexture{LoadTexture("resources/textures/items/platform.png")};
-    Texture2D bombOffTexture{LoadTexture("resources/textures/items/bomb_off.png")};
-    Texture2D bombOnTexture{LoadTexture("resources/textures/items/bomb_on.png")};
-    Texture2D bombExplodingTexture{LoadTexture("resources/textures/items/bomb_explosion.png")};
 
     // Items and Elements for this level only
     Item bomb;

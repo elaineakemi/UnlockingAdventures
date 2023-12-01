@@ -5,7 +5,11 @@
 #include "Character.h"
 #include "Assets.h"
 
+// Global variables
 extern int score;
+
+// Global assets
+extern ItemTextures itemTextures;
 
 typedef enum
 {
@@ -32,11 +36,11 @@ private:
     bool isOnGround{false};
     int framesExploding{6};
     int waitFramesExplosion{0};
-    TextureFrames initialTextureFrame;
+
+    Vector2 GetRandomPosition();
 
 public:
     // Constructors
-    Item(Texture2D itemtx, int numFrames, Vector2 pos, Texture2D disappearChar);
     Item(TextureFrames itemtx, Vector2 pos, TextureFrames collecttx);
     Item();
 
@@ -46,8 +50,7 @@ public:
 
     void Collect();
     void RenderBomb();
-    void Activate(Texture2D textureActive, int framesActive);
-    Vector2 GetRandomPosition();
+    void ActivateBomb();
 };
 
 #endif

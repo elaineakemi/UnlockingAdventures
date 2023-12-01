@@ -12,10 +12,10 @@ struct TextureFrames
 // Assets used across the application
 struct StatusBarTextures
 {
-    Texture2D lifebar;
-    Texture2D heart;
-    Texture2D checkpointBar;
-    Texture2D checkpointBarCollected;
+    struct TextureFrames lifebar;
+    struct TextureFrames heart;
+    struct TextureFrames checkpointBar;
+    struct TextureFrames checkpointBarCollected;
 };
 
 struct BackgroundTextures
@@ -47,7 +47,9 @@ struct ItemTextures
 {
     struct TextureFrames apple;
     struct TextureFrames collect;
-    struct TextureFrames bomb;
+    struct TextureFrames bombOff;
+    struct TextureFrames bombOn;
+    struct TextureFrames bombExplosion;
     struct TextureFrames doorClosed;
     struct TextureFrames doorOpened;
     struct TextureFrames checkpoint;

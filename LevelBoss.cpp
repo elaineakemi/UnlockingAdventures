@@ -13,7 +13,7 @@ void LevelBoss::Init()
     pig2 = Enemy(enemyTextures.pig, {450.0f, 400.0f}, itemTextures.collect, true);
     pig3 = Enemy(enemyTextures.pig, {550.0f, 400.0f}, itemTextures.collect, true);
 
-    bomb = Item(bombOffTexture, 1, {50.0f, 250.0f}, bombExplodingTexture);
+    bomb = Item(itemTextures.bombOff, {50.0f, 250.0f}, itemTextures.bombExplosion);
 
     // Initilize boss health
     bossHealth = 10;
@@ -92,7 +92,7 @@ void LevelBoss::Update(Player &player)
     //----------------------------------------------------------------------------------
     if (CheckCollisionRecs(player.GetPositionRec(), bomb.GetPositionRec()))
     {
-        bomb.Activate(bombOnTexture, 4);
+        bomb.ActivateBomb();
     }
 
     // Check things around bomb explosion
@@ -161,12 +161,7 @@ void LevelBoss::Update(Player &player)
 
 void LevelBoss::Unload()
 {
-    UnloadTexture(disappearTexture);
     UnloadTexture(platformTexture);
-
-    UnloadTexture(bombOffTexture);
-    UnloadTexture(bombOnTexture);
-    UnloadTexture(bombExplodingTexture);
 
     UnloadMusicStream(backgroundMusic);
     UnloadSound(hitBossSound);

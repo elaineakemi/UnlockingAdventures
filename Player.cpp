@@ -1,8 +1,8 @@
 #include "math.h"
 #include "Player.h"
 
-Player::Player(Texture2D txtr, int numFrames, Vector2 pos)
-    : Character(txtr, numFrames, pos, LoadTexture("resources/textures/items/collected.png"))
+Player::Player(TextureFrames txtr, Vector2 pos)
+    : Character(txtr, pos, LoadTexture("resources/textures/items/collected.png"))
 {
 }
 Player::Player() {}
@@ -13,16 +13,16 @@ void Player::Init(int playerSelected)
     switch (playerSelected)
     {
     case 1:
-        SetTexture(playerTextures.frog);
+        SetTexture(playerTextures.frog.texture);
         break;
     case 2:
-        SetTexture(playerTextures.blueGuy);
+        SetTexture(playerTextures.blueGuy.texture);
         break;
     case 3:
-        SetTexture(playerTextures.pinkGuy);
+        SetTexture(playerTextures.pinkGuy.texture);
         break;
     default:
-        SetTexture(playerTextures.frog);
+        SetTexture(playerTextures.frog.texture);
         break;
     }
 }

@@ -15,6 +15,7 @@ extern bool isEnd;
 
 // Global assets
 extern BackgroundTextures backgroundTextures;
+extern EnemyTextures enemyTextures;
 
 class LevelBoss
 {
@@ -27,8 +28,6 @@ private:
 
     Texture2D disappearTexture{LoadTexture("resources/textures/items/collected.png")};
     Texture2D platformTexture{LoadTexture("resources/textures/items/platform.png")};
-    Texture2D pigTexture{LoadTexture("resources/textures/characters/enemy_pig.png")};
-    Texture2D pigBossTexture{LoadTexture("resources/textures/characters/pig_boss.png")};
     Texture2D bombOffTexture{LoadTexture("resources/textures/items/bomb_off.png")};
     Texture2D bombOnTexture{LoadTexture("resources/textures/items/bomb_on.png")};
     Texture2D bombExplodingTexture{LoadTexture("resources/textures/items/bomb_explosion.png")};

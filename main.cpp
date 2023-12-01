@@ -25,6 +25,7 @@ Font customFont{0};
 StatusBarTextures statusbarTextures;
 BackgroundTextures backgroundTextures;
 PlayerTextures playerTextures;
+EnemyTextures enemyTextures;
 
 //----------------------------------------------------------------------------------
 // Local Variables
@@ -58,11 +59,15 @@ int main(void)
     backgroundTextures.level2 = LoadTexture("resources/textures/background/level2.png");
     backgroundTextures.level3 = LoadTexture("resources/textures/background/level3.png");
     backgroundTextures.levelBoss = LoadTexture("resources/textures/background/levelBoss.png");
-    playerTextures.frog = LoadTexture("resources/textures/characters/frog.png");
-    playerTextures.blueGuy = LoadTexture("resources/textures/characters/blue_guy.png");
-    playerTextures.pinkGuy = LoadTexture("resources/textures/characters/pink_guy.png");
+    playerTextures.frog = {LoadTexture("resources/textures/characters/frog.png"), 11};
+    playerTextures.blueGuy = {LoadTexture("resources/textures/characters/blue_guy.png"), 11};
+    playerTextures.pinkGuy = {LoadTexture("resources/textures/characters/pink_guy.png"), 11};
+    enemyTextures.pig = {LoadTexture("resources/textures/characters/enemy_pig.png"), 16};
+    enemyTextures.pigBoss = {LoadTexture("resources/textures/characters/pig_boss.png"), 12};
+    enemyTextures.spikeHead = {LoadTexture("resources/textures/characters/enemy_spike_head.png"), 4};
+    enemyTextures.turtle = {LoadTexture("resources/textures/characters/enemy_spike_turtle.png"), 14};
 
-    Player player1(LoadTexture("resources/textures/characters/frog.png"), 11, {15.0f, 400.0f});
+    Player player1(playerTextures.frog, {15.0f, 400.0f});
 
     // Declare and initialize levels
     Menu mainMenu;

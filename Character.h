@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 #include "Consts.h"
+#include "Assets.h"
 
 class Character
 {
@@ -27,6 +28,7 @@ public:
     // Constructors
     Character(Texture2D txtr, int numFrames, Vector2 pos, Texture2D disappearChar);
     Character();
+    Character(TextureFrames txtr, Vector2 pos, Texture2D disappearChar);
 
     // Getters and Setters
     bool GetIsAlive() { return isAlive; }

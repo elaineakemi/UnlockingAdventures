@@ -18,9 +18,9 @@ void Level2::Init()
     checkpoint2 = Item(checkpointTexture, 10, {250.0f, 127.0f}, checkpointCollectedTexture);
     checkpoint3 = Item(checkpointTexture, 10, {500.0f, 237.0f}, checkpointCollectedTexture);
 
-    pig = Enemy(pigTexture, 16, {550.0f, 400.0f}, disappearTexture, true);
-    spikeHead = Enemy(spikeHeadTexture, 4, {550.0f, 305.0f}, disappearTexture, false);
-    turtle = Enemy(turtleTexture, 14, {450.0f, 165.0f}, disappearTexture, false);
+    pig = Enemy(enemyTextures.pig, {550.0f, 400.0f}, disappearTexture, true);
+    spikeHead = Enemy(enemyTextures.spikeHead, {550.0f, 305.0f}, disappearTexture, false);
+    turtle = Enemy(enemyTextures.turtle, {450.0f, 165.0f}, disappearTexture, false);
 
     door = Item(doorClosedTexture, 1, {660.0f, 95.0f}, doorOpenTexture);
     checkpointsRemaining = 3;
@@ -211,9 +211,6 @@ void Level2::Unload()
     UnloadTexture(platformTexture);
     UnloadTexture(doorOpenTexture);
     UnloadTexture(doorClosedTexture);
-    UnloadTexture(pigTexture);
-    UnloadTexture(spikeHeadTexture);
-    UnloadTexture(turtleTexture);
 
     UnloadMusicStream(backgroundMusic);
     UnloadSound(trampolineSound);

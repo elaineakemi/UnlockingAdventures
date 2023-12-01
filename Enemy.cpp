@@ -2,8 +2,8 @@
 
 Enemy::Enemy() {}
 
-Enemy::Enemy(Texture2D txtr, int numFrames, Vector2 pos, Texture2D disappearChar, bool kill)
-    : Character(txtr, numFrames, pos, disappearChar), isOnGround(true), canBeKilled(kill), initialPosition(pos)
+Enemy::Enemy(TextureFrames txtr, Vector2 pos, Texture2D disappearChar, bool kill)
+    : Character(txtr, pos, disappearChar), isOnGround(true), canBeKilled(kill), initialPosition(pos)
 {
 }
 

@@ -14,6 +14,7 @@ extern int currentScreen;
 
 // Global assets
 extern BackgroundTextures backgroundTextures;
+extern EnemyTextures enemyTextures;
 
 class Level1
 {
@@ -33,9 +34,6 @@ private:
     Texture2D platformTexture{LoadTexture("resources/textures/items/platform.png")};
     Texture2D doorClosedTexture{LoadTexture("resources/textures/items/door_closed.png")};
     Texture2D doorOpenTexture{LoadTexture("resources/textures/items/door_open.png")};
-    Texture2D pigTexture{LoadTexture("resources/textures/characters/enemy_pig.png")};
-    Texture2D spikeHeadTexture{LoadTexture("resources/textures/characters/enemy_spike_head.png")};
-    Texture2D turtleTexture{LoadTexture("resources/textures/characters/enemy_spike_turtle.png")};
 
     // Items and Elements for this level only
     Item apple1, apple2, apple3, apple4, apple5;

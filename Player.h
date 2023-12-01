@@ -34,7 +34,7 @@ private:
 
 public:
     // Constructor
-    Player(Texture2D playertx, int numFrames, Vector2 pos);
+    Player(TextureFrames playertx, Vector2 pos);
     Player();
 
     // Getters and Setters

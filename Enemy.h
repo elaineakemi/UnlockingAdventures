@@ -3,6 +3,7 @@
 
 #include "raylib.h"
 #include "Character.h"
+#include "Assets.h"
 
 class Enemy : public Character
 {
@@ -18,7 +19,7 @@ private:
 
 public:
     // Constructors
-    Enemy(Texture2D txtr, int numFrames, Vector2 pos, Texture2D disappearChar, bool kill);
+    Enemy(TextureFrames txtr, Vector2 pos, Texture2D disappearChar, bool kill);
     Enemy();
 
     // Getters and Setters

@@ -11,6 +11,17 @@ Character::Character(Texture2D txtr, int numFrames, Vector2 pos, Texture2D disap
 {
 }
 
+Character::Character(TextureFrames txtr, Vector2 pos, Texture2D disappearChar)
+    : texture(txtr.texture),
+      numberFrames(txtr.frames),
+      position(pos),
+      frameRec({0.0f, 0.0f, (float)texture.width / numberFrames - 1, (float)texture.height}),
+      currentFrame(0),
+      framesCounter(0),
+      disappearTexture(disappearChar)
+{
+}
+
 Character::Character() {}
 
 void Character::Render()

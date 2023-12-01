@@ -3,17 +3,22 @@
 
 #include "raylib.h"
 
-// Assets used across the application
+struct TextureFrames
+{
+    Texture2D texture;
+    int frames;
+};
 
-typedef struct StatusBarTextures
+// Assets used across the application
+struct StatusBarTextures
 {
     Texture2D lifebar;
     Texture2D heart;
     Texture2D checkpointBar;
     Texture2D checkpointBarCollected;
-} StatusBarTextures;
+};
 
-typedef struct BackgroundTextures
+struct BackgroundTextures
 {
     Texture2D border;
     Texture2D menu;
@@ -21,13 +26,21 @@ typedef struct BackgroundTextures
     Texture2D level2;
     Texture2D level3;
     Texture2D levelBoss;
-} BackgroundTextures;
+};
 
-typedef struct PlayerTextures
+struct PlayerTextures
 {
-    Texture2D frog;
-    Texture2D blueGuy;
-    Texture2D pinkGuy;
-} PlayerTextures;
+    struct TextureFrames frog;
+    struct TextureFrames blueGuy;
+    struct TextureFrames pinkGuy;
+};
+
+struct EnemyTextures
+{
+    struct TextureFrames pig;
+    struct TextureFrames turtle;
+    struct TextureFrames spikeHead;
+    struct TextureFrames pigBoss;
+};
 
 #endif

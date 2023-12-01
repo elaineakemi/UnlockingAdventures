@@ -39,6 +39,7 @@ public:
     Rectangle GetPositionRec() const;
     void SetTexture(Texture2D txtr) { texture = txtr; }
     void SetFlipTexture(bool value) { isFlipTexture = value; }
+    void SetNumFrames(int value) { numberFrames = value; }
 };
 
 #endif

@@ -15,7 +15,7 @@ void StatusBar::Render(int checkpointsRemaining)
     else
     {
         // Draw Text instruction - Boss level
-        DrawText("Use the platforms and jump on top of the boss", 200, 20, 14, BLACK);
+        DrawText("Use bombs to kill the boss", 300, 20, 14, BLACK);
     }
 
     // Render lifebar hearts

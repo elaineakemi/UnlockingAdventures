@@ -5,15 +5,17 @@
 #include "Level2.h"
 #include "Level3.h"
 #include "LevelBoss.h"
+#include "EndingScreen.h"
 
 //----------------------------------------------------------------------------------
 // Global Variables
 //----------------------------------------------------------------------------------
-int currentScreen = 0;
+int currentScreen = 4;
 int score = 0;
 int playerLives = 3;
 int playerSelected = 0;
 bool isGameOver = false;
+bool isEnd = false;
 
 //------------------------------------------------------------------------------------
 // Program main entry point
@@ -40,6 +42,9 @@ int main(void)
     Level3 lvl3;
     lvl3.Init();
     LevelBoss lvlBoss;
+    lvlBoss.Init();
+    EndingScreen ending;
+    ending.Init();
 
     SetTargetFPS(60);
     int framesCounter = 0;
@@ -87,7 +92,6 @@ int main(void)
             lvl3.Update(player1);
             break;
         case 4:
-            lvlBoss.Init();
             lvlBoss.RenderBackground();
             lvlBoss.RenderItems();
             player1.Init(playerSelected);
@@ -101,15 +105,29 @@ int main(void)
             break;
         }
 
-        if (isGameOver)
+        if (isGameOver || isEnd)
         {
-            DrawTextEx(customFont, "GAME OVER", (Vector2){170, 150}, 80, 20, RED);
-            framesCounter++;
-
-            // Wait 2 seconds then write text
-            if (framesCounter > 120)
+            if (isEnd)
             {
-                DrawTextEx(customFont, "Press ENTER to go back to menu", (Vector2){160, 300}, 40, 2, BLACK);
+                DrawTextEx(customFont, "VICTORY!", (Vector2){170, 150}, 80, 20, GREEN);
+                framesCounter++;
+
+                // Wait 2 seconds then show ending screen
+                if (framesCounter > 120)
+                {
+                    ending.Render(player1);
+                }
+            }
+            else
+            {
+                DrawTextEx(customFont, "GAME OVER", (Vector2){170, 150}, 80, 20, RED);
+                framesCounter++;
+
+                // Wait 2 seconds then write text
+                if (framesCounter > 120)
+                {
+                    DrawTextEx(customFont, "Press ENTER to go back to menu", (Vector2){160, 300}, 40, 2, BLACK);
+                }
             }
             if (IsKeyPressed(KEY_ENTER))
             {
@@ -119,12 +137,14 @@ int main(void)
                 playerSelected = 0;
                 isGameOver = false;
                 currentScreen = 0;
+                isEnd = false;
 
                 // Restart levels
                 mainMenu.Init();
                 lvl1.Init();
                 lvl2.Init();
                 lvl3.Init();
+                lvlBoss.Init();
                 player1.Restart();
                 player1.ResetPosition();
             }
@@ -145,6 +165,7 @@ int main(void)
     lvl3.Unload();
     lvlBoss.Unload();
     player1.Unload();
+    ending.Unload();
     CloseAudioDevice();
     CloseWindow();
     return 0;

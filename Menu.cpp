@@ -86,7 +86,6 @@ void Menu::Update()
         }
         if (IsKeyPressed(KEY_ENTER))
         {
-            // playerTexture = frogTexture;
             currentScreen = 1;
         }
     }

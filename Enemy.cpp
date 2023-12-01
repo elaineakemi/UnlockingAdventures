@@ -38,6 +38,7 @@ void Enemy::Drop()
     }
 }
 
+// Normal level enemy disappears when reaches corner
 void Enemy::Move()
 {
     if (!GetIsAlive())
@@ -54,7 +55,7 @@ void Enemy::Move()
     }
 }
 
-// Boss level enemy when reaches corner
+// Boss level enemy comes back when reaches corner
 void Enemy::MoveBossLevel(bool isBoss)
 {
     float dt = GetFrameTime() * GetFPS();
@@ -86,34 +87,8 @@ void Enemy::MoveBossLevel(bool isBoss)
     }
 }
 
-void Enemy::Kill()
+void Enemy::Die()
 {
     PlaySound(killSound);
     SetIsAlive(false);
-}
-
-bool Enemy::CheckBossCollision(Rectangle playerPos, int *bossHealth)
-{
-    bool playerDied = false;
-    if (intervalHit == 0)
-    {
-        if (CheckCollisionRecs(playerPos, GetPositionRec()))
-        { // Check if colision comes from top
-            if (playerPos.y < 375)
-            {
-                PlaySound(killSound);
-                bossHealth = bossHealth - 1;
-            }
-            else
-            {
-                playerDied = true;
-            }
-        }
-        intervalHit = 5;
-    }
-    else
-    {
-        intervalHit--;
-    }
-    return playerDied;
 }

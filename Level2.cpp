@@ -89,7 +89,7 @@ void Level2::Update(Player &player)
             {
                 if (player.GetPositionRec().y < enemy->GetPositionRec().y)
                 {
-                    enemy->Kill();
+                    enemy->Die();
                 }
                 else
                 {

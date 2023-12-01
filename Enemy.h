@@ -25,8 +25,7 @@ public:
     void Drop();
     void Move();
     void MoveBossLevel(bool isBoss);
-    void Kill();
-    bool CheckBossCollision(Rectangle playerPos, int *bossHealth);
+    void Die();
 };
 
 #endif

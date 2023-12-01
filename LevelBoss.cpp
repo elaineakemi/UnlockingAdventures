@@ -4,7 +4,16 @@ LevelBoss::LevelBoss() {}
 
 void LevelBoss::Init()
 {
+    // Background Music
     PlayMusicStream(backgroundMusic);
+
+    // Initialize items that needs to be restarted if new game is started
+    pigBoss = Enemy(pigBossTexture, 12, {700.0f, 375.0f}, RAYWHITE, disappearTexture, true);
+    pig1 = Enemy(pigTexture, 16, {650.0f, 400.0f}, RAYWHITE, disappearTexture, true);
+    pig2 = Enemy(pigTexture, 16, {450.0f, 400.0f}, RAYWHITE, disappearTexture, true);
+    pig3 = Enemy(pigTexture, 16, {550.0f, 400.0f}, RAYWHITE, disappearTexture, true);
+
+    bomb = Item(bombOffTexture, 1, {50.0f, 250.0f}, RAYWHITE, bombExplodingTexture);
 }
 
 void LevelBoss::RenderBackground()
@@ -22,6 +31,7 @@ void LevelBoss::RenderItems()
     // Render status bar without flags and with instructions for boss level
     status.Render(-1);
 
+    bomb.RenderBomb();
     pigBoss.Render();
 
     for (auto enemy : enemies)
@@ -42,6 +52,7 @@ void LevelBoss::Update(Player &player)
     //----------------------------------------------------------------------------------
     // Enemies Move
     //----------------------------------------------------------------------------------
+    // Move is different in boss level
     pigBoss.MoveBossLevel(true);
     pig1.MoveBossLevel(false);
     pig2.MoveBossLevel(false);
@@ -51,38 +62,12 @@ void LevelBoss::Update(Player &player)
     // Enemies Collisions
     //----------------------------------------------------------------------------------
 
-    /*if (CheckCollisionRecs(player.GetPositionRec(), pigBoss.GetPositionRec()))
- { // Check if colision comes from top
-     if (player.GetPositionRec().y < 375)
-     {
-         bossHealth--;
-         pigBoss.Hit(bossHealth);
-     }
-     else
-     {
-         player.Die();
-     }
- }
-*/
-    if (intervalHit == 0)
+    // Player can't hit boss
+    if (CheckCollisionRecs(player.GetPositionRec(), pigBoss.GetPositionRec()))
     {
-        if (CheckCollisionRecs(player.GetPositionRec(), pigBoss.GetPositionRec()))
-        { // Check if colision comes from top
-            if (player.GetPositionRec().y < 375)
-            {
-                bossHealth--;
-            }
-            else
-            {
-                player.Die();
-            }
-        }
-        intervalHit = 50;
+        player.Die();
     }
-    else
-    {
-        intervalHit--;
-    }
+
     for (auto enemy : enemies)
     {
         if (enemy->GetIsAlive() && CheckCollisionRecs(player.GetPositionRec(), enemy->GetPositionRec()))
@@ -90,11 +75,50 @@ void LevelBoss::Update(Player &player)
             // Check if colision comes from top
             if (player.GetPositionRec().y < enemy->GetPositionRec().y)
             {
-                enemy->Kill();
+                enemy->Die();
             }
             else
             {
                 player.Die();
+            }
+        }
+    }
+
+    //----------------------------------------------------------------------------------
+    // Bomb Collision
+    //----------------------------------------------------------------------------------
+    if (CheckCollisionRecs(player.GetPositionRec(), bomb.GetPositionRec()))
+    {
+        bomb.Activate(bombOnTexture, 4);
+    }
+
+    // Check things around bomb explosion
+    if (bomb.GetIsExploding())
+    {
+        // Bomb can hit enemies up to 3 positions left or right
+        Rectangle bombRect = bomb.GetPositionRec();
+        bombRect.x -= 3;
+        bombRect.width += 3;
+        if (CheckCollisionRecs(bombRect, pigBoss.GetPositionRec()))
+        {
+            bossHealth -= 2;
+            PlaySound(hitBossSound);
+            bomb.SetIsExploding(false); // To avoid hitting multiple times with same bomb
+
+            // End game
+            if (bossHealth == 0)
+            {
+                pigBoss.Die();
+                PlaySound(bossDiedSound);
+                isEnd = true;
+            }
+        }
+
+        for (auto enemy : enemies)
+        {
+            if (enemy->GetIsAlive() && CheckCollisionRecs(bombRect, enemy->GetPositionRec()))
+            {
+                enemy->Die();
             }
         }
     }
@@ -137,6 +161,11 @@ void LevelBoss::Unload()
     UnloadTexture(disappearTexture);
     UnloadTexture(platformTexture);
     UnloadTexture(pigTexture);
+    UnloadTexture(bombOffTexture);
+    UnloadTexture(bombOnTexture);
+    UnloadTexture(bombExplodingTexture);
 
     UnloadMusicStream(backgroundMusic);
+    UnloadSound(hitBossSound);
+    UnloadSound(bossDiedSound);
 }

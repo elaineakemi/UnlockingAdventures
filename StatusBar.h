@@ -12,6 +12,7 @@ extern int score;
 extern int playerLives;
 
 // Global assets
+extern Font customFont;
 extern StatusBarTextures statusbarTextures;
 extern ItemTextures itemTextures;
 

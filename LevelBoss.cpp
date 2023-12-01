@@ -25,11 +25,13 @@ void LevelBoss::RenderBackground()
 
 void LevelBoss::RenderItems()
 {
-    DrawText(TextFormat("Boss: %d %", bossHealth * 10), 650, 20, 20, BLACK);
+    // Draw boss health percentage
+    DrawTextEx(customFont, TextFormat("Boss: %d%%", bossHealth * 10), (Vector2){670, 20}, 24, 2, BLACK);
+
     //----------------------------------------------------------------------------------
-    // Render Elements
+    //  Render Elements
     //----------------------------------------------------------------------------------
-    // Render status bar without flags and with instructions for boss level
+    //  Render status bar without flags and with instructions for boss level
     status.Render(-1);
 
     bomb.RenderBomb();
@@ -48,7 +50,7 @@ void LevelBoss::RenderItems()
 
 void LevelBoss::Update(Player &player)
 {
-    if (!isMute)
+    if (!isMute && !isEnd)
     {
         PlayMusicStream(backgroundMusic);
         UpdateMusicStream(backgroundMusic);

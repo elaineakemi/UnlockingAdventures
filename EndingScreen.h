@@ -22,7 +22,7 @@ private:
     Music backgroundMusic{LoadMusicStream("resources/sounds/end.wav")};
 
 public:
-    EndingScreen();
+    EndingScreen() = default;
     void Init();
     void Render(Player &player);
     void Unload();

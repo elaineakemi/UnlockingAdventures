@@ -34,7 +34,7 @@ private:
 
 public:
     // Constructor
-    Menu();
+    Menu() = default;
 
     void Init();
     void Render();

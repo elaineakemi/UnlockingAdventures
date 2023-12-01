@@ -43,7 +43,7 @@ private:
 
 public:
     // Constructor
-    LevelBoss();
+    LevelBoss() = default;
 
     void Init();
     void RenderBackground();

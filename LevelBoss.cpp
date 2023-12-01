@@ -1,7 +1,5 @@
 #include "LevelBoss.h"
 
-LevelBoss::LevelBoss() {}
-
 void LevelBoss::Init()
 {
     // Background Music

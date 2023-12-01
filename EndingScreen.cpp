@@ -1,7 +1,5 @@
 #include "EndingScreen.h"
 
-EndingScreen::EndingScreen() {}
-
 void EndingScreen::Init()
 {
     // Background Music

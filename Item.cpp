@@ -6,8 +6,6 @@ Item::Item(TextureFrames txtr, Vector2 pos, TextureFrames collecttx)
 Item::Item(TextureFrames txtr, Vector2 pos)
     : Character(txtr, pos) {}
 
-Item::Item() {}
-
 // When collect item, play sound then disappear
 void Item::Collect()
 {

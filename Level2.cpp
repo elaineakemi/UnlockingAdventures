@@ -1,7 +1,5 @@
 #include "Level2.h"
 
-Level2::Level2() {}
-
 void Level2::Init()
 {
     // Background Music

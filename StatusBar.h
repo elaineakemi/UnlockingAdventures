@@ -35,7 +35,7 @@ private:
 
 public:
     // Constructors
-    StatusBar();
+    StatusBar() = default;
 
     void Render(int checkpointsRemaining);
 };

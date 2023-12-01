@@ -41,9 +41,9 @@ private:
 
 public:
     // Constructors
-    Item(TextureFrames itemtx, Vector2 pos, TextureFrames collecttx);
+    Item() = default;
     Item(TextureFrames itemtx, Vector2 pos);
-    Item();
+    Item(TextureFrames itemtx, Vector2 pos, TextureFrames collecttx);
 
     // Getters and Setters
     bool GetIsExploding() { return isExploding; }

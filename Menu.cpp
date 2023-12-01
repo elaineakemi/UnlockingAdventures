@@ -1,7 +1,5 @@
 #include "Menu.h"
 
-Menu::Menu() {}
-
 void Menu::Init()
 {
     // Background Music

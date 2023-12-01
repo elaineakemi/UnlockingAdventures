@@ -1,11 +1,7 @@
 #include "Enemy.h"
 
-Enemy::Enemy() {}
-
 Enemy::Enemy(TextureFrames txtr, Vector2 pos, TextureFrames killtx, bool kill)
-    : Character(txtr, pos, killtx), isOnGround(true), canBeKilled(kill), initialPosition(pos)
-{
-}
+    : Character(txtr, pos, killtx), canBeKilled(kill), isOnGround(true), initialPosition(pos) {}
 
 void Enemy::Drop()
 {

@@ -1,30 +1,20 @@
 #include "Character.h"
 
-Character::Character(TextureFrames txtr, Vector2 pos, Texture2D disappearChar)
+Character::Character(TextureFrames txtr, Vector2 pos)
     : textureWithFramesNumber(txtr),
+      killTextureFrames(txtr),
       position(pos),
       frameRec({0.0f, 0.0f, (float)textureWithFramesNumber.texture.width / textureWithFramesNumber.frames - 1, (float)textureWithFramesNumber.texture.height}),
       currentFrame(0),
-      framesCounter(0),
-      killTextureFrames({disappearChar, 1}) {}
+      framesCounter(0) {}
 
 Character::Character(TextureFrames txtr, Vector2 pos, TextureFrames killTexture)
     : textureWithFramesNumber(txtr),
+      killTextureFrames(killTexture),
       position(pos),
       frameRec({0.0f, 0.0f, (float)textureWithFramesNumber.texture.width / textureWithFramesNumber.frames - 1, (float)textureWithFramesNumber.texture.height}),
       currentFrame(0),
-      framesCounter(0),
-      killTextureFrames(killTexture) {}
-
-Character::Character(TextureFrames txtr, Vector2 pos)
-    : textureWithFramesNumber(txtr),
-      position(pos),
-      frameRec({0.0f, 0.0f, (float)textureWithFramesNumber.texture.width / textureWithFramesNumber.frames - 1, (float)textureWithFramesNumber.texture.height}),
-      currentFrame(0),
-      framesCounter(0),
-      killTextureFrames() {}
-
-Character::Character() {}
+      framesCounter(0) {}
 
 void Character::Render()
 {

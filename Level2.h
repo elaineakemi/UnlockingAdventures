@@ -53,7 +53,7 @@ private:
 
 public:
     // Constructor
-    Level2();
+    Level2() = default;
 
     void Init();
     void RenderBackground();

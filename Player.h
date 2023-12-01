@@ -34,8 +34,8 @@ private:
 
 public:
     // Constructor
+    Player() = default;
     Player(TextureFrames playertx, Vector2 pos);
-    Player();
 
     // Getters and Setters
     bool GetIsPlayerOnGround() { return isPlayerOnGround; }

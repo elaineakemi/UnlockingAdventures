@@ -48,7 +48,7 @@ private:
 
 public:
     // Constructor
-    Level3();
+    Level3() = default;
 
     void Init();
     void RenderBackground();

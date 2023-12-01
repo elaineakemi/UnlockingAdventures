@@ -1,7 +1,5 @@
 #include "StatusBar.h"
 
-StatusBar::StatusBar() {}
-
 void StatusBar::Render(int checkpointsRemaining)
 {
     if (checkpointsRemaining > -1)

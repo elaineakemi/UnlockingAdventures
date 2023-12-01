@@ -140,7 +140,7 @@ void LevelBoss::Update(Player &player)
             {
                 player.SetIsPlayerOnPlatform(true);
                 isOnPlatform = true;
-                player.position.y = platform->GetPositionRec().y - platform->texture.height - 20;
+                player.position.y = platform->GetPositionRec().y - platform->textureWithFramesNumber.texture.height - 20;
             }
             // Player can only collide with one platform at the time
             // No need to check other platforms if already collided
@@ -161,7 +161,6 @@ void LevelBoss::Update(Player &player)
 
 void LevelBoss::Unload()
 {
-    UnloadTexture(platformTexture);
 
     UnloadMusicStream(backgroundMusic);
     UnloadSound(hitBossSound);

@@ -3,7 +3,6 @@
 
 #include "raylib.h"
 #include "Item.h"
-#include "Platform.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "StatusBar.h"
@@ -26,10 +25,6 @@ private:
     Sound trampolineSound{LoadSound("resources/sounds/trampoline.wav")};
     Sound checkpointSound{LoadSound("resources/sounds/checkpoint.wav")};
     Sound doorSound{LoadSound("resources/sounds/door_open.wav")};
-
-    Texture2D trampolineTexture{LoadTexture("resources/textures/items/trampoline.png")};
-    Texture2D platformTexture{LoadTexture("resources/textures/items/platform.png")};
-
     // Items and Elements for this level only
     Item apple1, apple2, apple3, apple4, apple5;
     Item *apples[5]{&apple1, &apple2, &apple3, &apple4, &apple5};
@@ -37,11 +32,11 @@ private:
     Item checkpoint1, checkpoint2, checkpoint3;
     Item *checkpoints[3]{&checkpoint1, &checkpoint2, &checkpoint3};
 
-    Platform platform1{platformTexture, 1, {300.0f, 370.0f}};
-    Platform platform2{platformTexture, 1, {15.0f, 300.0f}};
-    Platform platform3{platformTexture, 1, {280.0f, 240.0f}};
-    Platform platform4{platformTexture, 1, {530.0f, 190.0f}};
-    Platform *platforms[4]{&platform1, &platform2, &platform3, &platform4};
+    Item platform1{itemTextures.platform, {300.0f, 370.0f}};
+    Item platform2{itemTextures.platform, {15.0f, 300.0f}};
+    Item platform3{itemTextures.platform, {280.0f, 240.0f}};
+    Item platform4{itemTextures.platform, {530.0f, 190.0f}};
+    Item *platforms[4]{&platform1, &platform2, &platform3, &platform4};
 
     Item door;
 

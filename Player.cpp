@@ -2,9 +2,8 @@
 #include "Player.h"
 
 Player::Player(TextureFrames txtr, Vector2 pos)
-    : Character(txtr, pos, LoadTexture("resources/textures/items/collected.png"))
-{
-}
+    : Character(txtr, pos, LoadTexture("resources/textures/items/collected.png")) {}
+
 Player::Player() {}
 
 void Player::Init(int playerSelected)

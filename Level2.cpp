@@ -182,7 +182,7 @@ void Level2::Update(Player &player)
             {
                 player.SetIsPlayerOnPlatform(true);
                 isOnPlatform = true;
-                player.position.y = platform->GetPositionRec().y - platform->texture.height - 20;
+                player.position.y = platform->GetPositionRec().y - platform->textureWithFramesNumber.texture.height - 20;
             }
             // Player can only collide with one platform at the time
             // No need to check other platforms if already collided
@@ -203,9 +203,6 @@ void Level2::Update(Player &player)
 
 void Level2::Unload()
 {
-
-    UnloadTexture(trampolineTexture);
-    UnloadTexture(platformTexture);
 
     UnloadMusicStream(backgroundMusic);
     UnloadSound(trampolineSound);

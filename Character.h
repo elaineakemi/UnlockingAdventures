@@ -28,12 +28,14 @@ public:
     Character();
     Character(TextureFrames txtr, Vector2 pos, Texture2D disappearChar);
     Character(TextureFrames txtr, Vector2 pos, TextureFrames killTexture);
+    Character(TextureFrames txtr, Vector2 pos);
 
     // Getters and Setters
     bool GetIsAlive() { return isAlive; }
     void SetIsAlive(bool isCharAlive) { isAlive = isCharAlive; }
     void SetIsDisappearAfterCollect(bool disappear) { isDisappearAfterCollect = disappear; }
     Rectangle GetPositionRec() const;
+    Vector2 GetPosition() const;
     void SetTexture(Texture2D txtr) { textureWithFramesNumber.texture = txtr; }
     void SetFlipTexture(bool value) { isFlipTexture = value; }
     void SetNumFrames(int value) { textureWithFramesNumber.frames = value; }

@@ -54,6 +54,9 @@ struct ItemTextures
     struct TextureFrames doorOpened;
     struct TextureFrames checkpoint;
     struct TextureFrames checkpointCollected;
+
+    struct TextureFrames platform;
+    struct TextureFrames trampoline;
 };
 
 #endif

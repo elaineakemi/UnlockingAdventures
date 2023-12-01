@@ -3,7 +3,6 @@
 
 #include "raylib.h"
 #include "Item.h"
-#include "Platform.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "Assets.h"

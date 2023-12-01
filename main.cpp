@@ -76,6 +76,8 @@ int main(void)
     itemTextures.bombOff = {LoadTexture("resources/textures/items/bomb_off.png"), 1};
     itemTextures.bombOn = {LoadTexture("resources/textures/items/bomb_on.png"), 4};
     itemTextures.bombExplosion = {LoadTexture("resources/textures/items/bomb_explosion.png"), 6};
+    itemTextures.trampoline = {LoadTexture("resources/textures/items/trampoline.png"), 8};
+    itemTextures.platform = {LoadTexture("resources/textures/items/platform.png"), 1};
 
     Player player1(playerTextures.frog, {15.0f, 400.0f});
 

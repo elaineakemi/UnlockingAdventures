@@ -42,6 +42,7 @@ private:
 public:
     // Constructors
     Item(TextureFrames itemtx, Vector2 pos, TextureFrames collecttx);
+    Item(TextureFrames itemtx, Vector2 pos);
     Item();
 
     // Getters and Setters

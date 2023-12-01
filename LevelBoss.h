@@ -3,7 +3,6 @@
 
 #include "raylib.h"
 #include "Item.h"
-#include "Platform.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "StatusBar.h"
@@ -27,15 +26,13 @@ private:
     Sound hitBossSound{LoadSound("resources/sounds/hit_boss.wav")};
     Sound bossDiedSound{LoadSound("resources/sounds/boss_died.wav")};
 
-    Texture2D platformTexture{LoadTexture("resources/textures/items/platform.png")};
-
     // Items and Elements for this level only
     Item bomb;
 
-    Platform platform1{platformTexture, 1, {300.0f, 360.0f}};
-    Platform platform2{platformTexture, 1, {15.0f, 290.0f}};
-    Platform platform3{platformTexture, 1, {320.0f, 230.0f}};
-    Platform *platforms[3]{&platform1, &platform2, &platform3};
+    Item platform1{itemTextures.platform, {300.0f, 360.0f}};
+    Item platform2{itemTextures.platform, {15.0f, 290.0f}};
+    Item platform3{itemTextures.platform, {320.0f, 230.0f}};
+    Item *platforms[3]{&platform1, &platform2, &platform3};
 
     Enemy pigBoss, pig1, pig2, pig3;
     Enemy *enemies[3]{&pig1, &pig2, &pig3};

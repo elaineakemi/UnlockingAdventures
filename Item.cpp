@@ -1,9 +1,10 @@
 #include "Item.h"
 
 Item::Item(TextureFrames txtr, Vector2 pos, TextureFrames collecttx)
-    : Character(txtr, pos, collecttx)
-{
-}
+    : Character(txtr, pos, collecttx) {}
+
+Item::Item(TextureFrames txtr, Vector2 pos)
+    : Character(txtr, pos) {}
 
 Item::Item() {}
 

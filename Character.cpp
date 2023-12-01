@@ -6,9 +6,7 @@ Character::Character(TextureFrames txtr, Vector2 pos, Texture2D disappearChar)
       frameRec({0.0f, 0.0f, (float)textureWithFramesNumber.texture.width / textureWithFramesNumber.frames - 1, (float)textureWithFramesNumber.texture.height}),
       currentFrame(0),
       framesCounter(0),
-      killTextureFrames({disappearChar, 1})
-{
-}
+      killTextureFrames({disappearChar, 1}) {}
 
 Character::Character(TextureFrames txtr, Vector2 pos, TextureFrames killTexture)
     : textureWithFramesNumber(txtr),
@@ -17,6 +15,14 @@ Character::Character(TextureFrames txtr, Vector2 pos, TextureFrames killTexture)
       currentFrame(0),
       framesCounter(0),
       killTextureFrames(killTexture) {}
+
+Character::Character(TextureFrames txtr, Vector2 pos)
+    : textureWithFramesNumber(txtr),
+      position(pos),
+      frameRec({0.0f, 0.0f, (float)textureWithFramesNumber.texture.width / textureWithFramesNumber.frames - 1, (float)textureWithFramesNumber.texture.height}),
+      currentFrame(0),
+      framesCounter(0),
+      killTextureFrames() {}
 
 Character::Character() {}
 
@@ -41,11 +47,9 @@ void Character::Render()
     }
     else
     {
-        // int frames = 1;
         if (isDisappearAfterCollect)
         {
             renderDied--;
-            // frames = 5; // Default disappear texture frames
         }
         Rectangle rect = {0.0f, 0.0f, (float)killTextureFrames.texture.width / killTextureFrames.frames, (float)killTextureFrames.texture.height};
         DrawTextureRec(killTextureFrames.texture, rect, position, defaultColour);
@@ -77,4 +81,9 @@ void Character::Restart()
 Rectangle Character::GetPositionRec() const
 {
     return {position.x, position.y, (float)textureWithFramesNumber.texture.width / textureWithFramesNumber.frames - 1, (float)textureWithFramesNumber.texture.height};
+}
+
+Vector2 Character::GetPosition() const
+{
+    return position;
 }

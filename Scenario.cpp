@@ -1,17 +1,17 @@
 #include "Scenario.h"
+#include "Consts.h"
 
-Scenario::Scenario(Texture2D txtr, int numFrames, Vector2 pos, Color c)
+Scenario::Scenario(Texture2D txtr, int numFrames, Vector2 pos)
     : texture(txtr),
       numberFrames(numFrames),
       position(pos),
-      color(c),
       frameRec({0.0f, 0.0f, (float)texture.width / numberFrames - 1, (float)texture.height}),
       currentFrame(0),
       framesCounter(0) {}
 
 void Scenario::Render()
 {
-    DrawTextureRec(texture, frameRec, position, color);
+    DrawTextureRec(texture, frameRec, position, defaultColour);
 
     // Change between frames in the texture to "animate"
     framesCounter++;

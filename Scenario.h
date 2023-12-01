@@ -10,7 +10,6 @@ public:
     Texture2D texture;
     int numberFrames; // Number of frames in the texture
     Vector2 position;
-    Color color;
 
     // Used to change frames within texture
     Rectangle frameRec;
@@ -18,7 +17,7 @@ public:
     int framesCounter;
 
     // Constructors
-    Scenario(Texture2D txtr, int numFrames, Vector2 pos, Color c);
+    Scenario(Texture2D txtr, int numFrames, Vector2 pos);
 
     void Render();
 

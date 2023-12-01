@@ -44,14 +44,14 @@ private:
     Item checkpoint1, checkpoint2, checkpoint3;
     Item *checkpoints[3]{&checkpoint1, &checkpoint2, &checkpoint3};
 
-    Platform trampoline1{trampolineTexture, 8, {750.0f, 400.0f}, RAYWHITE};
-    Platform trampoline2{trampolineTexture, 8, {175.0f, 275.0f}, RAYWHITE};
+    Platform trampoline1{trampolineTexture, 8, {750.0f, 400.0f}};
+    Platform trampoline2{trampolineTexture, 8, {175.0f, 275.0f}};
     Platform *trampolines[2]{&trampoline1, &trampoline2};
 
-    Platform platform1{platformTexture, 1, {180.0f, 300.0f}, RAYWHITE};
-    Platform platform2{platformTexture, 1, {450.0f, 150.0f}, RAYWHITE};
-    Platform platform3{platformTexture, 1, {230.0f, 190.0f}, RAYWHITE};
-    Platform platform4{platformTexture, 1, {480.0f, 300.0f}, RAYWHITE};
+    Platform platform1{platformTexture, 1, {180.0f, 300.0f}};
+    Platform platform2{platformTexture, 1, {450.0f, 150.0f}};
+    Platform platform3{platformTexture, 1, {230.0f, 190.0f}};
+    Platform platform4{platformTexture, 1, {480.0f, 300.0f}};
     Platform *platforms[4]{&platform1, &platform2, &platform3, &platform4};
 
     Item door;

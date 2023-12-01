@@ -36,9 +36,9 @@ private:
     // Items and Elements for this level only
     Item bomb;
 
-    Platform platform1{platformTexture, 1, {300.0f, 360.0f}, RAYWHITE};
-    Platform platform2{platformTexture, 1, {15.0f, 290.0f}, RAYWHITE};
-    Platform platform3{platformTexture, 1, {320.0f, 230.0f}, RAYWHITE};
+    Platform platform1{platformTexture, 1, {300.0f, 360.0f}};
+    Platform platform2{platformTexture, 1, {15.0f, 290.0f}};
+    Platform platform3{platformTexture, 1, {320.0f, 230.0f}};
     Platform *platforms[3]{&platform1, &platform2, &platform3};
 
     Enemy pigBoss, pig1, pig2, pig3;

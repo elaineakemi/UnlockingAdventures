@@ -9,7 +9,7 @@ class Platform : public Scenario
 {
 
 public:
-    Platform(Texture2D txtr, int numFrames, Vector2 pos, Color c);
+    Platform(Texture2D txtr, int numFrames, Vector2 pos);
 };
 
 #endif

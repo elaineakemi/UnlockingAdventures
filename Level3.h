@@ -44,10 +44,10 @@ private:
     Item checkpoint1, checkpoint2, checkpoint3;
     Item *checkpoints[3]{&checkpoint1, &checkpoint2, &checkpoint3};
 
-    Platform platform1{platformTexture, 1, {300.0f, 370.0f}, RAYWHITE};
-    Platform platform2{platformTexture, 1, {15.0f, 300.0f}, RAYWHITE};
-    Platform platform3{platformTexture, 1, {280.0f, 240.0f}, RAYWHITE};
-    Platform platform4{platformTexture, 1, {530.0f, 190.0f}, RAYWHITE};
+    Platform platform1{platformTexture, 1, {300.0f, 370.0f}};
+    Platform platform2{platformTexture, 1, {15.0f, 300.0f}};
+    Platform platform3{platformTexture, 1, {280.0f, 240.0f}};
+    Platform platform4{platformTexture, 1, {530.0f, 190.0f}};
     Platform *platforms[4]{&platform1, &platform2, &platform3, &platform4};
 
     Item door;

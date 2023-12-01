@@ -14,11 +14,13 @@ Character::Character() {}
 
 void Character::Render()
 {
+    // If character died and already rendered the disappear texture, do nothing
     if (renderDied == 0)
         return;
 
     if (GetIsAlive())
     {
+        // Update frameRec to flip/unflip the texture
         if (isFlipTexture && frameRec.width > 0)
         {
             frameRec.width = -frameRec.width;
@@ -56,12 +58,14 @@ void Character::Render()
     }
 }
 
+// Set back is alive and default render for disappear texture
 void Character::Restart()
 {
     renderDied = 5;
     isAlive = true;
 }
 
+// Return the base position rectangle
 Rectangle Character::GetPositionRec() const
 {
     return {position.x, position.y, (float)texture.width / numberFrames - 1, (float)texture.height};

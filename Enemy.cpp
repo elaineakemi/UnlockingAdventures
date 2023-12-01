@@ -38,13 +38,18 @@ void Enemy::Drop()
     }
 }
 
-// Normal level enemy disappears when reaches corner
+// Move enemies to left
+// Normal level enemies disappears when reaches corner
 void Enemy::Move()
 {
+    // If is dead, do nothing
     if (!GetIsAlive())
         return;
+
+    // Get delta
     float dt = GetFrameTime() * GetFPS();
 
+    // Walk until reaches corner, then disappear
     if (position.x > 20)
     {
         position.x -= dt / 2;
@@ -55,9 +60,11 @@ void Enemy::Move()
     }
 }
 
+// Move enemies in the boss level
 // Boss level enemy comes back when reaches corner
 void Enemy::MoveBossLevel(bool isBoss)
 {
+    // Get delta
     float dt = GetFrameTime() * GetFPS();
 
     // Boss walks faster than normal enemies
@@ -66,6 +73,7 @@ void Enemy::MoveBossLevel(bool isBoss)
         dt = dt / 2;
     }
 
+    // Walk to left until reaches corner, then flip and walk right
     if (position.x <= 20)
     {
         walkToLeft = false;
@@ -87,6 +95,7 @@ void Enemy::MoveBossLevel(bool isBoss)
     }
 }
 
+// When enemy die play sound and set to not appear anymore
 void Enemy::Die()
 {
     PlaySound(killSound);

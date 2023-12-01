@@ -24,22 +24,22 @@ public:
 
     Texture2D disappearTexture;
 
+    // Constructors
     Character(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
     Character();
 
+    // Getters and Setters
     bool GetIsAlive() { return isAlive; }
     void SetIsAlive(bool isCharAlive) { isAlive = isCharAlive; }
     void SetIsDisappearAfterCollect(bool disappear) { isDisappearAfterCollect = disappear; }
-
-    void Render();
-    void Restart();
-
-    void Move(Vector2 offset);
-
     Rectangle GetPositionRec() const;
     void SetTexture(Texture2D txtr) { texture = txtr; }
     void SetFlipTexture(bool value) { isFlipTexture = value; }
     void SetNumFrames(int value) { numberFrames = value; }
+
+    void Render();
+    void Restart();
+    void Move(Vector2 offset);
 };
 
 #endif

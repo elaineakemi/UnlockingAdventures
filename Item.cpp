@@ -7,6 +7,7 @@ Item::Item(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disapp
 
 Item::Item() {}
 
+// When collect item, play sound then disappear
 void Item::Collect()
 {
     if (GetIsAlive())
@@ -17,6 +18,7 @@ void Item::Collect()
     SetIsAlive(false);
 }
 
+// Bombs are used in the boss level only
 void Item::RenderBomb()
 {
     if (GetIsAlive())
@@ -27,6 +29,7 @@ void Item::RenderBomb()
             float dt = GetFrameTime() * GetFPS();
             if (!isOnGround)
             {
+                // Drop until reaches ground, then set isOnGround true
                 if (position.y < GetScreenHeight() - 10 - texture.height)
                 {
                     position.y += dt * 5;
@@ -69,6 +72,8 @@ void Item::RenderBomb()
     }
 }
 
+// Used only for bombs
+// This is needed to change texture of the bomb
 void Item::Activate(Texture2D textureActive, int framesActive)
 {
     initialTexture = texture;
@@ -81,6 +86,7 @@ void Item::Activate(Texture2D textureActive, int framesActive)
     PlaySound(bombDropSound);
 }
 
+// Generate a random position for bombs
 Vector2 Item::GetRandomPosition()
 {
     // Get which platform will spawn

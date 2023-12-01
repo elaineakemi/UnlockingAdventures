@@ -8,6 +8,7 @@
 #include "Enemy.h"
 #include "StatusBar.h"
 
+// Global variables
 extern int currentScreen;
 extern bool isEnd;
 
@@ -15,10 +16,12 @@ class LevelBoss
 {
 
 private:
+    // Sounds
     Music backgroundMusic{LoadMusicStream("resources/sounds/level_boss.wav")};
     Sound hitBossSound{LoadSound("resources/sounds/hit_boss.wav")};
     Sound bossDiedSound{LoadSound("resources/sounds/boss_died.wav")};
 
+    // Textures
     Texture2D backgroundBorder{LoadTexture("resources/textures/background/border.png")};
     Texture2D background{LoadTexture("resources/textures/background/level_boss.png")};
 
@@ -30,6 +33,7 @@ private:
     Texture2D bombOnTexture{LoadTexture("resources/textures/items/bomb_on.png")};
     Texture2D bombExplodingTexture{LoadTexture("resources/textures/items/bomb_explosion.png")};
 
+    // Items and Elements for this level only
     Item bomb;
 
     Platform platform1{platformTexture, 1, {300.0f, 360.0f}, RAYWHITE};
@@ -45,7 +49,9 @@ private:
     int intervalHit{50};
 
 public:
+    // Constructor
     LevelBoss();
+
     void Init();
     void RenderBackground();
     void RenderItems();

@@ -79,7 +79,6 @@ void Level2::Update(Player &player)
     //----------------------------------------------------------------------------------
     // Enemies Collisions
     //----------------------------------------------------------------------------------
-
     for (auto enemy : enemies)
     {
         if (enemy->GetIsAlive() && CheckCollisionRecs(player.GetPositionRec(), enemy->GetPositionRec()))

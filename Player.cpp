@@ -9,6 +9,7 @@ Player::Player() {}
 
 void Player::Init(int playerSelected)
 {
+    // Select texture according character selected in menu
     switch (playerSelected)
     {
     case 1:
@@ -28,13 +29,14 @@ void Player::Init(int playerSelected)
 
 void Player::Update()
 {
-    // If player moves invincibilty after die finishes
+    // If player moves, invincibilty after die finishes
     if (IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE) ||
         IsKeyDown(KEY_A) || IsKeyDown(KEY_D) || IsKeyDown(KEY_W))
     {
         isInvincible = false;
     }
 
+    // Move right without flip texture
     if ((IsKeyDown(KEY_RIGHT) || IsKeyDown(KEY_A)) && position.x < GetScreenWidth() - 50)
     {
         prevPosition = position;
@@ -42,6 +44,7 @@ void Player::Update()
         SetFlipTexture(false);
     }
 
+    // Move left and flip texture
     if ((IsKeyDown(KEY_LEFT) || IsKeyDown(KEY_D)) && position.x > 20)
     {
         prevPosition = position;
@@ -49,6 +52,7 @@ void Player::Update()
         SetFlipTexture(true);
     }
 
+    // Jump
     if ((IsKeyDown(KEY_UP) || IsKeyDown(KEY_SPACE) || IsKeyDown(KEY_W)) && (isPlayerOnGround || isPlayerOnPlatform))
     {
         if (isPlayerOnGround)
@@ -92,6 +96,8 @@ void Player::Jump()
     jumpValue += GRAVITY;
 }
 
+// Used for trampolines only
+// Jump is higher than normal jump
 void Player::JumpTrampoline(float groundf)
 {
     groundValue = groundf;
@@ -101,18 +107,18 @@ void Player::JumpTrampoline(float groundf)
     Jump();
 }
 
+// When player dies, it gets temporary invincibility until it moves
+// to allow recovey time if enemy is in same position player respawn
 void Player::Die()
 {
     if (!isInvincible)
     {
-
         playerLives--;
-        // Gives invincibility after die until player moves to allow recovey time
-        // if enemy is in same position player died
         isInvincible = true;
+
         if (playerLives < 0)
         {
-            if (!isGameOver) // Avoid play sound again if is already playing
+            if (!isGameOver) // To play game over sound only once
             {
                 PlaySound(gameOverSound);
             }

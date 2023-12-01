@@ -7,6 +7,7 @@
 #include "Player.h"
 #include "Enemy.h"
 
+// Global variables
 extern int score;
 extern int playerLives;
 
@@ -14,12 +15,14 @@ class StatusBar
 {
 
 private:
+    // Textures
     Texture2D lifebarTexture{LoadTexture("resources/textures/items/life_bar.png")};
     Texture2D heartTexture{LoadTexture("resources/textures/items/life.png")};
     Texture2D disappearTexture{LoadTexture("resources/textures/items/collected.png")};
     Texture2D checkpointBarTexture{LoadTexture("resources/textures/items/checkpoint_bar.png")};
     Texture2D checkpointBarCollectedTexture{LoadTexture("resources/textures/items/checkpoint_bar_collected.png")};
 
+    // Items used only in status bar
     Item lifeBar{lifebarTexture, 1, {20.0f, 20.0f}, RAYWHITE, disappearTexture};
     Item life1{heartTexture, 8, {28.0f, 30.0f}, RAYWHITE, disappearTexture};
     Item life2{heartTexture, 8, {42.0f, 30.0f}, RAYWHITE, disappearTexture};
@@ -34,7 +37,9 @@ private:
     int checkpointsRemaining{3};
 
 public:
+    // Constructors
     StatusBar();
+
     void Render(int checkpointsRemaining);
     void Unload();
 };

@@ -17,9 +17,11 @@ private:
     int intervalHit{5};
 
 public:
+    // Constructors
     Enemy(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar, bool kill);
     Enemy();
 
+    // Getters and Setters
     bool GetCanBeKilled() { return canBeKilled; }
 
     void Drop();

@@ -8,17 +8,20 @@
 #include "Enemy.h"
 #include "StatusBar.h"
 
+// Global variables
 extern int currentScreen;
 
 class Level1
 {
 
 private:
+    // Sounds
     Music backgroundMusic{LoadMusicStream("resources/sounds/level1.wav")};
     Sound trampolineSound{LoadSound("resources/sounds/trampoline.wav")};
     Sound checkpointSound{LoadSound("resources/sounds/checkpoint.wav")};
     Sound doorSound{LoadSound("resources/sounds/door_open.wav")};
 
+    // Textures
     Texture2D backgroundBorder{LoadTexture("resources/textures/background/border.png")};
     Texture2D background{LoadTexture("resources/textures/background/level1.png")};
 
@@ -34,6 +37,7 @@ private:
     Texture2D spikeHeadTexture{LoadTexture("resources/textures/characters/enemy_spike_head.png")};
     Texture2D turtleTexture{LoadTexture("resources/textures/characters/enemy_spike_turtle.png")};
 
+    // Items and Elements for this level only
     Item apple1, apple2, apple3, apple4, apple5;
     Item *apples[5]{&apple1, &apple2, &apple3, &apple4, &apple5};
 
@@ -59,7 +63,9 @@ private:
     int checkpointsRemaining{3};
 
 public:
+    // Constructor
     Level1();
+
     void Init();
     void RenderBackground();
     void RenderItems();

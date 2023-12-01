@@ -14,6 +14,9 @@ void LevelBoss::Init()
     pig3 = Enemy(pigTexture, 16, {550.0f, 400.0f}, RAYWHITE, disappearTexture, true);
 
     bomb = Item(bombOffTexture, 1, {50.0f, 250.0f}, RAYWHITE, bombExplodingTexture);
+
+    // Initilize boss health
+    bossHealth = 10;
 }
 
 void LevelBoss::RenderBackground()
@@ -110,10 +113,12 @@ void LevelBoss::Update(Player &player)
             {
                 pigBoss.Die();
                 PlaySound(bossDiedSound);
+                StopMusicStream(backgroundMusic);
                 isEnd = true;
             }
         }
 
+        // Bomb can kill enemies
         for (auto enemy : enemies)
         {
             if (enemy->GetIsAlive() && CheckCollisionRecs(bombRect, enemy->GetPositionRec()))

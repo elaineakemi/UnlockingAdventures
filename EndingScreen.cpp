@@ -12,6 +12,7 @@ void EndingScreen::Render(Player &player)
 {
     UpdateMusicStream(backgroundMusic);
 
+    // Draw background
     DrawTexture(background, 0, 0, WHITE);
     DrawTexture(backgroundBorder, 0, 0, WHITE);
 

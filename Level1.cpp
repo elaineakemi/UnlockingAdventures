@@ -79,7 +79,6 @@ void Level1::Update(Player &player)
     //----------------------------------------------------------------------------------
     // Enemies Collisions
     //----------------------------------------------------------------------------------
-
     for (auto enemy : enemies)
     {
         if (enemy->GetIsAlive() && CheckCollisionRecs(player.GetPositionRec(), enemy->GetPositionRec()))
@@ -135,7 +134,6 @@ void Level1::Update(Player &player)
     //----------------------------------------------------------------------------------
     // Trampolines Collisions
     //----------------------------------------------------------------------------------
-
     for (auto trampoline : trampolines)
     {
         if (CheckCollisionRecs(player.GetPositionRec(), trampoline->GetPositionRec()))

@@ -17,12 +17,12 @@ public:
     int currentFrame;
     int framesCounter;
 
+    // Constructors
     Scenario(Texture2D txtr, int numFrames, Vector2 pos, Color c);
 
     void Render();
 
     Vector2 GetPosition() const;
-
     Rectangle GetPositionRec() const;
 };
 

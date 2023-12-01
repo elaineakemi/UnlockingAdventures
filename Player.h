@@ -4,17 +4,22 @@
 #include "raylib.h"
 #include "Character.h"
 
+// Global variables
 extern int playerLives;
 extern bool isGameOver;
 
 class Player : public Character
 {
+    // Constants used only for player
     const float GRAVITY = 0.3f;
     const float STEP = 2;
 
 private:
+    // Sounds
     Sound gameOverSound{LoadSound("resources/sounds/gameover.wav")};
     Sound playerDiedSound{LoadSound("resources/sounds/player_died.wav")};
+
+    // Textures
     Texture2D frogTexture{LoadTexture("resources/textures/characters/frog.png")};
     Texture2D blueGuyTexture{LoadTexture("resources/textures/characters/blue_guy.png")};
     Texture2D pinkGuyTexture{LoadTexture("resources/textures/characters/pink_guy.png")};
@@ -26,11 +31,18 @@ private:
     float jumpValue{0.0f};
     float groundValue{0.0f};
 
-    Vector2 prevPosition;
+    Vector2 prevPosition; // To allow undo moviment
 
 public:
+    // Constructor
     Player(Texture2D playertx, int numFrames, Vector2 pos, Color c);
     Player();
+
+    // Getters and Setters
+    bool GetIsPlayerOnGround() { return isPlayerOnGround; }
+    void SetIsPlayerOnGround(bool isOnGround) { isPlayerOnGround = isOnGround; }
+    bool GetIsPlayerOnPlatform() { return isPlayerOnPlatform; }
+    void SetIsPlayerOnPlatform(bool isOnPlatform) { isPlayerOnPlatform = isOnPlatform; }
 
     void Init(int playerSelected);
     void Update();
@@ -40,11 +52,6 @@ public:
     void UndoMove();
     void ResetPosition();
     void Unload();
-
-    bool GetIsPlayerOnGround() { return isPlayerOnGround; }
-    void SetIsPlayerOnGround(bool isOnGround) { isPlayerOnGround = isOnGround; }
-    bool GetIsPlayerOnPlatform() { return isPlayerOnPlatform; }
-    void SetIsPlayerOnPlatform(bool isOnPlatform) { isPlayerOnPlatform = isOnPlatform; }
 };
 
 #endif

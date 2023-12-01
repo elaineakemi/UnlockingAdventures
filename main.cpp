@@ -10,7 +10,7 @@
 //----------------------------------------------------------------------------------
 // Global Variables
 //----------------------------------------------------------------------------------
-int currentScreen = 4;
+int currentScreen = 0;
 int score = 0;
 int playerLives = 3;
 int playerSelected = 0;
@@ -33,6 +33,7 @@ int main(void)
 
     Player player1(LoadTexture("resources/textures/characters/frog.png"), 11, {15.0f, 400.0f}, RAYWHITE);
 
+    // Declare and initialize levels
     Menu mainMenu;
     mainMenu.Init();
     Level1 lvl1;
@@ -46,7 +47,7 @@ int main(void)
     EndingScreen ending;
     ending.Init();
 
-    SetTargetFPS(60);
+    SetTargetFPS(60); // Set game to run at 60 fps
     int framesCounter = 0;
 
     // Main game loop
@@ -58,6 +59,7 @@ int main(void)
         BeginDrawing();
         ClearBackground(RAYWHITE);
 
+        // Check which screen should render
         switch (currentScreen)
         {
         case 0:
@@ -105,6 +107,7 @@ int main(void)
             break;
         }
 
+        // Show game over message or ending screen
         if (isGameOver || isEnd)
         {
             if (isEnd)
@@ -115,6 +118,7 @@ int main(void)
                 // Wait 2 seconds then show ending screen
                 if (framesCounter > 120)
                 {
+                    ending.Init();
                     ending.Render(player1);
                 }
             }

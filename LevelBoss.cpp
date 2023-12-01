@@ -159,7 +159,6 @@ void LevelBoss::Update(Player &player)
 
 void LevelBoss::Unload()
 {
-
     UnloadMusicStream(backgroundMusic);
     UnloadSound(hitBossSound);
     UnloadSound(bossDiedSound);

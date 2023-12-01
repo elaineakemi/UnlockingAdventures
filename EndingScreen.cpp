@@ -32,6 +32,5 @@ void EndingScreen::Render(Player &player)
 }
 void EndingScreen::Unload()
 {
-
     UnloadMusicStream(backgroundMusic);
 }

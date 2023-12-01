@@ -13,16 +13,16 @@ void Player::Init(int playerSelected)
     switch (playerSelected)
     {
     case 1:
-        SetTexture(frogTexture);
+        SetTexture(playerTextures.frog);
         break;
     case 2:
-        SetTexture(blueGuyTexture);
+        SetTexture(playerTextures.blueGuy);
         break;
     case 3:
-        SetTexture(pinkGuyTexture);
+        SetTexture(playerTextures.pinkGuy);
         break;
     default:
-        SetTexture(frogTexture);
+        SetTexture(playerTextures.frog);
         break;
     }
 }
@@ -151,9 +151,6 @@ void Player::ResetPosition()
 void Player::Unload()
 {
     UnloadTexture(disappearTexture);
-    UnloadTexture(frogTexture);
-    UnloadTexture(blueGuyTexture);
-    UnloadTexture(pinkGuyTexture);
 
     UnloadSound(playerDiedSound);
 }

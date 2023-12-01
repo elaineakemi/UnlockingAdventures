@@ -6,6 +6,7 @@
 #include "Level3.h"
 #include "LevelBoss.h"
 #include "EndingScreen.h"
+#include "Assets.h"
 
 //----------------------------------------------------------------------------------
 // Global Variables
@@ -17,19 +18,49 @@ int playerSelected = 0;
 bool isGameOver = false;
 bool isEnd = false;
 
-//------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
+// Global Shared Assets
+//----------------------------------------------------------------------------------
+Font customFont{0};
+StatusBarTextures statusbarTextures;
+BackgroundTextures backgroundTextures;
+PlayerTextures playerTextures;
+
+//----------------------------------------------------------------------------------
+// Local Variables
+//----------------------------------------------------------------------------------
+static const int screenWidth = 800;
+static const int screenHeight = 450;
+
+//----------------------------------------------------------------------------------
 // Program main entry point
-//------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------
 int main(void)
 {
     // Initialization
-    const int screenWidth = 800;
-    const int screenHeight = 450;
-
     InitWindow(screenWidth, screenHeight, "Game Name");
     InitAudioDevice();
 
-    Font customFont{LoadFont("resources/fonts/playpenSans.ttf")};
+    //------------------------------------------------------------------------------
+    // Load Assets
+    //------------------------------------------------------------------------------
+    // Font
+    customFont = LoadFont("resources/fonts/playpenSans.ttf");
+
+    // Textures
+    statusbarTextures.lifebar = LoadTexture("resources/textures/items/life_bar.png");
+    statusbarTextures.heart = LoadTexture("resources/textures/items/life.png");
+    statusbarTextures.checkpointBar = LoadTexture("resources/textures/items/checkpoint_bar.png");
+    statusbarTextures.checkpointBarCollected = LoadTexture("resources/textures/items/checkpoint_bar_collected.png");
+    backgroundTextures.border = LoadTexture("resources/textures/background/border.png");
+    backgroundTextures.menu = LoadTexture("resources/textures/background/menu.png");
+    backgroundTextures.level1 = LoadTexture("resources/textures/background/level1.png");
+    backgroundTextures.level2 = LoadTexture("resources/textures/background/level2.png");
+    backgroundTextures.level3 = LoadTexture("resources/textures/background/level3.png");
+    backgroundTextures.levelBoss = LoadTexture("resources/textures/background/levelBoss.png");
+    playerTextures.frog = LoadTexture("resources/textures/characters/frog.png");
+    playerTextures.blueGuy = LoadTexture("resources/textures/characters/blue_guy.png");
+    playerTextures.pinkGuy = LoadTexture("resources/textures/characters/pink_guy.png");
 
     Player player1(LoadTexture("resources/textures/characters/frog.png"), 11, {15.0f, 400.0f});
 

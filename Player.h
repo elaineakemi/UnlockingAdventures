@@ -3,10 +3,14 @@
 
 #include "raylib.h"
 #include "Character.h"
+#include "Assets.h"
 
 // Global variables
 extern int playerLives;
 extern bool isGameOver;
+
+// Global assets
+extern PlayerTextures playerTextures;
 
 class Player : public Character
 {
@@ -18,11 +22,6 @@ private:
     // Sounds
     Sound gameOverSound{LoadSound("resources/sounds/gameover.wav")};
     Sound playerDiedSound{LoadSound("resources/sounds/player_died.wav")};
-
-    // Textures
-    Texture2D frogTexture{LoadTexture("resources/textures/characters/frog.png")};
-    Texture2D blueGuyTexture{LoadTexture("resources/textures/characters/blue_guy.png")};
-    Texture2D pinkGuyTexture{LoadTexture("resources/textures/characters/pink_guy.png")};
 
     bool isPlayerOnGround{true};    // Used to check if player can jump - to not allow double jump
     bool isPlayerOnPlatform{false}; // Used to check if player should fall in next iteration

@@ -7,10 +7,14 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "StatusBar.h"
+#include "Assets.h"
 
 // Global variables
 extern int currentScreen;
 extern bool isEnd;
+
+// Global assets
+extern BackgroundTextures backgroundTextures;
 
 class LevelBoss
 {
@@ -20,10 +24,6 @@ private:
     Music backgroundMusic{LoadMusicStream("resources/sounds/level_boss.wav")};
     Sound hitBossSound{LoadSound("resources/sounds/hit_boss.wav")};
     Sound bossDiedSound{LoadSound("resources/sounds/boss_died.wav")};
-
-    // Textures
-    Texture2D backgroundBorder{LoadTexture("resources/textures/background/border.png")};
-    Texture2D background{LoadTexture("resources/textures/background/level_boss.png")};
 
     Texture2D disappearTexture{LoadTexture("resources/textures/items/collected.png")};
     Texture2D platformTexture{LoadTexture("resources/textures/items/platform.png")};

@@ -30,8 +30,8 @@ void Level3::Init()
 
 void Level3::RenderBackground()
 {
-    DrawTexture(background, 0, 0, WHITE);
-    DrawTexture(backgroundBorder, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.level3, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.border, 0, 0, WHITE);
 }
 
 void Level3::RenderItems()
@@ -189,8 +189,6 @@ void Level3::Update(Player &player)
 
 void Level3::Unload()
 {
-    UnloadTexture(background);
-    UnloadTexture(backgroundBorder);
     UnloadTexture(disappearTexture);
     UnloadTexture(appleTexture);
     UnloadTexture(checkpointTexture);

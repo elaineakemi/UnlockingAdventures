@@ -38,9 +38,11 @@ void StatusBar::Render(int checkpointsRemaining)
 
 void StatusBar::Unload()
 {
+    /*
     UnloadTexture(disappearTexture);
     UnloadTexture(lifebarTexture);
     UnloadTexture(heartTexture);
     UnloadTexture(checkpointBarTexture);
     UnloadTexture(checkpointBarCollectedTexture);
+    */
 }

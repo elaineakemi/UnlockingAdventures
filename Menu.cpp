@@ -11,8 +11,8 @@ void Menu::Init()
 
 void Menu::Render()
 {
-    DrawTexture(background, 0, 0, WHITE);
-    DrawTexture(backgroundBorder, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.menu, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.border, 0, 0, WHITE);
 
     // First screen
     if (!isSelectPlayer)
@@ -100,18 +100,9 @@ void Menu::Update()
 
 void Menu::Unload()
 {
-    UnloadTexture(background);
-    UnloadTexture(backgroundBorder);
-
-    UnloadTexture(frogTexture);
-    UnloadTexture(blueGuyTexture);
-    UnloadTexture(pinkGuyTexture);
-
     UnloadMusicStream(backgroundMusic);
     UnloadSound(trampolineSound);
     UnloadSound(confirmSound);
     UnloadSound(beepSound);
     UnloadSound(doorSound);
-
-    UnloadFont(customFont);
 }

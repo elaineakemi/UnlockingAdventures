@@ -21,8 +21,8 @@ void LevelBoss::Init()
 
 void LevelBoss::RenderBackground()
 {
-    DrawTexture(background, 0, 0, WHITE);
-    DrawTexture(backgroundBorder, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.levelBoss, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.border, 0, 0, WHITE);
 }
 
 void LevelBoss::RenderItems()
@@ -161,8 +161,6 @@ void LevelBoss::Update(Player &player)
 
 void LevelBoss::Unload()
 {
-    UnloadTexture(background);
-    UnloadTexture(backgroundBorder);
     UnloadTexture(disappearTexture);
     UnloadTexture(platformTexture);
     UnloadTexture(pigTexture);

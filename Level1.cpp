@@ -28,8 +28,8 @@ void Level1::Init()
 
 void Level1::RenderBackground()
 {
-    DrawTexture(background, 0, 0, WHITE);
-    DrawTexture(backgroundBorder, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.level1, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.border, 0, 0, WHITE);
 }
 
 void Level1::RenderItems()
@@ -202,8 +202,6 @@ void Level1::Update(Player &player)
 
 void Level1::Unload()
 {
-    UnloadTexture(background);
-    UnloadTexture(backgroundBorder);
     UnloadTexture(disappearTexture);
     UnloadTexture(appleTexture);
     UnloadTexture(checkpointTexture);

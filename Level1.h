@@ -7,9 +7,13 @@
 #include "Player.h"
 #include "Enemy.h"
 #include "StatusBar.h"
+#include "Assets.h"
 
 // Global variables
 extern int currentScreen;
+
+// Global assets
+extern BackgroundTextures backgroundTextures;
 
 class Level1
 {
@@ -20,10 +24,6 @@ private:
     Sound trampolineSound{LoadSound("resources/sounds/trampoline.wav")};
     Sound checkpointSound{LoadSound("resources/sounds/checkpoint.wav")};
     Sound doorSound{LoadSound("resources/sounds/door_open.wav")};
-
-    // Textures
-    Texture2D backgroundBorder{LoadTexture("resources/textures/background/border.png")};
-    Texture2D background{LoadTexture("resources/textures/background/level1.png")};
 
     Texture2D disappearTexture{LoadTexture("resources/textures/items/collected.png")};
     Texture2D appleTexture{LoadTexture("resources/textures/items/apple.png")};

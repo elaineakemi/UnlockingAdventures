@@ -8,21 +8,21 @@ void Level2::Init()
     PlayMusicStream(backgroundMusic);
 
     // Initialize items that needs to be restarted if new game is started
-    apple1 = Item(appleTexture, 17, {75.0f, 400.0f}, RAYWHITE, disappearTexture);
-    apple2 = Item(appleTexture, 17, {100.0f, 370.0f}, RAYWHITE, disappearTexture);
-    apple3 = Item(appleTexture, 17, {125.0f, 350.0f}, RAYWHITE, disappearTexture);
-    apple4 = Item(appleTexture, 17, {570.0f, 120.0f}, RAYWHITE, disappearTexture);
-    apple5 = Item(appleTexture, 17, {590.0f, 120.0f}, RAYWHITE, disappearTexture);
+    apple1 = Item(appleTexture, 17, {75.0f, 400.0f}, disappearTexture);
+    apple2 = Item(appleTexture, 17, {100.0f, 370.0f}, disappearTexture);
+    apple3 = Item(appleTexture, 17, {125.0f, 350.0f}, disappearTexture);
+    apple4 = Item(appleTexture, 17, {570.0f, 120.0f}, disappearTexture);
+    apple5 = Item(appleTexture, 17, {590.0f, 120.0f}, disappearTexture);
 
-    checkpoint1 = Item(checkpointTexture, 10, {600.0f, 370.0f}, RAYWHITE, checkpointCollectedTexture);
-    checkpoint2 = Item(checkpointTexture, 10, {250.0f, 127.0f}, RAYWHITE, checkpointCollectedTexture);
-    checkpoint3 = Item(checkpointTexture, 10, {500.0f, 237.0f}, RAYWHITE, checkpointCollectedTexture);
+    checkpoint1 = Item(checkpointTexture, 10, {600.0f, 370.0f}, checkpointCollectedTexture);
+    checkpoint2 = Item(checkpointTexture, 10, {250.0f, 127.0f}, checkpointCollectedTexture);
+    checkpoint3 = Item(checkpointTexture, 10, {500.0f, 237.0f}, checkpointCollectedTexture);
 
-    pig = Enemy(pigTexture, 16, {550.0f, 400.0f}, RAYWHITE, disappearTexture, true);
-    spikeHead = Enemy(spikeHeadTexture, 4, {550.0f, 305.0f}, RAYWHITE, disappearTexture, false);
-    turtle = Enemy(turtleTexture, 14, {450.0f, 165.0f}, RAYWHITE, disappearTexture, false);
+    pig = Enemy(pigTexture, 16, {550.0f, 400.0f}, disappearTexture, true);
+    spikeHead = Enemy(spikeHeadTexture, 4, {550.0f, 305.0f}, disappearTexture, false);
+    turtle = Enemy(turtleTexture, 14, {450.0f, 165.0f}, disappearTexture, false);
 
-    door = Item(doorClosedTexture, 1, {660.0f, 95.0f}, RAYWHITE, doorOpenTexture);
+    door = Item(doorClosedTexture, 1, {660.0f, 95.0f}, doorOpenTexture);
     checkpointsRemaining = 3;
 }
 

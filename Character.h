@@ -2,6 +2,7 @@
 #define CHARACTER_H
 
 #include "raylib.h"
+#include "Consts.h"
 
 class Character
 {
@@ -15,7 +16,6 @@ public:
     Texture2D texture;
     int numberFrames; // Number of frames in the texture
     Vector2 position;
-    Color color;
 
     // Used to change frames within texture
     Rectangle frameRec;
@@ -25,7 +25,7 @@ public:
     Texture2D disappearTexture;
 
     // Constructors
-    Character(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
+    Character(Texture2D txtr, int numFrames, Vector2 pos, Texture2D disappearChar);
     Character();
 
     // Getters and Setters

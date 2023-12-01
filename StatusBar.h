@@ -23,16 +23,16 @@ private:
     Texture2D checkpointBarCollectedTexture{LoadTexture("resources/textures/items/checkpoint_bar_collected.png")};
 
     // Items used only in status bar
-    Item lifeBar{lifebarTexture, 1, {20.0f, 20.0f}, RAYWHITE, disappearTexture};
-    Item life1{heartTexture, 8, {28.0f, 30.0f}, RAYWHITE, disappearTexture};
-    Item life2{heartTexture, 8, {42.0f, 30.0f}, RAYWHITE, disappearTexture};
-    Item life3{heartTexture, 8, {56.0f, 30.0f}, RAYWHITE, disappearTexture};
+    Item lifeBar{lifebarTexture, 1, {20.0f, 20.0f}, disappearTexture};
+    Item life1{heartTexture, 8, {28.0f, 30.0f}, disappearTexture};
+    Item life2{heartTexture, 8, {42.0f, 30.0f}, disappearTexture};
+    Item life3{heartTexture, 8, {56.0f, 30.0f}, disappearTexture};
     Item *lives[3]{&life1, &life2, &life3};
 
-    Item checkpointBar{checkpointBarTexture, 1, {100.0f, 25.0f}, RAYWHITE, disappearTexture};
-    Item checkpointBarCollected1{checkpointBarCollectedTexture, 10, {148.0f, 28.0f}, RAYWHITE, disappearTexture};
-    Item checkpointBarCollected2{checkpointBarCollectedTexture, 10, {116.0f, 28.0f}, RAYWHITE, disappearTexture};
-    Item checkpointBarCollected3{checkpointBarCollectedTexture, 10, {82.0f, 28.0f}, RAYWHITE, disappearTexture};
+    Item checkpointBar{checkpointBarTexture, 1, {100.0f, 25.0f}, disappearTexture};
+    Item checkpointBarCollected1{checkpointBarCollectedTexture, 10, {148.0f, 28.0f}, disappearTexture};
+    Item checkpointBarCollected2{checkpointBarCollectedTexture, 10, {116.0f, 28.0f}, disappearTexture};
+    Item checkpointBarCollected3{checkpointBarCollectedTexture, 10, {82.0f, 28.0f}, disappearTexture};
     Item *checkpointsBar[3]{&checkpointBarCollected1, &checkpointBarCollected2, &checkpointBarCollected3};
     int checkpointsRemaining{3};
 

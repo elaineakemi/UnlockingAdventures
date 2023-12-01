@@ -24,7 +24,7 @@ private:
 
 public:
     // Constructors
-    Item(Texture2D itemtx, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
+    Item(Texture2D itemtx, int numFrames, Vector2 pos, Texture2D disappearChar);
     Item();
 
     // Getters and Setters

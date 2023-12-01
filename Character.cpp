@@ -1,14 +1,15 @@
 #include "Character.h"
 
-Character::Character(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar)
+Character::Character(Texture2D txtr, int numFrames, Vector2 pos, Texture2D disappearChar)
     : texture(txtr),
       numberFrames(numFrames),
       position(pos),
-      color(c),
       frameRec({0.0f, 0.0f, (float)texture.width / numberFrames - 1, (float)texture.height}),
       currentFrame(0),
       framesCounter(0),
-      disappearTexture(disappearChar) {}
+      disappearTexture(disappearChar)
+{
+}
 
 Character::Character() {}
 
@@ -29,7 +30,7 @@ void Character::Render()
         {
             frameRec.width = -frameRec.width;
         }
-        DrawTextureRec(texture, frameRec, position, color);
+        DrawTextureRec(texture, frameRec, position, defaultColour);
     }
     else
     {
@@ -40,7 +41,7 @@ void Character::Render()
             frames = 5; // Default disappear texture frames
         }
         Rectangle rect = {0.0f, 0.0f, (float)disappearTexture.width / frames, (float)disappearTexture.height};
-        DrawTextureRec(disappearTexture, rect, position, color);
+        DrawTextureRec(disappearTexture, rect, position, defaultColour);
     }
 
     // Change between frames in the texture to "animate"

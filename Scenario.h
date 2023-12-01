@@ -2,6 +2,7 @@
 #define SCENARIO_H
 
 #include "raylib.h"
+#include "Consts.h"
 
 class Scenario
 {

@@ -1,5 +1,4 @@
 #include "Scenario.h"
-#include "Consts.h"
 
 Scenario::Scenario(Texture2D txtr, int numFrames, Vector2 pos)
     : texture(txtr),

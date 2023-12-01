@@ -35,7 +35,7 @@ private:
 
 public:
     // Constructor
-    Player(Texture2D playertx, int numFrames, Vector2 pos, Color c);
+    Player(Texture2D playertx, int numFrames, Vector2 pos);
     Player();
 
     // Getters and Setters

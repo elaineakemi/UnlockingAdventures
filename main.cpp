@@ -31,7 +31,7 @@ int main(void)
 
     Font customFont{LoadFont("resources/fonts/playpenSans.ttf")};
 
-    Player player1(LoadTexture("resources/textures/characters/frog.png"), 11, {15.0f, 400.0f}, RAYWHITE);
+    Player player1(LoadTexture("resources/textures/characters/frog.png"), 11, {15.0f, 400.0f});
 
     // Declare and initialize levels
     Menu mainMenu;

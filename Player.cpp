@@ -1,8 +1,8 @@
 #include "math.h"
 #include "Player.h"
 
-Player::Player(Texture2D txtr, int numFrames, Vector2 pos, Color c)
-    : Character(txtr, numFrames, pos, c, LoadTexture("resources/textures/items/collected.png"))
+Player::Player(Texture2D txtr, int numFrames, Vector2 pos)
+    : Character(txtr, numFrames, pos, LoadTexture("resources/textures/items/collected.png"))
 {
 }
 Player::Player() {}

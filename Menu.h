@@ -33,9 +33,9 @@ private:
     bool isSelectPlayer{false}; // To control which screen to show
 
     // To allow player selection
-    Player option1{frogTexture, 11, {150.0f, 240.0f}, RAYWHITE};
-    Player option2{blueGuyTexture, 11, {375.0f, 230.0f}, RAYWHITE};
-    Player option3{pinkGuyTexture, 11, {600.0f, 230.0f}, RAYWHITE};
+    Player option1{frogTexture, 11, {150.0f, 240.0f}};
+    Player option2{blueGuyTexture, 11, {375.0f, 230.0f}};
+    Player option3{pinkGuyTexture, 11, {600.0f, 230.0f}};
 
 public:
     // Constructor

@@ -1,37 +1,35 @@
 #include "Level3.h"
 
-Level3::Level3() {}
-
 void Level3::Init()
 {
     // Background Music
     PlayMusicStream(backgroundMusic);
 
     // Initialize items that needs to be restarted if new game is started
-    apple1 = Item(appleTexture, 17, {75.0f, 250.0f}, RAYWHITE, disappearTexture);
-    apple2 = Item(appleTexture, 17, {100.0f, 280.0f}, RAYWHITE, disappearTexture);
-    apple3 = Item(appleTexture, 17, {125.0f, 250.0f}, RAYWHITE, disappearTexture);
-    apple4 = Item(appleTexture, 17, {150.0f, 280.0f}, RAYWHITE, disappearTexture);
-    apple5 = Item(appleTexture, 17, {175.0f, 250.0f}, RAYWHITE, disappearTexture);
+    apple1 = Item(itemTextures.apple, {75.0f, 250.0f}, itemTextures.collect);
+    apple2 = Item(itemTextures.apple, {100.0f, 280.0f}, itemTextures.collect);
+    apple3 = Item(itemTextures.apple, {125.0f, 250.0f}, itemTextures.collect);
+    apple4 = Item(itemTextures.apple, {150.0f, 280.0f}, itemTextures.collect);
+    apple5 = Item(itemTextures.apple, {175.0f, 250.0f}, itemTextures.collect);
 
-    checkpoint1 = Item(checkpointTexture, 10, {700.0f, 370.0f}, RAYWHITE, checkpointCollectedTexture);
-    checkpoint2 = Item(checkpointTexture, 10, {350.0f, 310.0f}, RAYWHITE, checkpointCollectedTexture);
-    checkpoint3 = Item(checkpointTexture, 10, {450.0f, 180.0f}, RAYWHITE, checkpointCollectedTexture);
+    checkpoint1 = Item(itemTextures.checkpoint, {700.0f, 370.0f}, itemTextures.checkpointCollected);
+    checkpoint2 = Item(itemTextures.checkpoint, {350.0f, 310.0f}, itemTextures.checkpointCollected);
+    checkpoint3 = Item(itemTextures.checkpoint, {450.0f, 180.0f}, itemTextures.checkpointCollected);
 
-    pig1 = Enemy(pigTexture, 16, {350.0f, 400.0f}, RAYWHITE, disappearTexture, true);
-    pig2 = Enemy(pigTexture, 16, {450.0f, 400.0f}, RAYWHITE, disappearTexture, true);
-    pig3 = Enemy(pigTexture, 16, {550.0f, 400.0f}, RAYWHITE, disappearTexture, true);
-    pig4 = Enemy(pigTexture, 16, {370.0f, 215.0f}, RAYWHITE, disappearTexture, true);
-    spikeHead = Enemy(spikeHeadTexture, 4, {550.0f, 305.0f}, RAYWHITE, disappearTexture, false);
+    pig1 = Enemy(enemyTextures.pig, {350.0f, 400.0f}, itemTextures.collect, true);
+    pig2 = Enemy(enemyTextures.pig, {450.0f, 400.0f}, itemTextures.collect, true);
+    pig3 = Enemy(enemyTextures.pig, {550.0f, 400.0f}, itemTextures.collect, true);
+    pig4 = Enemy(enemyTextures.pig, {370.0f, 215.0f}, itemTextures.collect, true);
+    spikeHead = Enemy(enemyTextures.spikeHead, {550.0f, 305.0f}, itemTextures.collect, false);
 
-    door = Item(doorClosedTexture, 1, {730.0f, 140.0f}, RAYWHITE, doorOpenTexture);
+    door = Item(itemTextures.doorClosed, {730.0f, 140.0f}, itemTextures.doorOpened);
     checkpointsRemaining = 3;
 }
 
 void Level3::RenderBackground()
 {
-    DrawTexture(background, 0, 0, WHITE);
-    DrawTexture(backgroundBorder, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.level3, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.border, 0, 0, WHITE);
 }
 
 void Level3::RenderItems()
@@ -65,7 +63,15 @@ void Level3::RenderItems()
 
 void Level3::Update(Player &player)
 {
-    UpdateMusicStream(backgroundMusic);
+    if (!isMute)
+    {
+        PlayMusicStream(backgroundMusic);
+        UpdateMusicStream(backgroundMusic);
+    }
+    else
+    {
+        StopMusicStream(backgroundMusic);
+    }
 
     //----------------------------------------------------------------------------------
     // Enemies Move
@@ -123,7 +129,7 @@ void Level3::Update(Player &player)
             {
                 // Collect checkpoint
                 checkpointsRemaining--;
-                PlaySound(checkpointSound);
+                PlaySound(gameSounds.checkpoint);
             }
             checkpoint->SetIsAlive(false);
             checkpoint->SetIsDisappearAfterCollect(false);
@@ -137,7 +143,7 @@ void Level3::Update(Player &player)
     {
         if (door.GetIsAlive())
         {
-            PlaySound(doorSound);
+            PlaySound(gameSounds.door);
         }
         door.SetIsAlive(false);
         door.SetIsDisappearAfterCollect(false);
@@ -168,7 +174,7 @@ void Level3::Update(Player &player)
             {
                 player.SetIsPlayerOnPlatform(true);
                 isOnPlatform = true;
-                player.position.y = platform->GetPositionRec().y - platform->texture.height - 20;
+                player.position.y = platform->GetPositionRec().y - platform->textureWithFramesNumber.texture.height - 20;
             }
             // Player can only collide with one platform at the time
             // No need to check other platforms if already collided
@@ -189,22 +195,5 @@ void Level3::Update(Player &player)
 
 void Level3::Unload()
 {
-    UnloadTexture(background);
-    UnloadTexture(backgroundBorder);
-    UnloadTexture(disappearTexture);
-    UnloadTexture(appleTexture);
-    UnloadTexture(checkpointTexture);
-    UnloadTexture(checkpointCollectedTexture);
-    UnloadTexture(trampolineTexture);
-    UnloadTexture(platformTexture);
-    UnloadTexture(doorOpenTexture);
-    UnloadTexture(doorClosedTexture);
-    UnloadTexture(pigTexture);
-    UnloadTexture(spikeHeadTexture);
-    UnloadTexture(turtleTexture);
-
     UnloadMusicStream(backgroundMusic);
-    UnloadSound(trampolineSound);
-    UnloadSound(checkpointSound);
-    UnloadSound(doorSound);
 }

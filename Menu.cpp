@@ -1,7 +1,5 @@
 #include "Menu.h"
 
-Menu::Menu() {}
-
 void Menu::Init()
 {
     // Background Music
@@ -11,8 +9,8 @@ void Menu::Init()
 
 void Menu::Render()
 {
-    DrawTexture(background, 0, 0, WHITE);
-    DrawTexture(backgroundBorder, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.menu, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.border, 0, 0, WHITE);
 
     // First screen
     if (!isSelectPlayer)
@@ -22,6 +20,7 @@ void Menu::Render()
         DrawTextEx(customFont, "Controls", (Vector2){200, 180}, 24, 2, DARKGRAY);
         DrawTextEx(customFont, "Use left/right or A/D to move", (Vector2){200, 200}, 20, 2, DARKGRAY);
         DrawTextEx(customFont, "Use up or W or space to jump", (Vector2){200, 220}, 20, 2, DARKGRAY);
+        DrawTextEx(customFont, "Use M to mute the music.", (Vector2){200, 240}, 20, 2, DARKGRAY);
         DrawTextEx(customFont, "Press ENTER to start", (Vector2){250, 350}, 40, 2, DARKGRAY);
     }
     // Second screen
@@ -60,13 +59,22 @@ void Menu::Render()
 
 void Menu::Update()
 {
-    UpdateMusicStream(backgroundMusic);
+    if (!isMute)
+    {
+        PlayMusicStream(backgroundMusic);
+        UpdateMusicStream(backgroundMusic);
+    }
+    else
+    {
+        StopMusicStream(backgroundMusic);
+    }
+
     // First screen
     if (!isSelectPlayer)
     {
         if (IsKeyPressed(KEY_ENTER))
         {
-            PlaySound(confirmSound);
+            PlaySound(gameSounds.apple);
             isSelectPlayer = true;
             playerSelected = 1;
         }
@@ -100,18 +108,6 @@ void Menu::Update()
 
 void Menu::Unload()
 {
-    UnloadTexture(background);
-    UnloadTexture(backgroundBorder);
-
-    UnloadTexture(frogTexture);
-    UnloadTexture(blueGuyTexture);
-    UnloadTexture(pinkGuyTexture);
-
     UnloadMusicStream(backgroundMusic);
-    UnloadSound(trampolineSound);
-    UnloadSound(confirmSound);
     UnloadSound(beepSound);
-    UnloadSound(doorSound);
-
-    UnloadFont(customFont);
 }

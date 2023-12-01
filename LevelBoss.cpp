@@ -1,19 +1,17 @@
 #include "LevelBoss.h"
 
-LevelBoss::LevelBoss() {}
-
 void LevelBoss::Init()
 {
     // Background Music
     PlayMusicStream(backgroundMusic);
 
     // Initialize items that needs to be restarted if new game is started
-    pigBoss = Enemy(pigBossTexture, 12, {700.0f, 375.0f}, RAYWHITE, disappearTexture, true);
-    pig1 = Enemy(pigTexture, 16, {650.0f, 400.0f}, RAYWHITE, disappearTexture, true);
-    pig2 = Enemy(pigTexture, 16, {450.0f, 400.0f}, RAYWHITE, disappearTexture, true);
-    pig3 = Enemy(pigTexture, 16, {550.0f, 400.0f}, RAYWHITE, disappearTexture, true);
+    pigBoss = Enemy(enemyTextures.pigBoss, {700.0f, 375.0f}, itemTextures.collect, true);
+    pig1 = Enemy(enemyTextures.pig, {650.0f, 400.0f}, itemTextures.collect, true);
+    pig2 = Enemy(enemyTextures.pig, {450.0f, 400.0f}, itemTextures.collect, true);
+    pig3 = Enemy(enemyTextures.pig, {550.0f, 400.0f}, itemTextures.collect, true);
 
-    bomb = Item(bombOffTexture, 1, {50.0f, 250.0f}, RAYWHITE, bombExplodingTexture);
+    bomb = Item(itemTextures.bombOff, {50.0f, 250.0f}, itemTextures.bombExplosion);
 
     // Initilize boss health
     bossHealth = 10;
@@ -21,17 +19,19 @@ void LevelBoss::Init()
 
 void LevelBoss::RenderBackground()
 {
-    DrawTexture(background, 0, 0, WHITE);
-    DrawTexture(backgroundBorder, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.levelBoss, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.border, 0, 0, WHITE);
 }
 
 void LevelBoss::RenderItems()
 {
-    DrawText(TextFormat("Boss: %d %", bossHealth * 10), 650, 20, 20, BLACK);
+    // Draw boss health percentage
+    DrawTextEx(customFont, TextFormat("Boss: %d%%", bossHealth * 10), (Vector2){670, 20}, 24, 2, BLACK);
+
     //----------------------------------------------------------------------------------
-    // Render Elements
+    //  Render Elements
     //----------------------------------------------------------------------------------
-    // Render status bar without flags and with instructions for boss level
+    //  Render status bar without flags and with instructions for boss level
     status.Render(-1);
 
     bomb.RenderBomb();
@@ -50,7 +50,15 @@ void LevelBoss::RenderItems()
 
 void LevelBoss::Update(Player &player)
 {
-    UpdateMusicStream(backgroundMusic);
+    if (!isMute && !isEnd)
+    {
+        PlayMusicStream(backgroundMusic);
+        UpdateMusicStream(backgroundMusic);
+    }
+    else
+    {
+        StopMusicStream(backgroundMusic);
+    }
 
     //----------------------------------------------------------------------------------
     // Enemies Move
@@ -92,7 +100,7 @@ void LevelBoss::Update(Player &player)
     //----------------------------------------------------------------------------------
     if (CheckCollisionRecs(player.GetPositionRec(), bomb.GetPositionRec()))
     {
-        bomb.Activate(bombOnTexture, 4);
+        bomb.ActivateBomb();
     }
 
     // Check things around bomb explosion
@@ -140,7 +148,7 @@ void LevelBoss::Update(Player &player)
             {
                 player.SetIsPlayerOnPlatform(true);
                 isOnPlatform = true;
-                player.position.y = platform->GetPositionRec().y - platform->texture.height - 20;
+                player.position.y = platform->GetPositionRec().y - platform->textureWithFramesNumber.texture.height - 20;
             }
             // Player can only collide with one platform at the time
             // No need to check other platforms if already collided
@@ -161,15 +169,6 @@ void LevelBoss::Update(Player &player)
 
 void LevelBoss::Unload()
 {
-    UnloadTexture(background);
-    UnloadTexture(backgroundBorder);
-    UnloadTexture(disappearTexture);
-    UnloadTexture(platformTexture);
-    UnloadTexture(pigTexture);
-    UnloadTexture(bombOffTexture);
-    UnloadTexture(bombOnTexture);
-    UnloadTexture(bombExplodingTexture);
-
     UnloadMusicStream(backgroundMusic);
     UnloadSound(hitBossSound);
     UnloadSound(bossDiedSound);

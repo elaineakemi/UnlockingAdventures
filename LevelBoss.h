@@ -3,14 +3,20 @@
 
 #include "raylib.h"
 #include "Item.h"
-#include "Platform.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "StatusBar.h"
+#include "Assets.h"
 
 // Global variables
 extern int currentScreen;
 extern bool isEnd;
+extern bool isMute;
+
+// Global assets
+extern BackgroundTextures backgroundTextures;
+extern EnemyTextures enemyTextures;
+extern ItemTextures itemTextures;
 
 class LevelBoss
 {
@@ -21,25 +27,13 @@ private:
     Sound hitBossSound{LoadSound("resources/sounds/hit_boss.wav")};
     Sound bossDiedSound{LoadSound("resources/sounds/boss_died.wav")};
 
-    // Textures
-    Texture2D backgroundBorder{LoadTexture("resources/textures/background/border.png")};
-    Texture2D background{LoadTexture("resources/textures/background/level_boss.png")};
-
-    Texture2D disappearTexture{LoadTexture("resources/textures/items/collected.png")};
-    Texture2D platformTexture{LoadTexture("resources/textures/items/platform.png")};
-    Texture2D pigTexture{LoadTexture("resources/textures/characters/enemy_pig.png")};
-    Texture2D pigBossTexture{LoadTexture("resources/textures/characters/pig_boss.png")};
-    Texture2D bombOffTexture{LoadTexture("resources/textures/items/bomb_off.png")};
-    Texture2D bombOnTexture{LoadTexture("resources/textures/items/bomb_on.png")};
-    Texture2D bombExplodingTexture{LoadTexture("resources/textures/items/bomb_explosion.png")};
-
     // Items and Elements for this level only
     Item bomb;
 
-    Platform platform1{platformTexture, 1, {300.0f, 360.0f}, RAYWHITE};
-    Platform platform2{platformTexture, 1, {15.0f, 290.0f}, RAYWHITE};
-    Platform platform3{platformTexture, 1, {320.0f, 230.0f}, RAYWHITE};
-    Platform *platforms[3]{&platform1, &platform2, &platform3};
+    Item platform1{itemTextures.platform, {300.0f, 360.0f}};
+    Item platform2{itemTextures.platform, {15.0f, 290.0f}};
+    Item platform3{itemTextures.platform, {320.0f, 230.0f}};
+    Item *platforms[3]{&platform1, &platform2, &platform3};
 
     Enemy pigBoss, pig1, pig2, pig3;
     Enemy *enemies[3]{&pig1, &pig2, &pig3};
@@ -50,7 +44,7 @@ private:
 
 public:
     // Constructor
-    LevelBoss();
+    LevelBoss() = default;
 
     void Init();
     void RenderBackground();

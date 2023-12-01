@@ -1,7 +1,5 @@
 #include "EndingScreen.h"
 
-EndingScreen::EndingScreen() {}
-
 void EndingScreen::Init()
 {
     // Background Music
@@ -10,11 +8,19 @@ void EndingScreen::Init()
 
 void EndingScreen::Render(Player &player)
 {
-    UpdateMusicStream(backgroundMusic);
+    if (!isMute)
+    {
+        PlayMusicStream(backgroundMusic);
+        UpdateMusicStream(backgroundMusic);
+    }
+    else
+    {
+        StopMusicStream(backgroundMusic);
+    }
 
     // Draw background
-    DrawTexture(background, 0, 0, WHITE);
-    DrawTexture(backgroundBorder, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.menu, 0, 0, WHITE);
+    DrawTexture(backgroundTextures.border, 0, 0, WHITE);
 
     // Draw Text
     DrawTextEx(customFont, "The End", (Vector2){300, 40}, 50, 2, DARKGRAY);
@@ -34,14 +40,5 @@ void EndingScreen::Render(Player &player)
 }
 void EndingScreen::Unload()
 {
-    UnloadTexture(background);
-    UnloadTexture(backgroundBorder);
-
-    UnloadTexture(frogTexture);
-    UnloadTexture(blueGuyTexture);
-    UnloadTexture(pinkGuyTexture);
-
     UnloadMusicStream(backgroundMusic);
-
-    UnloadFont(customFont);
 }

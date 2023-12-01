@@ -3,23 +3,25 @@
 
 #include "raylib.h"
 #include "Character.h"
+#include "Assets.h"
+
+// Global assets
+extern GameSounds gameSounds;
 
 class Enemy : public Character
 {
 
 private:
-    Sound killSound{LoadSound("resources/sounds/kill_enemy.wav")};
-
-    bool isOnGround;
     bool canBeKilled{false};
-    Vector2 initialPosition;
+    bool isOnGround{true};
     bool walkToLeft{true};
     int intervalHit{5};
+    Vector2 initialPosition;
 
 public:
     // Constructors
-    Enemy(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar, bool kill);
-    Enemy();
+    Enemy() = default;
+    Enemy(TextureFrames txtr, Vector2 pos, TextureFrames killtx, bool kill);
 
     // Getters and Setters
     bool GetCanBeKilled() { return canBeKilled; }

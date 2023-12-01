@@ -1,11 +1,10 @@
 #include "Item.h"
 
-Item::Item(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar)
-    : Character(txtr, numFrames, pos, c, disappearChar)
-{
-}
+Item::Item(TextureFrames txtr, Vector2 pos, TextureFrames collecttx)
+    : Character(txtr, pos, collecttx) {}
 
-Item::Item() {}
+Item::Item(TextureFrames txtr, Vector2 pos)
+    : Character(txtr, pos) {}
 
 // When collect item, play sound then disappear
 void Item::Collect()
@@ -13,7 +12,7 @@ void Item::Collect()
     if (GetIsAlive())
     {
         score += 100;
-        PlaySound(appleSound);
+        PlaySound(gameSounds.apple);
     }
     SetIsAlive(false);
 }
@@ -30,7 +29,7 @@ void Item::RenderBomb()
             if (!isOnGround)
             {
                 // Drop until reaches ground, then set isOnGround true
-                if (position.y < GetScreenHeight() - 10 - texture.height)
+                if (position.y < GetScreenHeight() - 10 - textureWithFramesNumber.texture.height)
                 {
                     position.y += dt * 5;
                 }
@@ -45,9 +44,8 @@ void Item::RenderBomb()
                 if (waitFramesExplosion == 120) // Explode
                 {
                     // Update texture and numframes to explosion
-                    SetTexture(disappearTexture);
-                    SetNumFrames(framesExploding);
-                    PlaySound(bombExplodeSound);
+                    SetTextureFrames(itemTextures.bombExplosion);
+                    PlaySound(gameSounds.bombExplode);
                     isExploding = true;
                 }
 
@@ -60,8 +58,7 @@ void Item::RenderBomb()
                     waitFramesExplosion = 0;
 
                     // Reset texture and numframes to initial state
-                    SetTexture(initialTexture);
-                    SetNumFrames(initialNumFrames);
+                    SetTextureFrames(itemTextures.bombOff);
 
                     // Random position
                     position = GetRandomPosition();
@@ -74,16 +71,12 @@ void Item::RenderBomb()
 
 // Used only for bombs
 // This is needed to change texture of the bomb
-void Item::Activate(Texture2D textureActive, int framesActive)
+void Item::ActivateBomb()
 {
-    initialTexture = texture;
-    initialNumFrames = numberFrames;
-
     // Update texture and numframes to active
-    SetTexture(textureActive);
-    SetNumFrames(framesActive);
+    SetTextureFrames(itemTextures.bombOn);
     isActive = true;
-    PlaySound(bombDropSound);
+    PlaySound(gameSounds.bombDrop);
 }
 
 // Generate a random position for bombs

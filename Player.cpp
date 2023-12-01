@@ -1,11 +1,8 @@
 #include "math.h"
 #include "Player.h"
 
-Player::Player(Texture2D txtr, int numFrames, Vector2 pos, Color c)
-    : Character(txtr, numFrames, pos, c, LoadTexture("resources/textures/items/collected.png"))
-{
-}
-Player::Player() {}
+Player::Player(TextureFrames txtr, Vector2 pos)
+    : Character(txtr, pos) {}
 
 void Player::Init(int playerSelected)
 {
@@ -13,16 +10,16 @@ void Player::Init(int playerSelected)
     switch (playerSelected)
     {
     case 1:
-        SetTexture(frogTexture);
+        SetTexture(playerTextures.frog.texture);
         break;
     case 2:
-        SetTexture(blueGuyTexture);
+        SetTexture(playerTextures.blueGuy.texture);
         break;
     case 3:
-        SetTexture(pinkGuyTexture);
+        SetTexture(playerTextures.pinkGuy.texture);
         break;
     default:
-        SetTexture(frogTexture);
+        SetTexture(playerTextures.frog.texture);
         break;
     }
 }
@@ -120,14 +117,14 @@ void Player::Die()
         {
             if (!isGameOver) // To play game over sound only once
             {
-                PlaySound(gameOverSound);
+                PlaySound(gameSounds.gameOver);
             }
             SetIsAlive(false);
             isGameOver = true;
         }
         else
         {
-            PlaySound(playerDiedSound);
+            PlaySound(gameSounds.playerDied);
             WaitTime(1);
             // Reset player and move to initial position
             ResetPosition();
@@ -146,14 +143,4 @@ void Player::ResetPosition()
     position.y = 400.0f;
     isPlayerOnGround = true;
     isPlayerOnPlatform = false;
-}
-
-void Player::Unload()
-{
-    UnloadTexture(disappearTexture);
-    UnloadTexture(frogTexture);
-    UnloadTexture(blueGuyTexture);
-    UnloadTexture(pinkGuyTexture);
-
-    UnloadSound(playerDiedSound);
 }

@@ -1,16 +1,20 @@
 #include "Character.h"
 
-Character::Character(Texture2D txtr, int numFrames, Vector2 pos, Color c, Texture2D disappearChar)
-    : texture(txtr),
-      numberFrames(numFrames),
+Character::Character(TextureFrames txtr, Vector2 pos)
+    : textureWithFramesNumber(txtr),
+      killTextureFrames(txtr),
       position(pos),
-      color(c),
-      frameRec({0.0f, 0.0f, (float)texture.width / numberFrames - 1, (float)texture.height}),
+      frameRec({0.0f, 0.0f, (float)textureWithFramesNumber.texture.width / textureWithFramesNumber.frames - 1, (float)textureWithFramesNumber.texture.height}),
       currentFrame(0),
-      framesCounter(0),
-      disappearTexture(disappearChar) {}
+      framesCounter(0) {}
 
-Character::Character() {}
+Character::Character(TextureFrames txtr, Vector2 pos, TextureFrames killTexture)
+    : textureWithFramesNumber(txtr),
+      killTextureFrames(killTexture),
+      position(pos),
+      frameRec({0.0f, 0.0f, (float)textureWithFramesNumber.texture.width / textureWithFramesNumber.frames - 1, (float)textureWithFramesNumber.texture.height}),
+      currentFrame(0),
+      framesCounter(0) {}
 
 void Character::Render()
 {
@@ -29,18 +33,16 @@ void Character::Render()
         {
             frameRec.width = -frameRec.width;
         }
-        DrawTextureRec(texture, frameRec, position, color);
+        DrawTextureRec(textureWithFramesNumber.texture, frameRec, position, defaultColour);
     }
     else
     {
-        int frames = 1;
         if (isDisappearAfterCollect)
         {
             renderDied--;
-            frames = 5; // Default disappear texture frames
         }
-        Rectangle rect = {0.0f, 0.0f, (float)disappearTexture.width / frames, (float)disappearTexture.height};
-        DrawTextureRec(disappearTexture, rect, position, color);
+        Rectangle rect = {0.0f, 0.0f, (float)killTextureFrames.texture.width / killTextureFrames.frames, (float)killTextureFrames.texture.height};
+        DrawTextureRec(killTextureFrames.texture, rect, position, defaultColour);
     }
 
     // Change between frames in the texture to "animate"
@@ -51,10 +53,10 @@ void Character::Render()
         framesCounter = 0;
         currentFrame++;
 
-        if (currentFrame > numberFrames - 1)
+        if (currentFrame > textureWithFramesNumber.frames - 1)
             currentFrame = 0;
 
-        frameRec.x = (float)currentFrame * (float)texture.width / numberFrames;
+        frameRec.x = (float)currentFrame * (float)textureWithFramesNumber.texture.width / textureWithFramesNumber.frames;
     }
 }
 
@@ -68,5 +70,10 @@ void Character::Restart()
 // Return the base position rectangle
 Rectangle Character::GetPositionRec() const
 {
-    return {position.x, position.y, (float)texture.width / numberFrames - 1, (float)texture.height};
+    return {position.x, position.y, (float)textureWithFramesNumber.texture.width / textureWithFramesNumber.frames - 1, (float)textureWithFramesNumber.texture.height};
+}
+
+Vector2 Character::GetPosition() const
+{
+    return position;
 }

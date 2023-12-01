@@ -3,29 +3,43 @@
 
 #include "raylib.h"
 #include "Character.h"
+#include "Assets.h"
 
+// Global variables
 extern int score;
+
+// Global assets
+extern ItemTextures itemTextures;
+extern GameSounds gameSounds;
+
+typedef enum
+{
+    APPLE,
+    CHECKPOINT,
+    DOOR,
+    BOMB,
+    LIFEBAR,
+    LIFEBARLIFE,
+    CHECKPOINTBAR,
+    CHECKPOINTBARCOLLECTED
+} ItemType;
 
 class Item : public Character
 {
 private:
-    // Sounds
-    Sound appleSound{LoadSound("resources/sounds/apple.wav")};
-    Sound bombDropSound{LoadSound("resources/sounds/bomb_drop.wav")};
-    Sound bombExplodeSound{LoadSound("resources/sounds/bomb_explode.wav")};
-
     bool isActive{false};
     bool isExploding{false};
     bool isOnGround{false};
     int framesExploding{6};
     int waitFramesExplosion{0};
-    Texture2D initialTexture;
-    int initialNumFrames;
+
+    Vector2 GetRandomPosition();
 
 public:
     // Constructors
-    Item(Texture2D itemtx, int numFrames, Vector2 pos, Color c, Texture2D disappearChar);
-    Item();
+    Item() = default;
+    Item(TextureFrames itemtx, Vector2 pos);
+    Item(TextureFrames itemtx, Vector2 pos, TextureFrames collecttx);
 
     // Getters and Setters
     bool GetIsExploding() { return isExploding; }
@@ -33,8 +47,7 @@ public:
 
     void Collect();
     void RenderBomb();
-    void Activate(Texture2D textureActive, int framesActive);
-    Vector2 GetRandomPosition();
+    void ActivateBomb();
 };
 
 #endif

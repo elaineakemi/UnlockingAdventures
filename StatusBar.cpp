@@ -1,21 +1,20 @@
 #include "StatusBar.h"
 
-StatusBar::StatusBar() {}
-
 void StatusBar::Render(int checkpointsRemaining)
 {
     if (checkpointsRemaining > -1)
     {
         // Draw Text instruction
-        DrawText("Collect the flags to open the door", 300, 20, 14, BLACK);
+        DrawTextEx(customFont, "Collect the flags to open the door", (Vector2){250, 20}, 24, 2, BLACK);
 
         // Draw Score
-        DrawText(TextFormat("Score: %d", score), 650, 20, 20, BLACK);
+        DrawTextEx(customFont, TextFormat("Score: %d", score), (Vector2){650, 20}, 24, 2, BLACK);
     }
     else
     {
         // Draw Text instruction - Boss level
-        DrawText("Use bombs to kill the boss", 300, 20, 14, BLACK);
+        DrawTextEx(customFont, "Use bombs to kill the boss", (Vector2){250, 20}, 24, 2, BLACK);
+        DrawTextEx(customFont, "Boss does not take damage directly from you", (Vector2){200, 40}, 24, 2, BLACK);
     }
 
     // Render lifebar hearts
@@ -34,13 +33,4 @@ void StatusBar::Render(int checkpointsRemaining)
             checkpointsBar[i]->Render();
         }
     }
-}
-
-void StatusBar::Unload()
-{
-    UnloadTexture(disappearTexture);
-    UnloadTexture(lifebarTexture);
-    UnloadTexture(heartTexture);
-    UnloadTexture(checkpointBarTexture);
-    UnloadTexture(checkpointBarCollectedTexture);
 }

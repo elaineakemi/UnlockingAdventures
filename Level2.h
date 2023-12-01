@@ -3,13 +3,20 @@
 
 #include "raylib.h"
 #include "Item.h"
-#include "Platform.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "StatusBar.h"
+#include "Assets.h"
 
 // Global variables
 extern int currentScreen;
+extern bool isMute;
+
+// Global assets
+extern BackgroundTextures backgroundTextures;
+extern EnemyTextures enemyTextures;
+extern ItemTextures itemTextures;
+extern GameSounds gameSounds;
 
 class Level2
 {
@@ -17,25 +24,6 @@ class Level2
 private:
     // Sounds
     Music backgroundMusic{LoadMusicStream("resources/sounds/level2.wav")};
-    Sound trampolineSound{LoadSound("resources/sounds/trampoline.wav")};
-    Sound checkpointSound{LoadSound("resources/sounds/checkpoint.wav")};
-    Sound doorSound{LoadSound("resources/sounds/door_open.wav")};
-
-    // Textures
-    Texture2D backgroundBorder{LoadTexture("resources/textures/background/border.png")};
-    Texture2D background{LoadTexture("resources/textures/background/level2.png")};
-
-    Texture2D disappearTexture{LoadTexture("resources/textures/items/collected.png")};
-    Texture2D appleTexture{LoadTexture("resources/textures/items/apple.png")};
-    Texture2D checkpointTexture{LoadTexture("resources/textures/items/checkpoint.png")};
-    Texture2D checkpointCollectedTexture{LoadTexture("resources/textures/items/checkpoint_collected.png")};
-    Texture2D trampolineTexture{LoadTexture("resources/textures/items/trampoline.png")};
-    Texture2D platformTexture{LoadTexture("resources/textures/items/platform.png")};
-    Texture2D doorClosedTexture{LoadTexture("resources/textures/items/door_closed.png")};
-    Texture2D doorOpenTexture{LoadTexture("resources/textures/items/door_open.png")};
-    Texture2D pigTexture{LoadTexture("resources/textures/characters/enemy_pig.png")};
-    Texture2D spikeHeadTexture{LoadTexture("resources/textures/characters/enemy_spike_head.png")};
-    Texture2D turtleTexture{LoadTexture("resources/textures/characters/enemy_spike_turtle.png")};
 
     // Items and Elements for this level only
     Item apple1, apple2, apple3, apple4, apple5;
@@ -44,15 +32,15 @@ private:
     Item checkpoint1, checkpoint2, checkpoint3;
     Item *checkpoints[3]{&checkpoint1, &checkpoint2, &checkpoint3};
 
-    Platform trampoline1{trampolineTexture, 8, {750.0f, 400.0f}, RAYWHITE};
-    Platform trampoline2{trampolineTexture, 8, {175.0f, 275.0f}, RAYWHITE};
-    Platform *trampolines[2]{&trampoline1, &trampoline2};
+    Item trampoline1{itemTextures.trampoline, {750.0f, 400.0f}};
+    Item trampoline2{itemTextures.trampoline, {175.0f, 275.0f}};
+    Item *trampolines[2]{&trampoline1, &trampoline2};
 
-    Platform platform1{platformTexture, 1, {180.0f, 300.0f}, RAYWHITE};
-    Platform platform2{platformTexture, 1, {450.0f, 150.0f}, RAYWHITE};
-    Platform platform3{platformTexture, 1, {230.0f, 190.0f}, RAYWHITE};
-    Platform platform4{platformTexture, 1, {480.0f, 300.0f}, RAYWHITE};
-    Platform *platforms[4]{&platform1, &platform2, &platform3, &platform4};
+    Item platform1{itemTextures.platform, {180.0f, 300.0f}};
+    Item platform2{itemTextures.platform, {450.0f, 150.0f}};
+    Item platform3{itemTextures.platform, {230.0f, 190.0f}};
+    Item platform4{itemTextures.platform, {480.0f, 300.0f}};
+    Item *platforms[4]{&platform1, &platform2, &platform3, &platform4};
 
     Item door;
 
@@ -64,7 +52,7 @@ private:
 
 public:
     // Constructor
-    Level2();
+    Level2() = default;
 
     void Init();
     void RenderBackground();

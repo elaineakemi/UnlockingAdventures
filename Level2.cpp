@@ -30,11 +30,12 @@ void Level2::RenderBackground()
     DrawTexture(backgroundTextures.border, 0, 0, WHITE);
 }
 
-void Level2::RenderItems()
+void Level2::Render()
 {
     //----------------------------------------------------------------------------------
     // Render Elements
     //----------------------------------------------------------------------------------
+    RenderBackground();
     status.Render(checkpointsRemaining);
     door.Render();
 

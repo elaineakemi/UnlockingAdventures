@@ -46,13 +46,14 @@ private:
     StatusBar status;
     int checkpointsRemaining{3};
 
+    void RenderBackground();
+
 public:
     // Constructor
     Level3() = default;
 
     void Init();
-    void RenderBackground();
-    void RenderItems();
+    void Render();
     void Update(Player &player);
     void Unload();
 };

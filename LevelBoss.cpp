@@ -8,10 +8,10 @@ void LevelBoss::Init()
     PlayMusicStream(backgroundMusic);
 
     // Initialize items that needs to be restarted if new game is started
-    pigBoss = Enemy(enemyTextures.pigBoss, {700.0f, 375.0f}, disappearTexture, true);
-    pig1 = Enemy(enemyTextures.pig, {650.0f, 400.0f}, disappearTexture, true);
-    pig2 = Enemy(enemyTextures.pig, {450.0f, 400.0f}, disappearTexture, true);
-    pig3 = Enemy(enemyTextures.pig, {550.0f, 400.0f}, disappearTexture, true);
+    pigBoss = Enemy(enemyTextures.pigBoss, {700.0f, 375.0f}, itemTextures.collect, true);
+    pig1 = Enemy(enemyTextures.pig, {650.0f, 400.0f}, itemTextures.collect, true);
+    pig2 = Enemy(enemyTextures.pig, {450.0f, 400.0f}, itemTextures.collect, true);
+    pig3 = Enemy(enemyTextures.pig, {550.0f, 400.0f}, itemTextures.collect, true);
 
     bomb = Item(bombOffTexture, 1, {50.0f, 250.0f}, bombExplodingTexture);
 

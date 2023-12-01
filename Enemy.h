@@ -19,7 +19,7 @@ private:
 
 public:
     // Constructors
-    Enemy(TextureFrames txtr, Vector2 pos, Texture2D disappearChar, bool kill);
+    Enemy(TextureFrames txtr, Vector2 pos, TextureFrames killtx, bool kill);
     Enemy();
 
     // Getters and Setters

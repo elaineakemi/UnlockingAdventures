@@ -8,23 +8,23 @@ void Level3::Init()
     PlayMusicStream(backgroundMusic);
 
     // Initialize items that needs to be restarted if new game is started
-    apple1 = Item(appleTexture, 17, {75.0f, 250.0f}, disappearTexture);
-    apple2 = Item(appleTexture, 17, {100.0f, 280.0f}, disappearTexture);
-    apple3 = Item(appleTexture, 17, {125.0f, 250.0f}, disappearTexture);
-    apple4 = Item(appleTexture, 17, {150.0f, 280.0f}, disappearTexture);
-    apple5 = Item(appleTexture, 17, {175.0f, 250.0f}, disappearTexture);
+    apple1 = Item(itemTextures.apple, {75.0f, 250.0f}, itemTextures.collect);
+    apple2 = Item(itemTextures.apple, {100.0f, 280.0f}, itemTextures.collect);
+    apple3 = Item(itemTextures.apple, {125.0f, 250.0f}, itemTextures.collect);
+    apple4 = Item(itemTextures.apple, {150.0f, 280.0f}, itemTextures.collect);
+    apple5 = Item(itemTextures.apple, {175.0f, 250.0f}, itemTextures.collect);
 
-    checkpoint1 = Item(checkpointTexture, 10, {700.0f, 370.0f}, checkpointCollectedTexture);
-    checkpoint2 = Item(checkpointTexture, 10, {350.0f, 310.0f}, checkpointCollectedTexture);
-    checkpoint3 = Item(checkpointTexture, 10, {450.0f, 180.0f}, checkpointCollectedTexture);
+    checkpoint1 = Item(itemTextures.checkpoint, {700.0f, 370.0f}, itemTextures.checkpointCollected);
+    checkpoint2 = Item(itemTextures.checkpoint, {350.0f, 310.0f}, itemTextures.checkpointCollected);
+    checkpoint3 = Item(itemTextures.checkpoint, {450.0f, 180.0f}, itemTextures.checkpointCollected);
 
-    pig1 = Enemy(enemyTextures.pig, {350.0f, 400.0f}, disappearTexture, true);
-    pig2 = Enemy(enemyTextures.pig, {450.0f, 400.0f}, disappearTexture, true);
-    pig3 = Enemy(enemyTextures.pig, {550.0f, 400.0f}, disappearTexture, true);
-    pig4 = Enemy(enemyTextures.pig, {370.0f, 215.0f}, disappearTexture, true);
-    spikeHead = Enemy(enemyTextures.spikeHead, {550.0f, 305.0f}, disappearTexture, false);
+    pig1 = Enemy(enemyTextures.pig, {350.0f, 400.0f}, itemTextures.collect, true);
+    pig2 = Enemy(enemyTextures.pig, {450.0f, 400.0f}, itemTextures.collect, true);
+    pig3 = Enemy(enemyTextures.pig, {550.0f, 400.0f}, itemTextures.collect, true);
+    pig4 = Enemy(enemyTextures.pig, {370.0f, 215.0f}, itemTextures.collect, true);
+    spikeHead = Enemy(enemyTextures.spikeHead, {550.0f, 305.0f}, itemTextures.collect, false);
 
-    door = Item(doorClosedTexture, 1, {730.0f, 140.0f}, doorOpenTexture);
+    door = Item(itemTextures.doorClosed, {730.0f, 140.0f}, itemTextures.doorOpened);
     checkpointsRemaining = 3;
 }
 
@@ -189,14 +189,8 @@ void Level3::Update(Player &player)
 
 void Level3::Unload()
 {
-    UnloadTexture(disappearTexture);
-    UnloadTexture(appleTexture);
-    UnloadTexture(checkpointTexture);
-    UnloadTexture(checkpointCollectedTexture);
     UnloadTexture(trampolineTexture);
     UnloadTexture(platformTexture);
-    UnloadTexture(doorOpenTexture);
-    UnloadTexture(doorClosedTexture);
 
     UnloadMusicStream(backgroundMusic);
     UnloadSound(trampolineSound);

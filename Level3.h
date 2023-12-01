@@ -15,6 +15,7 @@ extern int currentScreen;
 // Global assets
 extern BackgroundTextures backgroundTextures;
 extern EnemyTextures enemyTextures;
+extern ItemTextures itemTextures;
 
 class Level3
 {
@@ -26,14 +27,8 @@ private:
     Sound checkpointSound{LoadSound("resources/sounds/checkpoint.wav")};
     Sound doorSound{LoadSound("resources/sounds/door_open.wav")};
 
-    Texture2D disappearTexture{LoadTexture("resources/textures/items/collected.png")};
-    Texture2D appleTexture{LoadTexture("resources/textures/items/apple.png")};
-    Texture2D checkpointTexture{LoadTexture("resources/textures/items/checkpoint.png")};
-    Texture2D checkpointCollectedTexture{LoadTexture("resources/textures/items/checkpoint_collected.png")};
     Texture2D trampolineTexture{LoadTexture("resources/textures/items/trampoline.png")};
     Texture2D platformTexture{LoadTexture("resources/textures/items/platform.png")};
-    Texture2D doorClosedTexture{LoadTexture("resources/textures/items/door_closed.png")};
-    Texture2D doorOpenTexture{LoadTexture("resources/textures/items/door_open.png")};
 
     // Items and Elements for this level only
     Item apple1, apple2, apple3, apple4, apple5;

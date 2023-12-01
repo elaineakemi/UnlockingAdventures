@@ -16,6 +16,7 @@ extern bool isEnd;
 // Global assets
 extern BackgroundTextures backgroundTextures;
 extern EnemyTextures enemyTextures;
+extern ItemTextures itemTextures;
 
 class LevelBoss
 {

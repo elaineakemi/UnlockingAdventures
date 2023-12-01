@@ -2,8 +2,8 @@
 
 Enemy::Enemy() {}
 
-Enemy::Enemy(TextureFrames txtr, Vector2 pos, Texture2D disappearChar, bool kill)
-    : Character(txtr, pos, disappearChar), isOnGround(true), canBeKilled(kill), initialPosition(pos)
+Enemy::Enemy(TextureFrames txtr, Vector2 pos, TextureFrames killtx, bool kill)
+    : Character(txtr, pos, killtx), isOnGround(true), canBeKilled(kill), initialPosition(pos)
 {
 }
 
@@ -15,7 +15,7 @@ void Enemy::Drop()
     if (!isOnGround)
     {
         // Drop enemy with delta * 5 speed
-        if (position.y < GetScreenHeight() - 30 - texture.height)
+        if (position.y < GetScreenHeight() - 30 - textureWithFramesNumber.texture.height)
         {
             position.y += dt * 5;
         }

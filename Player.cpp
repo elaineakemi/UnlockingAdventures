@@ -150,7 +150,6 @@ void Player::ResetPosition()
 
 void Player::Unload()
 {
-    UnloadTexture(disappearTexture);
 
     UnloadSound(playerDiedSound);
 }

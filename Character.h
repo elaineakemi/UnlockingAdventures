@@ -14,8 +14,7 @@ private:
     bool isFlipTexture{false}; // To flip texture when walking in opposite direction
 
 public:
-    Texture2D texture;
-    int numberFrames; // Number of frames in the texture
+    TextureFrames textureWithFramesNumber;
     Vector2 position;
 
     // Used to change frames within texture
@@ -23,21 +22,23 @@ public:
     int currentFrame;
     int framesCounter;
 
-    Texture2D disappearTexture;
+    TextureFrames killTextureFrames;
 
     // Constructors
     Character(Texture2D txtr, int numFrames, Vector2 pos, Texture2D disappearChar);
     Character();
     Character(TextureFrames txtr, Vector2 pos, Texture2D disappearChar);
+    Character(TextureFrames txtr, Vector2 pos, TextureFrames killTexture);
 
     // Getters and Setters
     bool GetIsAlive() { return isAlive; }
     void SetIsAlive(bool isCharAlive) { isAlive = isCharAlive; }
     void SetIsDisappearAfterCollect(bool disappear) { isDisappearAfterCollect = disappear; }
     Rectangle GetPositionRec() const;
-    void SetTexture(Texture2D txtr) { texture = txtr; }
+    void SetTexture(Texture2D txtr) { textureWithFramesNumber.texture = txtr; }
     void SetFlipTexture(bool value) { isFlipTexture = value; }
-    void SetNumFrames(int value) { numberFrames = value; }
+    void SetNumFrames(int value) { textureWithFramesNumber.frames = value; }
+    void SetTextureFrames(TextureFrames value) { textureWithFramesNumber = value; }
 
     void Render();
     void Restart();

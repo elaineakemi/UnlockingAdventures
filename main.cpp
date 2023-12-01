@@ -26,6 +26,7 @@ StatusBarTextures statusbarTextures;
 BackgroundTextures backgroundTextures;
 PlayerTextures playerTextures;
 EnemyTextures enemyTextures;
+ItemTextures itemTextures;
 
 //----------------------------------------------------------------------------------
 // Local Variables
@@ -66,6 +67,12 @@ int main(void)
     enemyTextures.pigBoss = {LoadTexture("resources/textures/characters/pig_boss.png"), 12};
     enemyTextures.spikeHead = {LoadTexture("resources/textures/characters/enemy_spike_head.png"), 4};
     enemyTextures.turtle = {LoadTexture("resources/textures/characters/enemy_spike_turtle.png"), 14};
+    itemTextures.apple = {LoadTexture("resources/textures/items/apple.png"), 17};
+    itemTextures.checkpoint = {LoadTexture("resources/textures/items/checkpoint.png"), 10};
+    itemTextures.checkpointCollected = {LoadTexture("resources/textures/items/checkpoint_collected.png"), 1};
+    itemTextures.doorClosed = {LoadTexture("resources/textures/items/door_closed.png"), 1};
+    itemTextures.doorOpened = {LoadTexture("resources/textures/items/door_open.png"), 1};
+    itemTextures.collect = {LoadTexture("resources/textures/items/collected.png"), 5};
 
     Player player1(playerTextures.frog, {15.0f, 400.0f});
 

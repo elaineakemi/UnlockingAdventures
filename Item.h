@@ -3,8 +3,21 @@
 
 #include "raylib.h"
 #include "Character.h"
+#include "Assets.h"
 
 extern int score;
+
+typedef enum
+{
+    APPLE,
+    CHECKPOINT,
+    DOOR,
+    BOMB,
+    LIFEBAR,
+    LIFEBARLIFE,
+    CHECKPOINTBAR,
+    CHECKPOINTBARCOLLECTED
+} ItemType;
 
 class Item : public Character
 {
@@ -19,12 +32,12 @@ private:
     bool isOnGround{false};
     int framesExploding{6};
     int waitFramesExplosion{0};
-    Texture2D initialTexture;
-    int initialNumFrames;
+    TextureFrames initialTextureFrame;
 
 public:
     // Constructors
     Item(Texture2D itemtx, int numFrames, Vector2 pos, Texture2D disappearChar);
+    Item(TextureFrames itemtx, Vector2 pos, TextureFrames collecttx);
     Item();
 
     // Getters and Setters

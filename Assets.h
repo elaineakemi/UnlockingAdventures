@@ -43,4 +43,15 @@ struct EnemyTextures
     struct TextureFrames pigBoss;
 };
 
+struct ItemTextures
+{
+    struct TextureFrames apple;
+    struct TextureFrames collect;
+    struct TextureFrames bomb;
+    struct TextureFrames doorClosed;
+    struct TextureFrames doorOpened;
+    struct TextureFrames checkpoint;
+    struct TextureFrames checkpointCollected;
+};
+
 #endif

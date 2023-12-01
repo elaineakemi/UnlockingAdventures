@@ -64,7 +64,7 @@ void Menu::Update()
     {
         if (IsKeyPressed(KEY_ENTER))
         {
-            PlaySound(confirmSound);
+            PlaySound(gameSounds.apple);
             isSelectPlayer = true;
             playerSelected = 1;
         }
@@ -99,8 +99,5 @@ void Menu::Update()
 void Menu::Unload()
 {
     UnloadMusicStream(backgroundMusic);
-    UnloadSound(trampolineSound);
-    UnloadSound(confirmSound);
     UnloadSound(beepSound);
-    UnloadSound(doorSound);
 }

@@ -12,7 +12,7 @@ void Item::Collect()
     if (GetIsAlive())
     {
         score += 100;
-        PlaySound(appleSound);
+        PlaySound(gameSounds.apple);
     }
     SetIsAlive(false);
 }
@@ -45,7 +45,7 @@ void Item::RenderBomb()
                 {
                     // Update texture and numframes to explosion
                     SetTextureFrames(itemTextures.bombExplosion);
-                    PlaySound(bombExplodeSound);
+                    PlaySound(gameSounds.bombExplode);
                     isExploding = true;
                 }
 
@@ -76,7 +76,7 @@ void Item::ActivateBomb()
     // Update texture and numframes to active
     SetTextureFrames(itemTextures.bombOn);
     isActive = true;
-    PlaySound(bombDropSound);
+    PlaySound(gameSounds.bombDrop);
 }
 
 // Generate a random position for bombs

@@ -27,6 +27,7 @@ BackgroundTextures backgroundTextures;
 PlayerTextures playerTextures;
 EnemyTextures enemyTextures;
 ItemTextures itemTextures;
+GameSounds gameSounds;
 
 //----------------------------------------------------------------------------------
 // Local Variables
@@ -45,6 +46,7 @@ int main(void)
 
     //------------------------------------------------------------------------------
     // Load Assets
+    // We load all assets at the start as they are reused across all levels
     //------------------------------------------------------------------------------
     // Font
     customFont = LoadFont("resources/fonts/playpenSans.ttf");
@@ -78,6 +80,15 @@ int main(void)
     itemTextures.bombExplosion = {LoadTexture("resources/textures/items/bomb_explosion.png"), 6};
     itemTextures.trampoline = {LoadTexture("resources/textures/items/trampoline.png"), 8};
     itemTextures.platform = {LoadTexture("resources/textures/items/platform.png"), 1};
+    gameSounds.trampoline = LoadSound("resources/sounds/trampoline.wav");
+    gameSounds.checkpoint = LoadSound("resources/sounds/checkpoint.wav");
+    gameSounds.door = LoadSound("resources/sounds/door_open.wav");
+    gameSounds.apple = LoadSound("resources/sounds/apple.wav");
+    gameSounds.bombDrop = LoadSound("resources/sounds/bomb_drop.wav");
+    gameSounds.bombExplode = LoadSound("resources/sounds/bomb_explode.wav");
+    gameSounds.killEnemy = LoadSound("resources/sounds/kill_enemy.wav");
+    gameSounds.gameOver = LoadSound("resources/sounds/gameovery.wav");
+    gameSounds.playerDied = LoadSound("resources/sounds/player_died.wav");
 
     Player player1(playerTextures.frog, {15.0f, 400.0f});
 
@@ -216,8 +227,6 @@ int main(void)
     lvl1.Unload();
     lvl2.Unload();
     lvl3.Unload();
-    lvlBoss.Unload();
-    player1.Unload();
     ending.Unload();
     CloseAudioDevice();
     CloseWindow();

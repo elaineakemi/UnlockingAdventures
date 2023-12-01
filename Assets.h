@@ -54,9 +54,21 @@ struct ItemTextures
     struct TextureFrames doorOpened;
     struct TextureFrames checkpoint;
     struct TextureFrames checkpointCollected;
-
     struct TextureFrames platform;
     struct TextureFrames trampoline;
+};
+
+struct GameSounds
+{
+    Sound trampoline;
+    Sound checkpoint;
+    Sound door;
+    Sound apple;
+    Sound bombDrop;
+    Sound bombExplode;
+    Sound killEnemy;
+    Sound gameOver;
+    Sound playerDied;
 };
 
 #endif

@@ -117,14 +117,14 @@ void Player::Die()
         {
             if (!isGameOver) // To play game over sound only once
             {
-                PlaySound(gameOverSound);
+                PlaySound(gameSounds.gameOver);
             }
             SetIsAlive(false);
             isGameOver = true;
         }
         else
         {
-            PlaySound(playerDiedSound);
+            PlaySound(gameSounds.playerDied);
             WaitTime(1);
             // Reset player and move to initial position
             ResetPosition();
@@ -143,10 +143,4 @@ void Player::ResetPosition()
     position.y = 400.0f;
     isPlayerOnGround = true;
     isPlayerOnPlatform = false;
-}
-
-void Player::Unload()
-{
-
-    UnloadSound(playerDiedSound);
 }

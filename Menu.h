@@ -13,6 +13,7 @@ extern int playerSelected;
 extern Font customFont;
 extern BackgroundTextures backgroundTextures;
 extern PlayerTextures playerTextures;
+extern GameSounds gameSounds;
 
 class Menu
 {
@@ -20,10 +21,7 @@ class Menu
 private:
     // Sounds
     Music backgroundMusic{LoadMusicStream("resources/sounds/menu.wav")};
-    Sound trampolineSound{LoadSound("resources/sounds/trampoline.wav")};
-    Sound confirmSound{LoadSound("resources/sounds/apple.wav")};
     Sound beepSound{LoadSound("resources/sounds/beep.wav")};
-    Sound doorSound{LoadSound("resources/sounds/door_open.wav")};
 
     bool isSelectPlayer{false}; // To control which screen to show
 

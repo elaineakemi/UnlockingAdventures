@@ -5,12 +5,13 @@
 #include "Character.h"
 #include "Assets.h"
 
+// Global assets
+extern GameSounds gameSounds;
+
 class Enemy : public Character
 {
 
 private:
-    Sound killSound{LoadSound("resources/sounds/kill_enemy.wav")};
-
     bool canBeKilled{false};
     bool isOnGround{true};
     bool walkToLeft{true};

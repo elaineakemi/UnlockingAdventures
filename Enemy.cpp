@@ -94,6 +94,6 @@ void Enemy::MoveBossLevel(bool isBoss)
 // When enemy die play sound and set to not appear anymore
 void Enemy::Die()
 {
-    PlaySound(killSound);
+    PlaySound(gameSounds.killEnemy);
     SetIsAlive(false);
 }

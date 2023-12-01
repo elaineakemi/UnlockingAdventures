@@ -122,7 +122,7 @@ void Level1::Update(Player &player)
             {
                 // Collect checkpoint
                 checkpointsRemaining--;
-                PlaySound(checkpointSound);
+                PlaySound(gameSounds.checkpoint);
             }
             checkpoint->SetIsAlive(false);
             checkpoint->SetIsDisappearAfterCollect(false);
@@ -137,7 +137,7 @@ void Level1::Update(Player &player)
         if (CheckCollisionRecs(player.GetPositionRec(), trampoline->GetPositionRec()))
         {
             player.JumpTrampoline(trampoline->GetPosition().y);
-            PlaySound(trampolineSound);
+            PlaySound(gameSounds.trampoline);
         }
     }
 
@@ -148,7 +148,7 @@ void Level1::Update(Player &player)
     {
         if (door.GetIsAlive())
         {
-            PlaySound(doorSound);
+            PlaySound(gameSounds.door);
         }
         door.SetIsAlive(false);
         door.SetIsDisappearAfterCollect(false);
@@ -200,9 +200,5 @@ void Level1::Update(Player &player)
 
 void Level1::Unload()
 {
-
     UnloadMusicStream(backgroundMusic);
-    UnloadSound(trampolineSound);
-    UnloadSound(checkpointSound);
-    UnloadSound(doorSound);
 }

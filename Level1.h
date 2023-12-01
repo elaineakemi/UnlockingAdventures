@@ -10,6 +10,7 @@
 
 // Global variables
 extern int currentScreen;
+extern GameSounds gameSounds;
 
 // Global assets
 extern BackgroundTextures backgroundTextures;
@@ -22,9 +23,6 @@ class Level1
 private:
     // Sounds
     Music backgroundMusic{LoadMusicStream("resources/sounds/level1.wav")};
-    Sound trampolineSound{LoadSound("resources/sounds/trampoline.wav")};
-    Sound checkpointSound{LoadSound("resources/sounds/checkpoint.wav")};
-    Sound doorSound{LoadSound("resources/sounds/door_open.wav")};
 
     // Items and Elements for this level only
     Item apple1, apple2, apple3, apple4, apple5;

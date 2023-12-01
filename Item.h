@@ -10,6 +10,7 @@ extern int score;
 
 // Global assets
 extern ItemTextures itemTextures;
+extern GameSounds gameSounds;
 
 typedef enum
 {
@@ -26,11 +27,6 @@ typedef enum
 class Item : public Character
 {
 private:
-    // Sounds
-    Sound appleSound{LoadSound("resources/sounds/apple.wav")};
-    Sound bombDropSound{LoadSound("resources/sounds/bomb_drop.wav")};
-    Sound bombExplodeSound{LoadSound("resources/sounds/bomb_explode.wav")};
-
     bool isActive{false};
     bool isExploding{false};
     bool isOnGround{false};

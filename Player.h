@@ -11,6 +11,7 @@ extern bool isGameOver;
 
 // Global assets
 extern PlayerTextures playerTextures;
+extern GameSounds gameSounds;
 
 class Player : public Character
 {
@@ -19,10 +20,6 @@ class Player : public Character
     const float STEP = 2;
 
 private:
-    // Sounds
-    Sound gameOverSound{LoadSound("resources/sounds/gameover.wav")};
-    Sound playerDiedSound{LoadSound("resources/sounds/player_died.wav")};
-
     bool isPlayerOnGround{true};    // Used to check if player can jump - to not allow double jump
     bool isPlayerOnPlatform{false}; // Used to check if player should fall in next iteration
     bool isInvincible{false};
@@ -50,7 +47,6 @@ public:
     void Die();
     void UndoMove();
     void ResetPosition();
-    void Unload();
 };
 
 #endif

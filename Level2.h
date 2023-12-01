@@ -15,6 +15,7 @@ extern int currentScreen;
 extern BackgroundTextures backgroundTextures;
 extern EnemyTextures enemyTextures;
 extern ItemTextures itemTextures;
+extern GameSounds gameSounds;
 
 class Level2
 {
@@ -22,9 +23,6 @@ class Level2
 private:
     // Sounds
     Music backgroundMusic{LoadMusicStream("resources/sounds/level2.wav")};
-    Sound trampolineSound{LoadSound("resources/sounds/trampoline.wav")};
-    Sound checkpointSound{LoadSound("resources/sounds/checkpoint.wav")};
-    Sound doorSound{LoadSound("resources/sounds/door_open.wav")};
 
     // Items and Elements for this level only
     Item apple1, apple2, apple3, apple4, apple5;

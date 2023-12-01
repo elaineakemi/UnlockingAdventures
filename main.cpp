@@ -63,6 +63,7 @@ int main(void)
         switch (currentScreen)
         {
         case 0:
+            framesCounter = 0;
             mainMenu.Render();
             mainMenu.Update();
             break;
@@ -115,8 +116,8 @@ int main(void)
                 DrawTextEx(customFont, "VICTORY!", (Vector2){170, 150}, 80, 20, GREEN);
                 framesCounter++;
 
-                // Wait 2 seconds then show ending screen
-                if (framesCounter > 120)
+                // Wait 5 seconds then show ending screen
+                if (framesCounter > 300)
                 {
                     ending.Init();
                     ending.Render(player1);

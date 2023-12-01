@@ -10,6 +10,7 @@
 
 // Global variables
 extern int currentScreen;
+extern bool isMute;
 
 // Global assets
 extern BackgroundTextures backgroundTextures;

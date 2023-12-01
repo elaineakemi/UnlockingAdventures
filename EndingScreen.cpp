@@ -8,7 +8,15 @@ void EndingScreen::Init()
 
 void EndingScreen::Render(Player &player)
 {
-    UpdateMusicStream(backgroundMusic);
+    if (!isMute)
+    {
+        PlayMusicStream(backgroundMusic);
+        UpdateMusicStream(backgroundMusic);
+    }
+    else
+    {
+        StopMusicStream(backgroundMusic);
+    }
 
     // Draw background
     DrawTexture(backgroundTextures.menu, 0, 0, WHITE);

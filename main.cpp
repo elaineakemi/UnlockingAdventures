@@ -17,6 +17,7 @@ int playerLives = 3;
 int playerSelected = 0;
 bool isGameOver = false;
 bool isEnd = false;
+bool isMute = false;
 
 //----------------------------------------------------------------------------------
 // Global Shared Assets
@@ -52,8 +53,6 @@ int main(void)
     //------------------------------------------------------------------------------
     LoadAssets();
 
-    Player player1(playerTextures.frog, {15.0f, 400.0f});
-
     // Declare and initialize levels
     Menu mainMenu;
     mainMenu.Init();
@@ -67,6 +66,7 @@ int main(void)
     lvlBoss.Init();
     EndingScreen ending;
     ending.Init();
+    Player player1(playerTextures.frog, {15.0f, 400.0f});
 
     SetTargetFPS(60); // Set game to run at 60 fps
     int framesCounter = 0;
@@ -174,6 +174,12 @@ int main(void)
                 player1.Restart();
                 player1.ResetPosition();
             }
+        }
+
+        // Mute/unmute music
+        if (IsKeyPressed(KEY_M))
+        {
+            isMute = !isMute;
         }
 
         //----------------------------------------------------------------------------------

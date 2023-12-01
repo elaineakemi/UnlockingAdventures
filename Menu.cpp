@@ -20,6 +20,7 @@ void Menu::Render()
         DrawTextEx(customFont, "Controls", (Vector2){200, 180}, 24, 2, DARKGRAY);
         DrawTextEx(customFont, "Use left/right or A/D to move", (Vector2){200, 200}, 20, 2, DARKGRAY);
         DrawTextEx(customFont, "Use up or W or space to jump", (Vector2){200, 220}, 20, 2, DARKGRAY);
+        DrawTextEx(customFont, "Use M to mute the music.", (Vector2){200, 240}, 20, 2, DARKGRAY);
         DrawTextEx(customFont, "Press ENTER to start", (Vector2){250, 350}, 40, 2, DARKGRAY);
     }
     // Second screen
@@ -58,7 +59,16 @@ void Menu::Render()
 
 void Menu::Update()
 {
-    UpdateMusicStream(backgroundMusic);
+    if (!isMute)
+    {
+        PlayMusicStream(backgroundMusic);
+        UpdateMusicStream(backgroundMusic);
+    }
+    else
+    {
+        StopMusicStream(backgroundMusic);
+    }
+
     // First screen
     if (!isSelectPlayer)
     {

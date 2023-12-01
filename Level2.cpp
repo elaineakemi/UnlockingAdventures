@@ -66,7 +66,15 @@ void Level2::RenderItems()
 
 void Level2::Update(Player &player)
 {
-    UpdateMusicStream(backgroundMusic);
+    if (!isMute)
+    {
+        PlayMusicStream(backgroundMusic);
+        UpdateMusicStream(backgroundMusic);
+    }
+    else
+    {
+        StopMusicStream(backgroundMusic);
+    }
 
     //----------------------------------------------------------------------------------
     // Enemies Move

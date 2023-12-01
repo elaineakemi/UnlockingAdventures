@@ -48,7 +48,15 @@ void LevelBoss::RenderItems()
 
 void LevelBoss::Update(Player &player)
 {
-    UpdateMusicStream(backgroundMusic);
+    if (!isMute)
+    {
+        PlayMusicStream(backgroundMusic);
+        UpdateMusicStream(backgroundMusic);
+    }
+    else
+    {
+        StopMusicStream(backgroundMusic);
+    }
 
     //----------------------------------------------------------------------------------
     // Enemies Move

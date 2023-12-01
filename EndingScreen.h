@@ -8,6 +8,7 @@
 // Global variables
 extern int currentScreen;
 extern int playerSelected;
+extern bool isMute;
 
 // Global assets
 extern Font customFont;

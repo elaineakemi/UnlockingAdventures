@@ -1,10 +1,46 @@
 #include "Item.h"
 
+Item::Item(ItemType type)
+    : Character(GetTexture(type), {0, 0}, GetKillTexture(type)) {}
+
 Item::Item(TextureFrames txtr, Vector2 pos, TextureFrames collecttx)
     : Character(txtr, pos, collecttx) {}
 
 Item::Item(TextureFrames txtr, Vector2 pos)
     : Character(txtr, pos) {}
+
+TextureFrames Item::GetTexture(ItemType type)
+{
+    switch (type)
+    {
+    case APPLE:
+        return itemTextures.apple;
+        break;
+    case CHECKPOINT:
+        return itemTextures.checkpoint;
+    case DOOR:
+        return itemTextures.doorClosed;
+
+    default:
+        break;
+    }
+}
+
+TextureFrames Item::GetKillTexture(ItemType type)
+{
+    switch (type)
+    {
+    case APPLE:
+        return itemTextures.collect;
+        break;
+    case CHECKPOINT:
+        return itemTextures.checkpointCollected;
+    case DOOR:
+        return itemTextures.doorOpened;
+    default:
+        break;
+    }
+}
 
 // When collect item, play sound then disappear
 void Item::Collect()
@@ -67,6 +103,12 @@ void Item::RenderBomb()
         }
         Render();
     }
+}
+
+void Item::Restart(Vector2 position)
+{
+    SetPosition(position);
+    SetIsAlive(true);
 }
 
 // Used only for bombs

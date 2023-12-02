@@ -7,6 +7,7 @@
 #include "Enemy.h"
 #include "StatusBar.h"
 #include "Assets.h"
+#include "Consts.h"
 
 // Global variables
 extern int currentScreen;
@@ -26,10 +27,10 @@ private:
     Music backgroundMusic{LoadMusicStream("resources/sounds/level1.wav")};
 
     // Items and Elements for this level only
-    Item apple1, apple2, apple3, apple4, apple5;
+    Item apple1{APPLE}, apple2{APPLE}, apple3{APPLE}, apple4{APPLE}, apple5{APPLE};
     Item *apples[5]{&apple1, &apple2, &apple3, &apple4, &apple5};
 
-    Item checkpoint1, checkpoint2, checkpoint3;
+    Item checkpoint1{CHECKPOINT}, checkpoint2{CHECKPOINT}, checkpoint3{CHECKPOINT};
     Item *checkpoints[3]{&checkpoint1, &checkpoint2, &checkpoint3};
 
     Item trampoline1{itemTextures.trampoline, {290.0f, 400.0f}};
@@ -42,7 +43,7 @@ private:
     Item platform4{itemTextures.platform, {530.0f, 300.0f}};
     Item *platforms[4]{&platform1, &platform2, &platform3, &platform4};
 
-    Item door;
+    Item door{DOOR};
 
     Enemy pig, spikeHead, turtle;
     Enemy *enemies[3]{&pig, &spikeHead, &turtle};

@@ -36,6 +36,9 @@ public:
     void SetFlipTexture(bool value) { isFlipTexture = value; }
     void SetNumFrames(int value) { textureWithFramesNumber.frames = value; }
     void SetTextureFrames(TextureFrames value) { textureWithFramesNumber = value; }
+    void SetKillTextureFrames(TextureFrames value) { killTextureFrames = value; }
+    void SetPosition(Vector2 value) { position = value; }
+
     Rectangle GetPositionRec() const;
     Vector2 GetPosition() const;
 

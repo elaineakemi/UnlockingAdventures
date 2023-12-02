@@ -17,11 +17,6 @@ typedef enum
     APPLE,
     CHECKPOINT,
     DOOR,
-    BOMB,
-    LIFEBAR,
-    LIFEBARLIFE,
-    CHECKPOINTBAR,
-    CHECKPOINTBARCOLLECTED
 } ItemType;
 
 class Item : public Character
@@ -34,10 +29,13 @@ private:
     int waitFramesExplosion{0};
 
     Vector2 GetRandomPosition();
+    TextureFrames GetTexture(ItemType type);
+    TextureFrames GetKillTexture(ItemType type);
 
 public:
     // Constructors
     Item() = default;
+    Item(ItemType type);
     Item(TextureFrames itemtx, Vector2 pos);
     Item(TextureFrames itemtx, Vector2 pos, TextureFrames collecttx);
 
@@ -48,6 +46,7 @@ public:
     void Collect();
     void RenderBomb();
     void ActivateBomb();
+    void Restart(Vector2 position);
 };
 
 #endif

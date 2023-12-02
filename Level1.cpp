@@ -6,22 +6,21 @@ void Level1::Init()
     PlayMusicStream(backgroundMusic);
 
     // Initialize items that needs to be restarted if new game is started
-    apple1 = Item(itemTextures.apple, {75.0f, 250.0f}, itemTextures.collect);
-    apple2 = Item(itemTextures.apple, {100.0f, 280.0f}, itemTextures.collect);
-    apple3 = Item(itemTextures.apple, {125.0f, 250.0f}, itemTextures.collect);
-    apple4 = Item(itemTextures.apple, {150.0f, 280.0f}, itemTextures.collect);
-    apple5 = Item(itemTextures.apple, {175.0f, 250.0f}, itemTextures.collect);
+    for (int i = 0; i < *(&apples + 1) - apples; i++)
+    {
+        apples[i]->Restart(level1ApplePositions[i]);
+    }
 
-    checkpoint1 = Item(itemTextures.checkpoint, {700.0f, 370.0f}, itemTextures.checkpointCollected);
-    checkpoint2 = Item(itemTextures.checkpoint, {200.0f, 88.0f}, itemTextures.checkpointCollected);
-    checkpoint3 = Item(itemTextures.checkpoint, {730.0f, 237.0f}, itemTextures.checkpointCollected);
+    for (int i = 0; i < *(&checkpoints + 1) - checkpoints; i++)
+    {
+        checkpoints[i]->Restart(level1CheckpointPositions[i]);
+    }
+    door.Restart(level1DoorPosition);
+    checkpointsRemaining = 3;
 
     pig = Enemy(enemyTextures.pig, {550.0f, 400.0f}, itemTextures.collect, true);
     spikeHead = Enemy(enemyTextures.spikeHead, {550.0f, 305.0f}, itemTextures.collect, false);
     turtle = Enemy(enemyTextures.turtle, {305.0f, 165.0f}, itemTextures.collect, false);
-
-    door = Item(itemTextures.doorClosed, {530.0f, 245.0f}, itemTextures.doorOpened);
-    checkpointsRemaining = 3;
 }
 
 void Level1::RenderBackground()

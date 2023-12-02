@@ -16,7 +16,7 @@ void Menu::Render()
     if (!isSelectPlayer)
     {
         // Draw Text
-        DrawTextEx(customFont, "Game name here", (Vector2){200, 40}, 50, 2, DARKGRAY);
+        DrawTexture(logo, 170, 40, WHITE);
         DrawTextEx(customFont, "Controls", (Vector2){200, 180}, 24, 2, DARKGRAY);
         DrawTextEx(customFont, "Use left/right or A/D to move", (Vector2){200, 200}, 20, 2, DARKGRAY);
         DrawTextEx(customFont, "Use up or W or space to jump", (Vector2){200, 220}, 20, 2, DARKGRAY);
@@ -26,7 +26,7 @@ void Menu::Render()
     // Second screen
     else
     {
-        DrawTextEx(customFont, "Game name here", (Vector2){200, 40}, 50, 2, DARKGRAY);
+        DrawTexture(logo, 170, 40, WHITE);
         DrawTextEx(customFont, "Select your hero", (Vector2){200, 150}, 30, 2, DARKGRAY);
 
         // Render players textures

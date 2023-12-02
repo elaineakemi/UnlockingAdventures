@@ -15,6 +15,7 @@ extern Font customFont;
 extern BackgroundTextures backgroundTextures;
 extern PlayerTextures playerTextures;
 extern GameSounds gameSounds;
+extern Texture2D logo;
 
 class Menu
 {

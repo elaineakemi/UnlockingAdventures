@@ -29,6 +29,7 @@ PlayerTextures playerTextures;
 EnemyTextures enemyTextures;
 ItemTextures itemTextures;
 GameSounds gameSounds;
+Texture2D logo;
 
 //----------------------------------------------------------------------------------
 // Local Variables
@@ -44,7 +45,7 @@ static void UnloadAssets(void);
 int main(void)
 {
     // Initialization
-    InitWindow(screenWidth, screenHeight, "Game Name");
+    InitWindow(screenWidth, screenHeight, "Unlocking Adventures");
     InitAudioDevice();
 
     //------------------------------------------------------------------------------
@@ -237,6 +238,7 @@ static void LoadAssets(void)
     itemTextures.bombExplosion = {LoadTexture("resources/textures/items/bomb_explosion.png"), 6};
     itemTextures.trampoline = {LoadTexture("resources/textures/items/trampoline.png"), 8};
     itemTextures.platform = {LoadTexture("resources/textures/items/platform.png"), 1};
+    logo = LoadTexture("resources/textures/items/logo.png");
 
     // Sounds
     gameSounds.trampoline = LoadSound("resources/sounds/trampoline.wav");
@@ -284,6 +286,7 @@ static void UnloadAssets(void)
     UnloadTexture(itemTextures.checkpointCollected.texture);
     UnloadTexture(itemTextures.platform.texture);
     UnloadTexture(itemTextures.trampoline.texture);
+    UnloadTexture(logo);
 
     // Sounds
     UnloadSound(gameSounds.trampoline);

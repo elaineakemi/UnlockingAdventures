@@ -246,7 +246,7 @@ static void LoadAssets(void)
     gameSounds.bombDrop = LoadSound("resources/sounds/bomb_drop.wav");
     gameSounds.bombExplode = LoadSound("resources/sounds/bomb_explode.wav");
     gameSounds.killEnemy = LoadSound("resources/sounds/kill_enemy.wav");
-    gameSounds.gameOver = LoadSound("resources/sounds/gameovery.wav");
+    gameSounds.gameOver = LoadSound("resources/sounds/gameover.wav");
     gameSounds.playerDied = LoadSound("resources/sounds/player_died.wav");
 }
 

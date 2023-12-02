@@ -31,3 +31,5 @@ Keyboard:
   - [Raylib Games](https://github.com/raysan5/raylib-games)
   - [Classy Clash](https://github.com/Chantelsky/classy-clash)
   - [Kea Sigma Delta Raylib 2D Challenge](https://keasigmadelta.com/blog/tag/raylib-2d-challenge)
+- Logo
+  - [Hatchful by Shopify](https://www.shopify.com/tools/logo-maker)

@@ -25,13 +25,15 @@ void LevelBoss::RenderBackground()
 
 void LevelBoss::Render()
 {
-    // Draw boss health percentage
-    DrawTextEx(customFont, TextFormat("Boss: %d%%", bossHealth * 10), (Vector2){670, 20}, 24, 2, BLACK);
 
     //----------------------------------------------------------------------------------
     //  Render Elements
     //----------------------------------------------------------------------------------
     RenderBackground();
+
+    // Draw boss health percentage
+    DrawTextEx(customFont, TextFormat("Boss: %d%%", bossHealth * 10), (Vector2){670, 20}, 24, 2, BLACK);
+
     pigBoss.Render();
     bomb.RenderBomb();
 

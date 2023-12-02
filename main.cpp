@@ -71,6 +71,7 @@ int main(void)
 
     SetTargetFPS(60); // Set game to run at 60 fps
     int framesCounter = 0;
+    bool isPaused; // Allow game to pause
 
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
@@ -87,43 +88,52 @@ int main(void)
         case 0:
             framesCounter = 0;
             mainMenu.Render();
-            mainMenu.Update();
+            if (!isPaused)
+                mainMenu.Update();
             break;
         case 1:
             lvl1.RenderBackground();
             lvl1.RenderItems();
             player1.Init(playerSelected);
             player1.Render();
-
-            player1.Update();
-            lvl1.Update(player1);
+            if (!isPaused)
+            {
+                player1.Update();
+                lvl1.Update(player1);
+            }
             break;
         case 2:
             lvl2.RenderBackground();
             lvl2.RenderItems();
             player1.Init(playerSelected);
             player1.Render();
-
-            player1.Update();
-            lvl2.Update(player1);
+            if (!isPaused)
+            {
+                player1.Update();
+                lvl2.Update(player1);
+            }
             break;
         case 3:
             lvl3.RenderBackground();
             lvl3.RenderItems();
             player1.Init(playerSelected);
             player1.Render();
-
-            player1.Update();
-            lvl3.Update(player1);
+            if (!isPaused)
+            {
+                player1.Update();
+                lvl3.Update(player1);
+            }
             break;
         case 4:
             lvlBoss.RenderBackground();
             lvlBoss.RenderItems();
             player1.Init(playerSelected);
             player1.Render();
-
-            player1.Update();
-            lvlBoss.Update(player1);
+            if (!isPaused)
+            {
+                player1.Update();
+                lvlBoss.Update(player1);
+            }
             break;
 
         default:
@@ -181,6 +191,13 @@ int main(void)
         if (IsKeyPressed(KEY_M))
         {
             isMute = !isMute;
+        }
+
+        // Pause/unpause game
+        if (IsKeyPressed(KEY_P))
+        {
+            PlaySound(gameSounds.checkpoint);
+            isPaused = !isPaused;
         }
 
         //----------------------------------------------------------------------------------

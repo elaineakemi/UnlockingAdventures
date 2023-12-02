@@ -18,6 +18,12 @@ The player has 4 lifes in total and no possibility of getting more lifes or cont
 - W or UP key or SPACE -> Jump
 - M -> mute the music
 
+## Screenshots
+
+![Screenshot1](docs/screenshot1.png "Screenshot1")
+![Screenshot2](docs/screenshot2.png "Screenshot2")
+![Screenshot3](docs/screenshot3.png "Screenshot3")
+
 ## References
 
 - Font

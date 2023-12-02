@@ -29,6 +29,7 @@ PlayerTextures playerTextures;
 EnemyTextures enemyTextures;
 ItemTextures itemTextures;
 GameSounds gameSounds;
+Texture2D logo;
 
 //----------------------------------------------------------------------------------
 // Local Variables
@@ -46,7 +47,7 @@ static void UnloadAssets(void);
 int main(void)
 {
     // Initialization
-    InitWindow(screenWidth, screenHeight, "Game Name");
+    InitWindow(screenWidth, screenHeight, "Unlocking Adventures");
     InitAudioDevice();
 
     //------------------------------------------------------------------------------
@@ -72,6 +73,7 @@ int main(void)
 
     SetTargetFPS(60); // Set game to run at 60 fps
     int framesCounter = 0;
+    bool isPaused; // Allow game to pause
 
     // Main game loop
     while (!WindowShouldClose()) // Detect window close button or ESC key
@@ -88,35 +90,48 @@ int main(void)
         case 0:
             framesCounter = 0;
             mainMenu.Render();
-            mainMenu.Update();
+            if (!isPaused)
+                mainMenu.Update();
             break;
         case 1:
             lvl1.Render();
             player1.Init(playerSelected);
             player1.Render();
-            player1.Update();
-            lvl1.Update(player1);
+            if (!isPaused)
+            {
+                player1.Update();
+                lvl1.Update(player1);
+            }
             break;
         case 2:
             lvl2.Render();
             player1.Init(playerSelected);
             player1.Render();
-            player1.Update();
-            lvl2.Update(player1);
+            if (!isPaused)
+            {
+                player1.Update();
+                lvl2.Update(player1);
+            }
             break;
         case 3:
             lvl3.Render();
             player1.Init(playerSelected);
             player1.Render();
-            player1.Update();
-            lvl3.Update(player1);
+            if (!isPaused)
+            {
+                player1.Update();
+                lvl3.Update(player1);
+            }
             break;
         case 4:
             lvlBoss.Render();
             player1.Init(playerSelected);
             player1.Render();
-            player1.Update();
-            lvlBoss.Update(player1);
+            if (!isPaused)
+            {
+                player1.Update();
+                lvlBoss.Update(player1);
+            }
             break;
 
         default:
@@ -176,6 +191,13 @@ int main(void)
             isMute = !isMute;
         }
 
+        // Pause/unpause game
+        if (IsKeyPressed(KEY_P))
+        {
+            PlaySound(gameSounds.checkpoint);
+            isPaused = !isPaused;
+        }
+
         //----------------------------------------------------------------------------------
         // End
         //----------------------------------------------------------------------------------
@@ -231,6 +253,7 @@ static void LoadAssets(void)
     itemTextures.bombExplosion = {LoadTexture("resources/textures/items/bomb_explosion.png"), 6};
     itemTextures.trampoline = {LoadTexture("resources/textures/items/trampoline.png"), 8};
     itemTextures.platform = {LoadTexture("resources/textures/items/platform.png"), 1};
+    logo = LoadTexture("resources/textures/items/logo.png");
 
     // Sounds
     gameSounds.trampoline = LoadSound("resources/sounds/trampoline.wav");
@@ -240,7 +263,7 @@ static void LoadAssets(void)
     gameSounds.bombDrop = LoadSound("resources/sounds/bomb_drop.wav");
     gameSounds.bombExplode = LoadSound("resources/sounds/bomb_explode.wav");
     gameSounds.killEnemy = LoadSound("resources/sounds/kill_enemy.wav");
-    gameSounds.gameOver = LoadSound("resources/sounds/gameovery.wav");
+    gameSounds.gameOver = LoadSound("resources/sounds/gameover.wav");
     gameSounds.playerDied = LoadSound("resources/sounds/player_died.wav");
 }
 
@@ -278,6 +301,7 @@ static void UnloadAssets(void)
     UnloadTexture(itemTextures.checkpointCollected.texture);
     UnloadTexture(itemTextures.platform.texture);
     UnloadTexture(itemTextures.trampoline.texture);
+    UnloadTexture(logo);
 
     // Sounds
     UnloadSound(gameSounds.trampoline);

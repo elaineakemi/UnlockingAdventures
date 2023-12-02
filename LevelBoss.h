@@ -42,13 +42,14 @@ private:
     int bossHealth{10};
     int intervalHit{50};
 
+    void RenderBackground();
+
 public:
     // Constructor
     LevelBoss() = default;
 
     void Init();
-    void RenderBackground();
-    void RenderItems();
+    void Render();
     void Update(Player &player);
     void Unload();
 };

@@ -23,7 +23,7 @@ void LevelBoss::RenderBackground()
     DrawTexture(backgroundTextures.border, 0, 0, WHITE);
 }
 
-void LevelBoss::RenderItems()
+void LevelBoss::Render()
 {
     // Draw boss health percentage
     DrawTextEx(customFont, TextFormat("Boss: %d%%", bossHealth * 10), (Vector2){670, 20}, 24, 2, BLACK);
@@ -31,11 +31,12 @@ void LevelBoss::RenderItems()
     //----------------------------------------------------------------------------------
     //  Render Elements
     //----------------------------------------------------------------------------------
+    RenderBackground();
+    pigBoss.Render();
+    bomb.RenderBomb();
+
     //  Render status bar without flags and with instructions for boss level
     status.Render(-1);
-
-    bomb.RenderBomb();
-    pigBoss.Render();
 
     for (auto enemy : enemies)
     {

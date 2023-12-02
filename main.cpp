@@ -37,8 +37,10 @@ Texture2D logo;
 static const int screenWidth = 800;
 static const int screenHeight = 450;
 
+// Local Functions
 static void LoadAssets(void);
 static void UnloadAssets(void);
+
 //----------------------------------------------------------------------------------
 // Program main entry point
 //----------------------------------------------------------------------------------
@@ -56,16 +58,16 @@ int main(void)
 
     // Declare and initialize levels
     Menu mainMenu;
-    mainMenu.Init();
     Level1 lvl1;
-    lvl1.Init();
     Level2 lvl2;
-    lvl2.Init();
     Level3 lvl3;
-    lvl3.Init();
     LevelBoss lvlBoss;
-    lvlBoss.Init();
     EndingScreen ending;
+    mainMenu.Init();
+    lvl1.Init();
+    lvl2.Init();
+    lvl3.Init();
+    lvlBoss.Init();
     ending.Init();
     Player player1(playerTextures.frog, {15.0f, 400.0f});
 
@@ -92,8 +94,7 @@ int main(void)
                 mainMenu.Update();
             break;
         case 1:
-            lvl1.RenderBackground();
-            lvl1.RenderItems();
+            lvl1.Render();
             player1.Init(playerSelected);
             player1.Render();
             if (!isPaused)
@@ -103,8 +104,7 @@ int main(void)
             }
             break;
         case 2:
-            lvl2.RenderBackground();
-            lvl2.RenderItems();
+            lvl2.Render();
             player1.Init(playerSelected);
             player1.Render();
             if (!isPaused)
@@ -114,8 +114,7 @@ int main(void)
             }
             break;
         case 3:
-            lvl3.RenderBackground();
-            lvl3.RenderItems();
+            lvl3.Render();
             player1.Init(playerSelected);
             player1.Render();
             if (!isPaused)
@@ -125,8 +124,7 @@ int main(void)
             }
             break;
         case 4:
-            lvlBoss.RenderBackground();
-            lvlBoss.RenderItems();
+            lvlBoss.Render();
             player1.Init(playerSelected);
             player1.Render();
             if (!isPaused)

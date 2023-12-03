@@ -1,3 +1,12 @@
+## Software Engineering - CA1
+
+- Video: https://www.youtube.com/watch?v=_BObjt11pEM
+- More info about this CA can be checked in this [document](docs/CA.md)
+
+This branch was created to store the Software Enginnering CA1 files.
+
+---
+
 # Unlocking Adventures
 
 ### Description

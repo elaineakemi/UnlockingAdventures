@@ -1,7 +1,5 @@
 # Unlocking Adventures
 
-## Software Engineering - CA1
-
 ### Description
 
 Unlocking Adventures is an adventure game in 2D, the objective is collect flags in each level to open the door to go to next level.
